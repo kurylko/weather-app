@@ -13,7 +13,7 @@ const useCurrentWeather = (lat, lon) => {
             const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat}, ${lon}&aqi=no`
             axios.get(url)
                 .then(response => {
-                    setCurrentWeather(currentWeather ? response.data : response.data.current.condition.text)
+                    setCurrentWeather(currentWeather ? response.data : response.data)
                 })
                 .catch(error => {
                     console.log("Can not catch weather data");
