@@ -1,5 +1,6 @@
 import React from "react"
 import {format} from "date-fns";
+import parseApiDateResponse from "@/utils/parseApiDateResponse";
 
 const CurrentWeatherCard = ({currentWeather}) => {
     if (!currentWeather || !currentWeather.current) {
@@ -8,9 +9,11 @@ const CurrentWeatherCard = ({currentWeather}) => {
         )
     } else {
 
-        const dateString = currentWeather.location.localtime;
-        const date = new Date (dateString);
-        const formattedDate = format(date, 'eeee, MMMM d, h:mm a');
+        const currentDateString = currentWeather.location.localtime;
+        const date = parseApiDateResponse(currentDateString);
+
+        //const date = new Date (dateString);
+       // const formattedDate = format(date, 'eeee, MMMM d, h:mm a');
 
         function getCloudDescription (cloudPercentage) {
             if(cloudPercentage >= 91) {
@@ -38,7 +41,7 @@ const CurrentWeatherCard = ({currentWeather}) => {
                     <img src={currentWeather.current.condition.icon}></img>
                     <p>{currentWeather.current.condition.text}</p>
                 </div>
-                <div>{formattedDate}</div>
+                <div>{date}</div>
                 <div>Humidity: {`${currentWeather.current.humidity}%`}</div>
                 <div>Current temperature: {`${currentWeather.current.temp_c} C°`}</div>
                 <div>Feels like: {`${currentWeather.current.feelslike_c} C°`}</div>

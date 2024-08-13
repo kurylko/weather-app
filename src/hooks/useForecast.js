@@ -10,7 +10,7 @@ const useForecast = (lat, lon) => {
         const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
         if(lat && lon ) {
-            const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat}, ${lon}&days=3&aqi=no&alerts=no`
+            const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat}, ${lon}&days=4&aqi=no&alerts=no`
             axios.get(url)
                 .then(response => {
                     setForecast(forecast ? response.data : response.data)
