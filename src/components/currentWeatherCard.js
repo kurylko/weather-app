@@ -1,8 +1,7 @@
 import React from "react"
-import {format} from "date-fns";
 import parseApiDateResponse from "@/utils/parseApiDateResponse";
 
-const CurrentWeatherCard = ({currentWeather}) => {
+const CurrentWeatherCard = ({currentWeather, formattedCurrentDate}) => {
     if (!currentWeather || !currentWeather.current) {
         return (
             <div>The weather data is not available. Please, try again later. </div>
@@ -10,15 +9,15 @@ const CurrentWeatherCard = ({currentWeather}) => {
     } else {
 
         const currentDateString = currentWeather.location.localtime;
-        const date = parseApiDateResponse(currentDateString);
+        const date = parseApiDateResponse({dateString:currentDateString});
 
         //const date = new Date (dateString);
-       // const formattedDate = format(date, 'eeee, MMMM d, h:mm a');
+        // const formattedDate = format(date, 'eeee, MMMM d, h:mm a');
 
-        function getCloudDescription (cloudPercentage) {
-            if(cloudPercentage >= 91) {
+        function getCloudDescription(cloudPercentage) {
+            if (cloudPercentage >= 91) {
                 return 'The sky is completely overcast with dense clouds'
-            } else if(cloudPercentage >= 76) {
+            } else if (cloudPercentage >= 76) {
                 return 'The sky is mostly covered with clouds'
             } else if (cloudPercentage >= 51) {
                 return 'The sky is mostly cloudy with some clear spots'
@@ -37,11 +36,11 @@ const CurrentWeatherCard = ({currentWeather}) => {
         return (
             <div class='flex-col items-center w-400 bg-zinc-200 rounded-lg m-10 p-10'>Current weather card
                 <div>{`${currentWeather.location.name}, ${currentWeather.location.region} (${currentWeather.location.country})`}</div>
+                <div>{date}</div>
                 <div>
                     <img src={currentWeather.current.condition.icon}></img>
                     <p>{currentWeather.current.condition.text}</p>
                 </div>
-                <div>{date}</div>
                 <div>Humidity: {`${currentWeather.current.humidity}%`}</div>
                 <div>Current temperature: {`${currentWeather.current.temp_c} C°`}</div>
                 <div>Feels like: {`${currentWeather.current.feelslike_c} C°`}</div>
