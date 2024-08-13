@@ -7,6 +7,7 @@ import CurrentWeatherCard from "@/components/currentWeatherCard";
 import SearchBar from "@/components/searchBar";
 import ForecastCard from "@/components/forecastCard";
 import useForecast from "@/hooks/useForecast";
+import './global.css';
 
 export default function Home() {
     let [usersLocation, setUsersLocation] = useState('');
@@ -39,10 +40,9 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <SearchBar searchInput={searchInput} handleChangeSearch={handleChangeSearch} handleSearch={handleSearch}/>
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex"/>
-        {location ? <p> {`User's location: ${location.latitude}, ${location.longitude}`} </p> : <p> No location detected </p>}
         {!location ? null : <CurrentWeatherCard currentWeather={currentWeather}/>}
         <ForecastCard forecast={forecast}/>
+        {location ? <p> {`User's location: ${location.latitude}, ${location.longitude}`} </p> : <p> No location detected </p>}
     </main>
   );
 }

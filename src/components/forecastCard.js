@@ -10,10 +10,10 @@ const ForecastCard = ({forecast}) => {
     //const forecastDateString = forecast.forecast["forecastday"]["date"];
 
     return (
-        <div> Weather for next 3 days
-            <div class="flex gap-5">
+        <div className='forecast-cards-cover'> Weather for next 3 days
+            <div className='forecast-cards'>
                 {forecastWithoutCurrentDay.map((forecastDay) =>
-                    <div key={forecastDay.date} class='flex-col'>
+                    <div key={forecastDay.date} className='forecast-card'>
                         <div>{parseApiDateResponse({ dateString: forecastDay["date"] })}</div>
                         <div>{forecastDay.day.condition.text}</div>
                         <img src={forecastDay.day.condition.icon}></img>

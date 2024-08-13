@@ -34,7 +34,7 @@ const CurrentWeatherCard = ({currentWeather, formattedCurrentDate}) => {
 
 
         return (
-            <div class='flex-col items-center w-400 bg-zinc-200 rounded-lg m-10 p-10'>Current weather card
+            <div className='current-weather-card'>
                 <div>{`${currentWeather.location.name}, ${currentWeather.location.region} (${currentWeather.location.country})`}</div>
                 <div>{date}</div>
                 <div>
