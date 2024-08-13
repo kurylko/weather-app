@@ -1,7 +1,7 @@
 import React from "react";
 
 const ForecastCard = ({forecast}) => {
-    if (!forecast || forecast.forecast) {
+    if (!forecast || !forecast.forecast) {
         return <div>The weather forecast is not available. Please, try again later. </div>
     }
     return(

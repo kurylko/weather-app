@@ -14,6 +14,7 @@ const useForecast = (lat, lon) => {
             axios.get(url)
                 .then(response => {
                     setForecast(forecast ? response.data : response.data)
+                    console.log(forecast)
                 })
                 .catch(error => {
                     console.log("Can not catch weather forecast data");

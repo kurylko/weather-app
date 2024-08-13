@@ -4,7 +4,7 @@ import {format} from "date-fns";
 const CurrentWeatherCard = ({currentWeather}) => {
     if (!currentWeather || !currentWeather.current) {
         return (
-            <div>The weather forecast is not available. Please, try again later. </div>
+            <div>The weather data is not available. Please, try again later. </div>
         )
     } else {
 

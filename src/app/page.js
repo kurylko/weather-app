@@ -15,7 +15,7 @@ export default function Home() {
     const { location, error: locationError} = useUserLocation();
     const { latitude, longitude } = location;
     const {currentWeather, error: currentWeatherError} = useCurrentWeather(latitude, longitude);
-    const {forecast, error: forecastError} = useForecast();
+    const {forecast, error: forecastError} = useForecast(latitude, longitude);
 
     if (!searchInput) {
         usersLocation = location;
@@ -33,6 +33,7 @@ export default function Home() {
     }
 
     console.log(usersLocation);
+    console.log(forecast);
 
 
   return (
