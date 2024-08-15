@@ -13,6 +13,11 @@ const ForecastCard = ({forecast}) => {
     const forecastWithoutCurrentDay = forecastWithCurrentDay.slice(1);
     //const forecastDateString = forecast.forecast["forecastday"]["date"];
 
+    const getInteger = (number) => {
+        const integer = Math.round(number);
+        return integer;
+    }
+
     return (
         <div className='forecast-cards-container'>
             <p>Next 3 days forecast</p>
@@ -21,14 +26,15 @@ const ForecastCard = ({forecast}) => {
                     <div key={forecastDay.date} className='forecast-card'>
                         <div>{parseApiDateResponse({ dateString: forecastDay["date"] })}</div>
                         <div>{forecastDay.day.condition.text}</div>
-                        <img src={forecastDay.day.condition.icon}></img>
+                        <img className='forecast-big-icon' src={forecastDay.day.condition.icon}></img>
+                        <p className='forecast-max-temp'> {`${getInteger(forecastDay.day.maxtemp_c)} C°`}</p>
                         <div><Image className='forecast-card-icon' src={sunny} alt='sunny-icon'></Image>
-                            {`${forecastDay.day.maxtemp_c} - ${forecastDay.day.mintemp_c} C°`}</div>
+                            {`${getInteger(forecastDay.day.maxtemp_c)} - ${getInteger(forecastDay.day.mintemp_c)} C°`}</div>
                         <div><Image className='forecast-card-icon' src={rain} alt='rain-icon'></Image>
                             {`${forecastDay.day.avghumidity}%`}</div>
                         <div>
                             <Image className='forecast-card-icon' src={windy} alt='windy-icon'></Image>
-                            <p>{`${forecastDay.day.maxwind_kph} km/h`}</p>
+                            <p>{`${getInteger(forecastDay.day.maxwind_kph)} km/h`}</p>
                             </div>
                         <div>UV-index: {forecastDay.day.uv}</div>
                     </div>

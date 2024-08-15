@@ -105,6 +105,15 @@ header {
   flex-direction: column;
 }
 
+.forecast-big-icon {
+  width: 100px;
+  height: 100px;
+}
+
+.forecast-max-temp {
+  font-size: xx-large;
+}
+
 .forecast-card-icon {
   width: 20px;
   height: 20px;
