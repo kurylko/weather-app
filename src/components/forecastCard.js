@@ -1,5 +1,9 @@
 import React from "react";
+import Image from 'next/image';
 import parseApiDateResponse from "@/utils/parseApiDateResponse";
+import windy from './../../public/icons/windy.png';
+import rain  from './../../public/icons/rain.png';
+import sunny from './../../public/icons/sunny.png';
 
 const ForecastCard = ({forecast}) => {
     if (!forecast || !forecast.forecast) {
@@ -18,9 +22,14 @@ const ForecastCard = ({forecast}) => {
                         <div>{parseApiDateResponse({ dateString: forecastDay["date"] })}</div>
                         <div>{forecastDay.day.condition.text}</div>
                         <img src={forecastDay.day.condition.icon}></img>
-                        <div>Temperature: {`${forecastDay.day.maxtemp_c} - ${forecastDay.day.mintemp_c} C°`}</div>
-                        <div>Humidity: {`${forecastDay.day.avghumidity}%`}</div>
-                        <div>Wind: {`${forecastDay.day.maxwind_kph} km/h`}</div>
+                        <div><Image className='forecast-card-icon' src={sunny} alt='sunny-icon'></Image>
+                            {`${forecastDay.day.maxtemp_c} - ${forecastDay.day.mintemp_c} C°`}</div>
+                        <div><Image className='forecast-card-icon' src={rain} alt='rain-icon'></Image>
+                            {`${forecastDay.day.avghumidity}%`}</div>
+                        <div>
+                            <Image className='forecast-card-icon' src={windy} alt='windy-icon'></Image>
+                            <p>{`${forecastDay.day.maxwind_kph} km/h`}</p>
+                            </div>
                         <div>UV-index: {forecastDay.day.uv}</div>
                     </div>
                 )}

@@ -32,6 +32,13 @@ body {
   }
 }
 
+header {
+  height: 30px;
+  width: 100%;
+  background-color: blue;
+  margin-bottom: 14px;
+}
+
 .main-page {
   display: flex;
   flex-direction: column;
@@ -43,10 +50,37 @@ body {
   flex-direction: column;
   align-items: center;
   background-color: rgba(192, 190, 190, 0.87);
-  margin: 10px;
+  margin: 10px 10px 20px 10px;
   padding: 10px;
   border-radius: 10px;
   width: 85%;
+}
+
+.current-weather-image {
+  width: 150px;
+  height: 150px;
+}
+
+.current-temperature-container {
+  margin-bottom: 14px;
+}
+
+.current-temperature {
+  font-size: xxx-large;
+}
+
+
+.current-weather-numbers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.current-icon-number {
+  display: flex;
+  gap: 6px;
 }
 
 .forecast-cards-container {
@@ -54,6 +88,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 5px;
+  margin-bottom: 12px;
 }
 
 .forecast-cards {
@@ -62,6 +97,7 @@ body {
   align-items: center;
   gap: 5px;
   width: 95%;
+  margin-top: 10px;
 }
 
 .forecast-card {
@@ -69,18 +105,25 @@ body {
   flex-direction: column;
 }
 
+.forecast-card-icon {
+  width: 20px;
+  height: 20px;
+}
+
 .search-bar {
   display: flex;
-  gap: 2px;
+  gap: 5px;
+  width: 80%;
 }
 
 .search-input {
   border-radius: 10px;
-  margin-left: 2px;
+  padding-left: 20px;
 }
 
 .search-button {
   background-color: rgba(255, 109, 47, 0.98);
   border-radius: 10px;
   margin-left: 2px;
+  padding: 0px 10px;
 }
