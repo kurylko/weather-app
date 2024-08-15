@@ -10,7 +10,8 @@ const ForecastCard = ({forecast}) => {
     //const forecastDateString = forecast.forecast["forecastday"]["date"];
 
     return (
-        <div className='forecast-cards-cover'> Weather for next 3 days
+        <div className='forecast-cards-container'>
+            <p>Next 3 days forecast</p>
             <div className='forecast-cards'>
                 {forecastWithoutCurrentDay.map((forecastDay) =>
                     <div key={forecastDay.date} className='forecast-card'>
