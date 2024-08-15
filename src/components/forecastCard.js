@@ -4,6 +4,7 @@ import parseApiDateResponse from "@/utils/parseApiDateResponse";
 import windy from './../../public/icons/windy.png';
 import rain from './../../public/icons/rain.png';
 import sunny from './../../public/icons/sunny.png';
+import {format} from "date-fns";
 
 const ForecastCard = ({forecast}) => {
     if (!forecast || !forecast.forecast) {
@@ -24,13 +25,13 @@ const ForecastCard = ({forecast}) => {
             <div className='forecast-cards'>
                 {forecastWithoutCurrentDay.map((forecastDay) =>
                     <div key={forecastDay.date} className='forecast-card'>
-                        <div>{parseApiDateResponse({dateString: forecastDay["date"]})}</div>
+                        <div>{parseApiDateResponse(forecastDay["date"], 'dayOnly')}</div>
                         <img className='forecast-big-icon' src={forecastDay.day.condition.icon}></img>
                         <p className='forecast-max-temp'> {`${getInteger(forecastDay.day.maxtemp_c)} C°`}</p>
                         <div className='forecast-number-icon-container'>
                             <div className='forecast-number-icon'><Image className='forecast-card-icon' src={sunny}
                                                                          alt='sunny-icon'></Image>
-                                {`${getInteger(forecastDay.day.maxtemp_c)} - ${getInteger(forecastDay.day.mintemp_c)} C°`}
+                                {`${getInteger(forecastDay.day.mintemp_c)} C°`}
                             </div>
                             <div className='forecast-number-icon'><Image className='forecast-card-icon' src={rain}
                                                                          alt='rain-icon'></Image>

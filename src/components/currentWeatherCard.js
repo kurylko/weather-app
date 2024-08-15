@@ -13,7 +13,7 @@ const CurrentWeatherCard = ({currentWeather, formattedCurrentDate}) => {
     } else {
 
         const currentDateString = currentWeather.location.localtime;
-        const date = parseApiDateResponse({dateString:currentDateString});
+        const date = parseApiDateResponse(currentDateString);
 
         //const date = new Date (dateString);
         // const formattedDate = format(date, 'eeee, MMMM d, h:mm a');
