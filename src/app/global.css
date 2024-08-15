@@ -103,6 +103,7 @@ header {
 .forecast-card {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .forecast-big-icon {
@@ -117,6 +118,17 @@ header {
 .forecast-card-icon {
   width: 20px;
   height: 20px;
+}
+.forecast-number-icon-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 12px;
+}
+
+.forecast-number-icon {
+  display: flex;
+  gap: 10px;
 }
 
 .search-bar {
