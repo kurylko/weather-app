@@ -10,7 +10,7 @@ import cloudy from './../../public/icons/cloud.png';
 const getBigWeatherIcon = (weatherCondition) => {
     let bigWeatherIcon;
 
-    if (weatherCondition === 'Sunny' || 'Clear ') {
+    if (weatherCondition === 'Sunny' || weatherCondition === 'Clear ') {
         bigWeatherIcon = sunny;
     } else {
         bigWeatherIcon = cloudy;
@@ -19,4 +19,4 @@ const getBigWeatherIcon = (weatherCondition) => {
     return bigWeatherIcon;
 }
 
-export default bigWeatherIcon;
+export default getBigWeatherIcon;

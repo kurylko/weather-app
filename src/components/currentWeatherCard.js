@@ -5,6 +5,7 @@ import humidity from './../../public/icons/humidity.png';
 import pressure from './../../public/icons/pressure.png';
 import wind from './../../public/icons/wind.png';
 import getUvIcon from "@/utils/getUvIcon";
+import getBigWeatherIcon from "@/utils/getBigWeatherIcon";
 
 const CurrentWeatherCard = ({currentWeather, formattedCurrentDate}) => {
     if (!currentWeather || !currentWeather.current) {
@@ -43,26 +44,29 @@ const CurrentWeatherCard = ({currentWeather, formattedCurrentDate}) => {
                 <div>{`${currentWeather.location.name}, ${currentWeather.location.region} (${currentWeather.location.country})`}</div>
                 <div>{date}</div>
                 <div>
-                    <img className='current-weather-image' src={currentWeather.current.condition.icon}></img>
+                    <Image className='current-weather-image'
+                         src={getBigWeatherIcon(currentWeather.current.condition.text)} alt='big-weather-icon'></Image>
                 </div>
-                <div className='current-temperature-container'><p className='current-temperature'>{`${currentWeather.current.temp_c} C°`}</p>
+                <div className='current-temperature-container'><p
+                    className='current-temperature'>{`${currentWeather.current.temp_c} C°`}</p>
                     <div>Feels like: {`${currentWeather.current.feelslike_c} C°`}</div>
                 </div>
                 <div className='current-weather-numbers'>
                     <div className='current-icon-number'>
                         <Image className='current-card-icon' src={humidity} alt='windy-icon'></Image>
-                       <p className='current-card-icon-text'>{`${currentWeather.current.humidity}%`}</p> </div>
+                        <p className='current-card-icon-text'>{`${currentWeather.current.humidity}%`}</p></div>
                     <div className='current-icon-number'>
                         <Image className='current-card-icon' src={wind} alt='windy-icon'></Image>
                         <p className='current-card-icon-text'>{`${currentWeather.current.wind_dir}, ${currentWeather.current.wind_kph} km/h`}</p>
-                        </div>
+                    </div>
                     <div className='current-icon-number'>
                         <Image className='current-card-icon' src={pressure} alt='windy-icon'></Image>
                         <p className='current-card-icon-text'>{`${currentWeather.current.pressure_mb} mb`}</p></div>
                     <div className='current-icon-number'>
-                        <Image className='current-card-icon' src={getUvIcon(currentWeather.current.uv)} alt='windy-icon'></Image>
+                        <Image className='current-card-icon' src={getUvIcon(currentWeather.current.uv)}
+                               alt='windy-icon'></Image>
                         <p className='current-card-icon-text'>{currentWeather.current.uv}</p>
-                       </div>
+                    </div>
                 </div>
                 <div>{getCloudDescription(currentWeather.current.cloud)}</div>
             </div>
