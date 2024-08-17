@@ -57,8 +57,8 @@ header {
 }
 
 .current-weather-image {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
 }
 
 .current-temperature-container {
@@ -76,6 +76,15 @@ header {
   grid-template-rows: repeat(2, auto);
   gap: 10px;
   margin-bottom: 14px;
+}
+
+.current-card-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.current-card-icon-text {
+  align-content: center;
 }
 
 .current-icon-number {
@@ -147,5 +156,5 @@ header {
   background-color: rgba(255, 109, 47, 0.98);
   border-radius: 10px;
   margin-left: 2px;
-  padding: 0px 10px;
+  padding: 0 10px;
 }

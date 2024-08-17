@@ -1,15 +1,10 @@
 import React from "react";
 import Image from 'next/image';
 import parseApiDateResponse from "@/utils/parseApiDateResponse";
-import windy from './../../public/icons/windy.png';
-import rain from './../../public/icons/rain.png';
-import sunny from './../../public/icons/sunny.png';
 import thermometer from './../../public/icons/thermometer.png';
-import uv from './../../public/icons/uv.png';
-import uvWarn from './../../public/icons/uv-warn.png';
 import humidity from './../../public/icons/humidity.png';
-import pressure from './../../public/icons/pressure.png';
 import wind from './../../public/icons/wind.png';
+import getUvIcon from "@/utils/getUvIcon";
 
 
 const ForecastCard = ({forecast}) => {
@@ -25,16 +20,6 @@ const ForecastCard = ({forecast}) => {
         return integer;
     }
 
-    const getUvIcon = (uvIndex) => {
-        let uvIcon;
-
-        if (uvIndex < 7) {
-           uvIcon = uv;
-        } else {
-            uvIcon = uvWarn;
-        }
-        return uvIcon;
-    }
 
 
     return (
