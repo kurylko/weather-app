@@ -55,15 +55,19 @@ const CurrentWeatherCard = ({currentWeather, formattedCurrentDate}) => {
                     <div>Feels like: {`${currentWeather.current.feelslike_c} C°`}</div>
                 </div>
                 <div className='current-weather-numbers'>
-                    <div className='current-icon-number'><Image className='forecast-card-icon' src={humidity} alt='windy-icon'></Image>
-                       <p>{`${currentWeather.current.humidity}%`}</p> </div>
-                    <div className='current-icon-number'><Image className='forecast-card-icon' src={wind} alt='windy-icon'></Image>
-                        <p>{`${currentWeather.current.wind_dir}, ${currentWeather.current.wind_kph} km/h`}</p>
+                    <div className='current-icon-number'>
+                        <Image className='current-card-icon' src={humidity} alt='windy-icon'></Image>
+                       <p className='current-card-icon-text'>{`${currentWeather.current.humidity}%`}</p> </div>
+                    <div className='current-icon-number'>
+                        <Image className='current-card-icon' src={wind} alt='windy-icon'></Image>
+                        <p className='current-card-icon-text'>{`${currentWeather.current.wind_dir}, ${currentWeather.current.wind_kph} km/h`}</p>
                         </div>
-                    <div className='current-icon-number'><Image className='forecast-card-icon' src={pressure} alt='windy-icon'></Image>
-                        <p> {`${currentWeather.current.pressure_mb} mb`}</p></div>
-                    <div className='current-icon-number'> <Image className='forecast-card-icon' src={getUvIcon(currentWeather.current.uv)} alt='windy-icon'></Image>
-                        <p> {currentWeather.current.uv}</p>
+                    <div className='current-icon-number'>
+                        <Image className='current-card-icon' src={pressure} alt='windy-icon'></Image>
+                        <p className='current-card-icon-text'>{`${currentWeather.current.pressure_mb} mb`}</p></div>
+                    <div className='current-icon-number'>
+                        <Image className='current-card-icon' src={getUvIcon(currentWeather.current.uv)} alt='windy-icon'></Image>
+                        <p className='current-card-icon-text'>{currentWeather.current.uv}</p>
                        </div>
                 </div>
                 <div>{getCloudDescription(currentWeather.current.cloud)}</div>
