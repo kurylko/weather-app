@@ -4,6 +4,13 @@ import parseApiDateResponse from "@/utils/parseApiDateResponse";
 import windy from './../../public/icons/windy.png';
 import rain from './../../public/icons/rain.png';
 import sunny from './../../public/icons/sunny.png';
+import thermometer from './../../public/icons/thermometer.png';
+import uv from './../../public/icons/uv.png';
+import uvWarn from './../../public/icons/uv-warn.png';
+import humidity from './../../public/icons/humidity.png';
+import pressure from './../../public/icons/pressure.png';
+import wind from './../../public/icons/wind.png';
+
 
 const ForecastCard = ({forecast}) => {
     if (!forecast || !forecast.forecast) {
@@ -18,6 +25,18 @@ const ForecastCard = ({forecast}) => {
         return integer;
     }
 
+    const getUvIcon = (uvIndex) => {
+        let uvIcon;
+
+        if (uvIndex < 7) {
+           uvIcon = uv;
+        } else {
+            uvIcon = uvWarn;
+        }
+        return uvIcon;
+    }
+
+
     return (
         <div className='forecast-cards-container'>
             <p>Next 3 days forecast</p>
@@ -25,21 +44,24 @@ const ForecastCard = ({forecast}) => {
                 {forecastWithoutCurrentDay.map((forecastDay) =>
                     <div key={forecastDay.date} className='forecast-card'>
                         <div>{parseApiDateResponse(forecastDay["date"], 'dayOnly')}</div>
-                        <img className='forecast-big-icon' src={forecastDay.day.condition.icon}></img>
+                        <img className='forecast-big-icon' src={forecastDay.day.condition.icon} alt='weather-condition'></img>
                         <p className='forecast-max-temp'> {`${getInteger(forecastDay.day.maxtemp_c)} C°`}</p>
                         <div className='forecast-number-icon-container'>
-                            <div className='forecast-number-icon'><Image className='forecast-card-icon' src={sunny}
-                                                                         alt='sunny-icon'></Image>
+                            <div className='forecast-number-icon'><Image className='forecast-card-icon' src={thermometer}
+                                                                         alt='temp-icon'></Image>
                                 {`${getInteger(forecastDay.day.mintemp_c)} C°`}
                             </div>
-                            <div className='forecast-number-icon'><Image className='forecast-card-icon' src={rain}
-                                                                         alt='rain-icon'></Image>
+                            <div className='forecast-number-icon'><Image className='forecast-card-icon' src={humidity}
+                                                                         alt='humidity-icon'></Image>
                                 {`${forecastDay.day.avghumidity}%`}</div>
                             <div className='forecast-number-icon'>
-                                <Image className='forecast-card-icon' src={windy} alt='windy-icon'></Image>
+                                <Image className='forecast-card-icon' src={wind} alt='wind-icon'></Image>
                                 <p>{`${getInteger(forecastDay.day.maxwind_kph)} km/h`}</p>
                             </div>
-                            <div>UV-index: {forecastDay.day.uv}</div>
+                            <div className='forecast-number-icon'>
+                                <Image className='forecast-card-icon' src={getUvIcon(forecastDay.day.uv)} alt='uv-icon'></Image>
+                               <p>{`${forecastDay.day.uv}`}</p>
+                            </div>
                         </div>
                     </div>
                 )}
