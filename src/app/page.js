@@ -8,6 +8,7 @@ import SearchBar from "@/components/searchBar";
 import ForecastCard from "@/components/forecastCard";
 import useForecast from "@/hooks/useForecast";
 import './global.css';
+import {getCoordinates} from "@/utils/getCoordinates";
 
 export default function Home() {
     let [usersLocation, setUsersLocation] = useState('');
@@ -18,24 +19,27 @@ export default function Home() {
     const {currentWeather, error: currentWeatherError} = useCurrentWeather(latitude, longitude);
     const {forecast, error: forecastError} = useForecast(latitude, longitude);
 
-    if (!searchInput) {
-        usersLocation = location;
-    } else {
-        usersLocation = searchInput;
-    }
-
     const handleChangeSearch = (e) => {
         e.preventDefault();
         setSearchInput(e.target.value);
     }
 
-    const handleSearch = () => {
-        console.log(searchInput);
+    const handleSearch = async () => {
+        console.log("searchinput:", searchInput);
+        try {
+            usersLocation = getCoordinates({city: searchInput});
+            console.log("userslocation:", usersLocation);
+            return usersLocation;
+        } catch (error) {
+            console.error("Error fetching coordinates:", error);
+            return null;
+        }
     }
 
-    console.log(usersLocation);
-    console.log(forecast);
 
+    //console.log("userslocation:", usersLocation);
+    //console.log("forecast", forecast);
+    console.log("Searching coords of input:", getCoordinates({city: searchInput}));
 
   return (
     <main className='main-page'>
