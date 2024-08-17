@@ -4,7 +4,6 @@ import parseApiDateResponse from "@/utils/parseApiDateResponse";
 import windy from './../../public/icons/windy.png';
 import rain from './../../public/icons/rain.png';
 import sunny from './../../public/icons/sunny.png';
-import {format} from "date-fns";
 
 const ForecastCard = ({forecast}) => {
     if (!forecast || !forecast.forecast) {
