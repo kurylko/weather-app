@@ -175,3 +175,8 @@ header {
   margin-left: 2px;
   padding: 0 10px;
 }
+
+footer {
+  background-color: rgb(var(--yellow-rgb));
+  padding-left: 10px;
+}
