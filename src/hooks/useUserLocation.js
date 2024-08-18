@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 
 const useUserLocation = () => {
-    const [location, setLocation] = useState({latitude: null, longitude: null});
+    const [location, setLocation] = useState({lat: null, lon: null});
     const [error, setError] = useState(null);
 
 
@@ -10,8 +10,8 @@ const useUserLocation = () => {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
                     setLocation({
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude,
+                        lat: position.coords.latitude,
+                        lon: position.coords.longitude,
                     });
                 },
                 (error) => {
@@ -23,6 +23,7 @@ const useUserLocation = () => {
         }
     }, []);
 
+    console.log('11', location);
     return {actualLocation: location, error};
 }
 
