@@ -51,6 +51,7 @@ const CurrentWeatherCard = ({currentWeather}) => {
                     className='current-temperature'>{`${currentWeather.current.temp_c} C°`}</p>
                     <div>Feels like: {`${currentWeather.current.feelslike_c} C°`}</div>
                 </div>
+                <p className='cloud-desc-text'>{getCloudDescription(currentWeather.current.cloud)}</p>
                 <div className='current-weather-numbers'>
                     <div className='current-icon-number'>
                         <Image className='current-card-icon' src={humidity} alt='windy-icon'></Image>
@@ -68,7 +69,6 @@ const CurrentWeatherCard = ({currentWeather}) => {
                         <p className='current-card-icon-text'>{currentWeather.current.uv}</p>
                     </div>
                 </div>
-                <div>{getCloudDescription(currentWeather.current.cloud)}</div>
             </div>
         );
     }

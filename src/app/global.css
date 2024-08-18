@@ -40,10 +40,13 @@ body {
 }
 
 header {
-  height: 30px;
+  display: flex;
+  height: fit-content;
   width: 100%;
-  background-color: blue;
+  background-color: rgb(var(--blue-rgb));
   margin-bottom: 14px;
+  padding: 10px;
+  justify-content: flex-end;
 }
 
 .main-page {
@@ -56,11 +59,12 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(192, 190, 190, 0.87);
+  background-color: rgb(var(--dark-blue-rgb), 0.2);
   margin: 10px 10px 20px 10px;
   padding: 10px;
   border-radius: 10px;
   width: 85%;
+  box-shadow: 2px 3px 4px rgb(var(--deep-blue-rgb), 0.3);
 }
 
 .current-weather-image {
@@ -97,6 +101,10 @@ header {
 .current-icon-number {
   display: flex;
   gap: 6px;
+}
+
+.cloud-desc-text {
+  text-align: center;
 }
 
 .forecast-cards-container {
@@ -151,10 +159,12 @@ header {
 .search-bar {
   display: flex;
   gap: 5px;
-  width: 80%;
+  width: 75%;
+  height: 30px;
 }
 
 .search-input {
+  width: 70%;
   border-radius: 10px;
   padding-left: 20px;
 }
