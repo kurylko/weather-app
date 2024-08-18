@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+header {
+  height: 30px;
+  width: 100%;
+  background-color: blue;
+  margin-bottom: 14px;
+}
+
+.main-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.current-weather-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(192, 190, 190, 0.87);
+  margin: 10px 10px 20px 10px;
+  padding: 10px;
+  border-radius: 10px;
+  width: 85%;
+}
+
+.current-weather-image {
+  width: 120px;
+  height: 120px;
+}
+
+.current-temperature-container {
+  margin-bottom: 14px;
+}
+
+.current-temperature {
+  font-size: xxx-large;
+}
+
+
+.current-weather-numbers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.current-card-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.current-card-icon-text {
+  align-content: center;
+}
+
+.current-icon-number {
+  display: flex;
+  gap: 6px;
+}
+
+.forecast-cards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  width: 85%;
+  margin-bottom: 12px;
+}
+
+.forecast-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+  width: 95%;
+  margin-top: 10px;
+}
+
+.forecast-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.forecast-big-icon {
+  width: 100px;
+  height: 100px;
+}
+
+.forecast-max-temp {
+  font-size: xx-large;
+}
+
+.forecast-card-icon {
+  width: 20px;
+  height: 20px;
+}
+.forecast-number-icon-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 12px;
+}
+
+.forecast-number-icon {
+  display: flex;
+  gap: 10px;
+}
+
+.search-bar {
+  display: flex;
+  gap: 5px;
+  width: 80%;
+}
+
+.search-input {
+  border-radius: 10px;
+  padding-left: 20px;
+}
+
+.search-button {
+  background-color: rgba(255, 109, 47, 0.98);
+  border-radius: 10px;
+  margin-left: 2px;
+  padding: 0 10px;
+}
