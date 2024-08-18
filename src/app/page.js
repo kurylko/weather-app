@@ -14,10 +14,10 @@ export default function Home() {
     const [searchLocation, setSearchLocation] = useState(null);
     const [searchInput, setSearchInput] = useState('');
 
+    const {lat: searchLat, lon: searchLon} = searchLocation || {};
     const {actualLocation, error: locationError} = useUserLocation();
-    const {latitude, longitude} = actualLocation;
-    const {currentWeather, error: currentWeatherError} = useCurrentWeather(latitude, longitude);
-    const {forecast, error: forecastError} = useForecast(latitude, longitude);
+    const {lat: actualLat, lon: actualLon} = actualLocation;
+
 
     const handleChangeSearch = (e) => {
         e.preventDefault();
@@ -29,8 +29,8 @@ export default function Home() {
             return null;
         }
         try {
-            const coordinates = await getCoordinates({city: searchInput});
-            setSearchLocation(coordinates);
+            const {latitude: lat, longitude: lon} = await getCoordinates({city: searchInput});
+            setSearchLocation({lat, lon});
             return searchLocation;
         } catch (error) {
             console.error("Error fetching coordinates:", error);
@@ -39,35 +39,36 @@ export default function Home() {
     }
 
     const handleLocationDisplay = () => {
-        let displayLocation;
+        let location = null;
 
         if (searchLocation) {
-            console.log("Search Location:", searchLocation);
-            displayLocation = searchLocation;
-        } else if (actualLocation && !searchLocation){
-            console.log("Actual Location:", actualLocation);
-            displayLocation = actualLocation;
+            location = searchLocation;
+        } else if (actualLocation && actualLocation.lat !== null && actualLocation.lon !== null)   {
+            location = actualLocation;
         } else {
-            console.log('No location');
-            displayLocation = null;
+            console.log('No location detected');
+            location = null;
         }
-        return displayLocation;
+        const {lat: displayLocationLat, lon: displayLocationLon} = location || {};
+
+        return location;
     }
 
-    const locationDisplay = handleLocationDisplay();
 
+    const locationDisplay = handleLocationDisplay() || { lat: null, lon: null };
+    const {lat: locationDisplayLat, lon: locationDisplayLon} = locationDisplay;
 
-    console.log("searchinput:", searchInput);
-    console.log("searchlocation:", searchLocation);
+    const {currentWeather, error: currentWeatherError} = useCurrentWeather({currentWeatherLocation: locationDisplay});
+    const {forecast, error: forecastError} = useForecast({forecastWeatherLocation: locationDisplay});
 
     return (
         <main className='main-page'>
             <SearchBar searchInput={searchInput} handleChangeSearch={handleChangeSearch} handleSearch={handleSearch}/>
-            {!actualLocation ? null : <CurrentWeatherCard currentWeather={currentWeather}/>}
-            <ForecastCard forecast={forecast}/>
-            {actualLocation ? <p> {`User's location: ${actualLocation.latitude}, ${actualLocation.longitude}`} </p> :
+            <CurrentWeatherCard currentWeather={currentWeather}/>
+            <ForecastCard forecast={forecast}></ForecastCard>
+            {actualLocation ? <p> {`User's location: ${actualLocation.lat}, ${actualLocation.lon}`} </p> :
                 <p> No location detected </p>}
-            <p>{`User's Display location: ${locationDisplay.latitude}, ${locationDisplay.longitude}`}</p>
+            <p>{`User's Display location: ${locationDisplay.lat}, ${locationDisplay.lon}`}</p>
         </main>
     );
 }

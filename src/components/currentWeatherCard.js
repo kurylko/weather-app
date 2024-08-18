@@ -7,7 +7,7 @@ import wind from './../../public/icons/wind.png';
 import getUvIcon from "@/utils/getUvIcon";
 import getBigWeatherIcon from "@/utils/getBigWeatherIcon";
 
-const CurrentWeatherCard = ({currentWeather, formattedCurrentDate}) => {
+const CurrentWeatherCard = ({currentWeather}) => {
     if (!currentWeather || !currentWeather.current) {
         return (
             <div>The weather data is not available. Please, try again later. </div>

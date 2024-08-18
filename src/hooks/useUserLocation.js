@@ -23,7 +23,6 @@ const useUserLocation = () => {
         }
     }, []);
 
-    console.log('11', location);
     return {actualLocation: location, error};
 }
 
