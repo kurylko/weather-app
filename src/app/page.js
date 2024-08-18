@@ -14,8 +14,8 @@ export default function Home() {
     let [usersLocation, setUsersLocation] = useState('');
     const [searchInput, setSearchInput] = useState('');
 
-    const { location, error: locationError} = useUserLocation();
-    const { latitude, longitude } = location;
+    const {location, error: locationError} = useUserLocation();
+    const {latitude, longitude} = location;
     const {currentWeather, error: currentWeatherError} = useCurrentWeather(latitude, longitude);
     const {forecast, error: forecastError} = useForecast(latitude, longitude);
 
@@ -25,10 +25,11 @@ export default function Home() {
     }
 
     const handleSearch = async () => {
-        console.log("searchinput:", searchInput);
+        if (!searchInput || searchInput.trim() === '') {
+            return null;
+        }
         try {
-            usersLocation = getCoordinates({city: searchInput});
-            console.log("userslocation:", usersLocation);
+            usersLocation = await getCoordinates({city: searchInput});
             return usersLocation;
         } catch (error) {
             console.error("Error fetching coordinates:", error);
@@ -36,17 +37,17 @@ export default function Home() {
         }
     }
 
-
-    //console.log("userslocation:", usersLocation);
+    console.log("searchinput:", searchInput);
+    console.log("userslocation:", usersLocation);
     //console.log("forecast", forecast);
-    console.log("Searching coords of input:", getCoordinates({city: searchInput}));
 
-  return (
-    <main className='main-page'>
-        <SearchBar searchInput={searchInput} handleChangeSearch={handleChangeSearch} handleSearch={handleSearch}/>
-        {!location ? null : <CurrentWeatherCard currentWeather={currentWeather}/>}
-        <ForecastCard forecast={forecast}/>
-        {location ? <p> {`User's location: ${location.latitude}, ${location.longitude}`} </p> : <p> No location detected </p>}
-    </main>
-  );
+    return (
+        <main className='main-page'>
+            <SearchBar searchInput={searchInput} handleChangeSearch={handleChangeSearch} handleSearch={handleSearch}/>
+            {!location ? null : <CurrentWeatherCard currentWeather={currentWeather}/>}
+            <ForecastCard forecast={forecast}/>
+            {location ? <p> {`User's location: ${location.latitude}, ${location.longitude}`} </p> :
+                <p> No location detected </p>}
+        </main>
+    );
 }

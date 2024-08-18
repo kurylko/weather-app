@@ -19,7 +19,7 @@ export async function getCoordinates({city}) {
 
         const results = response.data.results;
         if (results.length > 0) {
-            const {latitude, longitude} = results[0].geometry.location;
+            const {lat: latitude, lng: longitude} = results[0].geometry.location;
             return {latitude, longitude};
         } else {
             throw error('No results found');

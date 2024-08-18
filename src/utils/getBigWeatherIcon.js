@@ -1,5 +1,4 @@
 import sunny from './../../public/icons/sunny.png';
-import windy from './../../public/icons/windy.png';
 import rain from './../../public/icons/rain.png';
 import cloudyrain from './../../public/icons/cloudy.png';
 import snowy from './../../public/icons/snowy.png';
