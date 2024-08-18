@@ -5,6 +5,7 @@ import thermometer from './../../public/icons/thermometer.png';
 import humidity from './../../public/icons/humidity.png';
 import wind from './../../public/icons/wind.png';
 import getUvIcon from "@/utils/getUvIcon";
+import getBigWeatherIcon from "@/utils/getBigWeatherIcon";
 
 
 const ForecastCard = ({forecast}) => {
@@ -29,7 +30,7 @@ const ForecastCard = ({forecast}) => {
                 {forecastWithoutCurrentDay.map((forecastDay) =>
                     <div key={forecastDay.date} className='forecast-card'>
                         <div>{parseApiDateResponse(forecastDay["date"], 'dayOnly')}</div>
-                        <img className='forecast-big-icon' src={forecastDay.day.condition.icon} alt='weather-condition'></img>
+                        <Image src={getBigWeatherIcon(forecastDay.day.condition.text)} alt='weather-condition-icon'></Image>
                         <p className='forecast-max-temp'> {`${getInteger(forecastDay.day.maxtemp_c)} C°`}</p>
                         <div className='forecast-number-icon-container'>
                             <div className='forecast-number-icon'><Image className='forecast-card-icon' src={thermometer}
