@@ -23,7 +23,7 @@ const useUserLocation = () => {
         }
     }, []);
 
-    return {location, error};
+    return {actualLocation: location, error};
 }
 
 export default useUserLocation;
