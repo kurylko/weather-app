@@ -6,6 +6,13 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --yellow-rgb: 253, 198, 97;
+  --light-blue-rgb: 175, 221, 237;
+  --dark-blue-rgb: 62, 107, 127;
+  --blue-rgb: 58, 112, 132;
+  --deep-blue-rgb: 36, 85, 102;
+  --brown-rgb: 141, 120, 99;
+  --light-schell-rgb: 255, 251, 240;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,9 +28,9 @@ body {
   background: linear-gradient(
       to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
+      rgb(var(--light-schell-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--yellow-rgb));
 }
 
 @layer utilities {
