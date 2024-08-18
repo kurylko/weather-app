@@ -2,9 +2,11 @@ import {useState, useEffect} from "react";
 import axios from "axios";
 import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
-const useForecast = (lat, lon) => {
+const useForecast = ({forecastWeatherLocation}) => {
     const [forecast, setForecast] = useState(null);
     const [error, setError] = useState(null);
+
+    const {lat, lon} = forecastWeatherLocation || {};
 
     useEffect(() => {
         const apiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -14,7 +16,6 @@ const useForecast = (lat, lon) => {
             axios.get(url)
                 .then(response => {
                     setForecast(forecast ? response.data : response.data)
-                    console.log(forecast)
                 })
                 .catch(error => {
                     console.log("Can not catch weather forecast data");
