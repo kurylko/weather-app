@@ -177,15 +177,18 @@ header {
 
 .search-input {
   width: 70%;
+  border: 1px solid rgb(var(--dark-blue-rgb), 0.3);
   border-radius: 10px;
   padding-left: 20px;
 }
 
 .search-button {
   background-color: rgba(255, 109, 47, 0.98);
+  border: 1px solid rgb(var(--dark-blue-rgb), 0.3);
   border-radius: 10px;
   margin-left: 2px;
   padding: 0 10px;
+  color: rgb(var(--dark-deep-blue-rgb));
 }
 
 footer {
