@@ -25,7 +25,7 @@ const ForecastCard = ({forecast}) => {
 
     return (
         <div className='forecast-cards-container'>
-            <span>Next 3 days forecast</span>
+            <span>3 days forecast</span>
             <div className='forecast-cards'>
                 {forecastWithoutCurrentDay.map((forecastDay) =>
                     <div key={forecastDay.date} className='forecast-card'>

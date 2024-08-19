@@ -31,12 +31,14 @@ body {
 header {
   display: flex;
   height: fit-content;
+  top: 0;
+  right: 0;
   width: 100%;
   background-color: rgb(var(--blue-rgb));
   margin-bottom: 14px;
   padding: 10px;
   justify-content: flex-end;
-  position: sticky;
+  position: fixed;
 }
 
 .main-page {
@@ -44,6 +46,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 60px;
 }
 
 .current-weather-card {
