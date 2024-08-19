@@ -9,6 +9,7 @@ import ForecastCard from "@/components/forecastCard";
 import useForecast from "@/hooks/useForecast";
 import './global.css';
 import {getCoordinates} from "@/utils/getCoordinates";
+import Loading from "@/app/loading";
 
 export default function Home() {
     const [searchLocation, setSearchLocation] = useState(null);
@@ -58,13 +59,14 @@ export default function Home() {
     const locationDisplay = handleLocationDisplay() || { lat: null, lon: null };
     const {lat: locationDisplayLat, lon: locationDisplayLon} = locationDisplay;
 
-    const {currentWeather, error: currentWeatherError} = useCurrentWeather({currentWeatherLocation: locationDisplay});
+    const {currentWeather, error: currentWeatherError, loading: currentWeatherLoading} = useCurrentWeather({currentWeatherLocation: locationDisplay});
     const {forecast, error: forecastError} = useForecast({forecastWeatherLocation: locationDisplay});
 
     return (
         <main className='main-page'>
             <SearchBar searchInput={searchInput} handleChangeSearch={handleChangeSearch} handleSearch={handleSearch}/>
-            <CurrentWeatherCard currentWeather={currentWeather}/>
+
+            <CurrentWeatherCard currentWeather={currentWeather} loading={currentWeatherLoading}/>
             <ForecastCard forecast={forecast}></ForecastCard>
             {actualLocation ? <p> {`User's location: ${actualLocation.lat}, ${actualLocation.lon}`} </p> :
                 <p> No location detected </p>}
