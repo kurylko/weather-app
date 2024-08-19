@@ -30,11 +30,11 @@ const ForecastCard = ({forecast}) => {
                 {forecastWithoutCurrentDay.map((forecastDay) =>
                     <div key={forecastDay.date} className='forecast-card'>
                         <div>{parseApiDateResponse(forecastDay["date"], 'dayOnly')}</div>
-                        <Image src={getBigWeatherIcon(forecastDay.day.condition.text)} alt='weather-condition-icon'></Image>
+                        <Image className='forecast-big-icon' src={getBigWeatherIcon(forecastDay.day.condition.text)} alt='weather-condition-icon'></Image>
                         <p className='forecast-max-temp'> {`${getInteger(forecastDay.day.maxtemp_c)} C°`}</p>
                         <div className='forecast-number-icon-container'>
-                            <div className='forecast-number-icon'><Image className='forecast-card-icon' src={thermometer}
-                                                                         alt='temp-icon'></Image>
+                            <div className='forecast-number-icon'>
+                                <Image className='forecast-card-icon' src={thermometer} alt='temp-icon'></Image>
                                 {`${getInteger(forecastDay.day.mintemp_c)} C°`}
                             </div>
                             <div className='forecast-number-icon'><Image className='forecast-card-icon' src={humidity}
@@ -42,11 +42,11 @@ const ForecastCard = ({forecast}) => {
                                 {`${forecastDay.day.avghumidity}%`}</div>
                             <div className='forecast-number-icon'>
                                 <Image className='forecast-card-icon' src={wind} alt='wind-icon'></Image>
-                                <p>{`${getInteger(forecastDay.day.maxwind_kph)} km/h`}</p>
+                               {`${getInteger(forecastDay.day.maxwind_kph)} km/h`}
                             </div>
                             <div className='forecast-number-icon'>
                                 <Image className='forecast-card-icon' src={getUvIcon(forecastDay.day.uv)} alt='uv-icon'></Image>
-                               <p>{`${forecastDay.day.uv}`}</p>
+                               {`${forecastDay.day.uv}`}
                             </div>
                         </div>
                     </div>
