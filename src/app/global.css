@@ -141,6 +141,10 @@ header {
   align-items: center;
 }
 
+.forecast-day{
+  margin: 0 0 10px;
+}
+
 .forecast-big-icon {
   width: 100px;
   height: 100px;

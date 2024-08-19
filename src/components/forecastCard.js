@@ -29,7 +29,7 @@ const ForecastCard = ({forecast}) => {
             <div className='forecast-cards'>
                 {forecastWithoutCurrentDay.map((forecastDay) =>
                     <div key={forecastDay.date} className='forecast-card'>
-                        <span>{parseApiDateResponse(forecastDay["date"], 'dayOnly')}</span>
+                        <span className='forecast-day'>{parseApiDateResponse(forecastDay["date"], 'dayOnly')}</span>
                         <Image className='forecast-big-icon' src={getBigWeatherIcon(forecastDay.day.condition.text)} alt='weather-condition-icon'></Image>
                         <span className='forecast-max-temp'> {`${getInteger(forecastDay.day.maxtemp_c)} C°`}</span>
                         <div className='forecast-number-icon-container'>
