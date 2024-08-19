@@ -92,7 +92,7 @@ header {
 
 .current-weather-numbers {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 3fr);
   grid-template-rows: repeat(2, auto);
   gap: 10px;
   margin-bottom: 5px;
