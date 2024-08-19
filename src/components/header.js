@@ -1,6 +1,11 @@
-const Header = () => {
+import SearchBar from "@/components/searchBar";
+
+const Header = ({searchInput, handleChangeSearch,handleSearch}) => {
+
     return(
-        <header>Header is here</header>
+        <header>
+            <SearchBar searchInput={searchInput} handleChangeSearch={handleChangeSearch} handleSearch={handleSearch}></SearchBar>
+        </header>
     );
 }
 export default Header;

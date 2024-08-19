@@ -1,59 +1,74 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --yellow-rgb: 253, 198, 97;
+  --light-blue-rgb: 175, 221, 237;
+  --dark-blue-rgb: 62, 107, 127;
+  --blue-rgb: 58, 112, 132;
+  --deep-blue-rgb: 36, 85, 102;
+  --brown-rgb: 141, 120, 99;
+  --light-schell-rgb: 255, 251, 240;
+  --dark-deep-blue-rgb: 11, 37, 46;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
 
 body {
+  margin: 0;
+  width: 100vw;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
+      rgb(var(--light-schell-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--yellow-rgb));
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
 
 header {
-  height: 30px;
+  display: flex;
+  height: fit-content;
+  top: 0;
+  right: 0;
   width: 100%;
-  background-color: blue;
+  background-color: rgb(var(--blue-rgb));
   margin-bottom: 14px;
+  padding: 10px;
+  justify-content: flex-end;
+  position: fixed;
 }
 
 .main-page {
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 60px;
 }
 
 .current-weather-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgba(192, 190, 190, 0.87);
+  background-color: rgb(var(--dark-blue-rgb), 0.2);
   margin: 10px 10px 20px 10px;
   padding: 10px;
   border-radius: 10px;
   width: 85%;
+  box-shadow: 2px 3px 4px rgb(var(--deep-blue-rgb), 0.3);
+}
+
+.current-location {
+  font-size: x-large;
+  color: rgb(var(--dark-deep-blue-rgb));
+}
+
+.current-date {
+  font-size: large;
+  color: rgb(var(--dark-deep-blue-rgb));
 }
 
 .current-weather-image {
@@ -62,20 +77,28 @@ header {
 }
 
 .current-temperature-container {
-  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
 }
 
 .current-temperature {
   font-size: xxx-large;
+  margin: 0 0 10px;
+  color: rgb(var(--dark-deep-blue-rgb));
+}
+
+.feels-like-temp {
+  margin: 0 0 10px;
+  color: rgb(var(--dark-deep-blue-rgb));
 }
 
 
 .current-weather-numbers {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 3fr);
   grid-template-rows: repeat(2, auto);
   gap: 10px;
-  margin-bottom: 14px;
+  margin-bottom: 5px;
 }
 
 .current-card-icon {
@@ -90,6 +113,11 @@ header {
 .current-icon-number {
   display: flex;
   gap: 6px;
+}
+
+.cloud-desc-text {
+  text-align: center;
+  margin: 10px 0 20px;
 }
 
 .forecast-cards-container {
@@ -107,13 +135,17 @@ header {
   align-items: center;
   gap: 22px;
   width: 95%;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .forecast-card {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.forecast-day{
+  margin: 0 0 10px;
 }
 
 .forecast-big-icon {
@@ -123,6 +155,8 @@ header {
 
 .forecast-max-temp {
   font-size: xx-large;
+  margin: 10px 0 20px 0;
+  color: rgb(var(--dark-deep-blue-rgb));
 }
 
 .forecast-card-icon {
@@ -144,17 +178,28 @@ header {
 .search-bar {
   display: flex;
   gap: 5px;
-  width: 80%;
+  width: 75%;
+  height: 30px;
 }
 
 .search-input {
+  width: 70%;
+  border: 1px solid rgb(var(--dark-blue-rgb), 0.3);
   border-radius: 10px;
   padding-left: 20px;
 }
 
 .search-button {
   background-color: rgba(255, 109, 47, 0.98);
+  border: 1px solid rgb(var(--dark-blue-rgb), 0.3);
   border-radius: 10px;
   margin-left: 2px;
   padding: 0 10px;
+  color: rgb(var(--dark-deep-blue-rgb));
+}
+
+footer {
+  width: 100%;
+  background-color: rgb(var(--yellow-rgb));
+  padding-left: 10px;
 }

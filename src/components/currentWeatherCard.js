@@ -41,34 +41,34 @@ const CurrentWeatherCard = ({currentWeather}) => {
 
         return (
             <div className='current-weather-card'>
-                <div>{`${currentWeather.location.name}, ${currentWeather.location.region} (${currentWeather.location.country})`}</div>
-                <div>{date}</div>
+                <span className='current-location'>{`${currentWeather.location.name}, ${currentWeather.location.region} (${currentWeather.location.country})`}</span>
+                <span className='current-date'>{date}</span>
                 <div>
                     <Image className='current-weather-image'
                          src={getBigWeatherIcon(currentWeather.current.condition.text)} alt='big-weather-icon'></Image>
                 </div>
-                <div className='current-temperature-container'><p
-                    className='current-temperature'>{`${currentWeather.current.temp_c} C°`}</p>
-                    <div>Feels like: {`${currentWeather.current.feelslike_c} C°`}</div>
+                <div className='current-temperature-container'>
+                    <span className='current-temperature'>{`${currentWeather.current.temp_c} C°`}</span>
+                    <span className='feels-like-temp'>Feels like: {`${currentWeather.current.feelslike_c} C°`}</span>
                 </div>
+                <span className='cloud-desc-text'>{getCloudDescription(currentWeather.current.cloud)}</span>
                 <div className='current-weather-numbers'>
                     <div className='current-icon-number'>
                         <Image className='current-card-icon' src={humidity} alt='windy-icon'></Image>
-                        <p className='current-card-icon-text'>{`${currentWeather.current.humidity}%`}</p></div>
+                        <span className='current-card-icon-text'>{`${currentWeather.current.humidity}%`}</span></div>
                     <div className='current-icon-number'>
                         <Image className='current-card-icon' src={wind} alt='windy-icon'></Image>
-                        <p className='current-card-icon-text'>{`${currentWeather.current.wind_dir}, ${currentWeather.current.wind_kph} km/h`}</p>
+                        <span className='current-card-icon-text'>{`${currentWeather.current.wind_dir}, ${currentWeather.current.wind_kph} km/h`}</span>
                     </div>
                     <div className='current-icon-number'>
                         <Image className='current-card-icon' src={pressure} alt='windy-icon'></Image>
-                        <p className='current-card-icon-text'>{`${currentWeather.current.pressure_mb} mb`}</p></div>
+                        <span className='current-card-icon-text'>{`${currentWeather.current.pressure_mb} mb`}</span></div>
                     <div className='current-icon-number'>
                         <Image className='current-card-icon' src={getUvIcon(currentWeather.current.uv)}
                                alt='windy-icon'></Image>
-                        <p className='current-card-icon-text'>{currentWeather.current.uv}</p>
+                        <span className='current-card-icon-text'>{currentWeather.current.uv}</span>
                     </div>
                 </div>
-                <div>{getCloudDescription(currentWeather.current.cloud)}</div>
             </div>
         );
     }
