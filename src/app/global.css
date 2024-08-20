@@ -255,3 +255,25 @@ footer {
     min-width: 85%;
     text-align: center;
 }
+
+.astro-card {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(var(--dark-blue-rgb), 0.2);
+    margin: 10px 10px 20px 10px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 85%;
+    box-shadow: 2px 3px 4px rgb(var(--deep-blue-rgb), 0.3);
+}
+
+.astro-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.astro-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 8px;
+}

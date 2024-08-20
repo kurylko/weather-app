@@ -14,7 +14,7 @@ const useForecast = ({forecastWeatherLocation}) => {
 
         if (lat && lon) {
             setLoading(true);
-            const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat}, ${lon}&days=4&aqi=no&alerts=no`
+            const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat}, ${lon}&days=4&aqi=yes&alerts=yes`
             axios.get(url)
                 .then(response => {
                     setForecast(forecast ? response.data : response.data)
