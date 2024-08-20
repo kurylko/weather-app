@@ -9,7 +9,6 @@ import ForecastCard from "@/components/forecastCard";
 import useForecast from "@/hooks/useForecast";
 import './global.css';
 import {getCoordinates} from "@/utils/getCoordinates";
-import Loading from "@/app/loading";
 
 export default function Home() {
     const [searchLocation, setSearchLocation] = useState(null);

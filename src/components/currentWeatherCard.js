@@ -7,7 +7,7 @@ import wind from './../../public/icons/wind.png';
 import getUvIcon from "@/utils/getUvIcon";
 import getBigWeatherIcon from "@/utils/getBigWeatherIcon";
 import mist from './../../public/icons/mist.png';
-import Loading from "@/app/loading";
+import Loader from "@/components/loader";
 
 const CurrentWeatherCard = ({currentWeather, loading}) => {
 
@@ -16,8 +16,8 @@ const CurrentWeatherCard = ({currentWeather, loading}) => {
 
     if (loading) {
         return (
-            <div className='current-weather-card'>
-                <Loading loaderText={currentWeatherLoaderText}/>
+            <div className='current-weather-card no-weather-card'>
+                <Loader loaderText={currentWeatherLoaderText}/>
             </div>
         );
     } else if (!currentWeather || !currentWeather.current) {

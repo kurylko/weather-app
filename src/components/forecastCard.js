@@ -6,7 +6,7 @@ import humidity from './../../public/icons/humidity.png';
 import wind from './../../public/icons/wind.png';
 import getUvIcon from "@/utils/getUvIcon";
 import getBigWeatherIcon from "@/utils/getBigWeatherIcon";
-import Loading from "@/app/loading";
+import Loader from "@/components/loader";
 
 
 const ForecastCard = ({forecast, loading}) => {
@@ -16,8 +16,8 @@ const ForecastCard = ({forecast, loading}) => {
 
     if (loading) {
         return (
-            <div className='current-weather-card'>
-                <Loading loaderText={forecastLoaderText}/>
+            <div className='current-weather-card no-weather-card'>
+                <Loader loaderText={forecastLoaderText}/>
             </div>
         );
     } else if (!forecast || !forecast.forecast) {
