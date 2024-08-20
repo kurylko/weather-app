@@ -58,14 +58,14 @@ export default function Home() {
     const locationDisplay = handleLocationDisplay() || { lat: null, lon: null };
     const {lat: locationDisplayLat, lon: locationDisplayLon} = locationDisplay;
 
-    const {currentWeather, error: currentWeatherError} = useCurrentWeather({currentWeatherLocation: locationDisplay});
-    const {forecast, error: forecastError} = useForecast({forecastWeatherLocation: locationDisplay});
+    const {currentWeather, error: currentWeatherError, loading: currentWeatherLoading} = useCurrentWeather({currentWeatherLocation: locationDisplay});
+    const {forecast, error: forecastError, loading: forecastLoading} = useForecast({forecastWeatherLocation: locationDisplay});
 
     return (
         <main className='main-page'>
             <SearchBar searchInput={searchInput} handleChangeSearch={handleChangeSearch} handleSearch={handleSearch}/>
-            <CurrentWeatherCard currentWeather={currentWeather}/>
-            <ForecastCard forecast={forecast}></ForecastCard>
+            <CurrentWeatherCard currentWeather={currentWeather} loading={currentWeatherLoading}/>
+            <ForecastCard forecast={forecast} loading={forecastLoading}></ForecastCard>
             {actualLocation ? <p> {`User's location: ${actualLocation.lat}, ${actualLocation.lon}`} </p> :
                 <p> No location detected </p>}
             <p>{`User's Display location: ${locationDisplay.lat}, ${locationDisplay.lon}`}</p>
