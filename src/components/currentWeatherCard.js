@@ -6,7 +6,7 @@ import pressure from './../../public/icons/pressure.png';
 import wind from './../../public/icons/wind.png';
 import getUvIcon from "@/utils/getUvIcon";
 import getBigWeatherIcon from "@/utils/getBigWeatherIcon";
-import Loading from "@/app/loading";
+import mist from './../../public/icons/mist.png';
 
 const CurrentWeatherCard = ({currentWeather, loading}) => {
     console.log('loading value:', loading);
@@ -16,7 +16,10 @@ const CurrentWeatherCard = ({currentWeather, loading}) => {
 
     if (!currentWeather || !currentWeather.current) {
         return (
-            <div className='current-weather-card'>{noWeatherDataMessage}</div>
+            <div className='current-weather-card'>
+                <Image src={mist} alt='no weather data' style={{width: '100px', height: '100px', marginBottom: '10px'}}></Image>
+                {noWeatherDataMessage}
+            </div>
         );
     }
 
