@@ -6,15 +6,24 @@ import humidity from './../../public/icons/humidity.png';
 import wind from './../../public/icons/wind.png';
 import getUvIcon from "@/utils/getUvIcon";
 import getBigWeatherIcon from "@/utils/getBigWeatherIcon";
+import Loading from "@/app/loading";
 
 
-const ForecastCard = ({forecast}) => {
+const ForecastCard = ({forecast, loading}) => {
 
     const noForecastMessage = 'The weather forecast is not available. Please, try again later.';
+    const forecastLoaderText = 'Loading weather forecast...';
 
-    if (!forecast || !forecast.forecast) {
+    if (loading) {
+        return (
+            <div className='current-weather-card'>
+                <Loading loaderText={forecastLoaderText}/>
+            </div>
+        );
+    } else if (!forecast || !forecast.forecast) {
         return <div className='current-weather-card'>{noForecastMessage} </div>
     }
+
     const forecastWithCurrentDay = forecast.forecast["forecastday"];
     const forecastWithoutCurrentDay = forecastWithCurrentDay.slice(1);
     //const forecastDateString = forecast.forecast["forecastday"]["date"];
@@ -25,7 +34,6 @@ const ForecastCard = ({forecast}) => {
     }
 
 
-
     return (
         <div className='forecast-cards-container'>
             <span>3 days forecast</span>
@@ -33,7 +41,8 @@ const ForecastCard = ({forecast}) => {
                 {forecastWithoutCurrentDay.map((forecastDay) =>
                     <div key={forecastDay.date} className='forecast-card'>
                         <span className='forecast-day'>{parseApiDateResponse(forecastDay["date"], 'dayOnly')}</span>
-                        <Image className='forecast-big-icon' src={getBigWeatherIcon(forecastDay.day.condition.text)} alt='weather-condition-icon'></Image>
+                        <Image className='forecast-big-icon' src={getBigWeatherIcon(forecastDay.day.condition.text)}
+                               alt='weather-condition-icon'></Image>
                         <span className='forecast-max-temp'> {`${getInteger(forecastDay.day.maxtemp_c)} C°`}</span>
                         <div className='forecast-number-icon-container'>
                             <div className='forecast-number-icon'>
@@ -45,11 +54,12 @@ const ForecastCard = ({forecast}) => {
                                 {`${forecastDay.day.avghumidity}%`}</div>
                             <div className='forecast-number-icon'>
                                 <Image className='forecast-card-icon' src={wind} alt='wind-icon'></Image>
-                               {`${getInteger(forecastDay.day.maxwind_kph)} km/h`}
+                                {`${getInteger(forecastDay.day.maxwind_kph)} km/h`}
                             </div>
                             <div className='forecast-number-icon'>
-                                <Image className='forecast-card-icon' src={getUvIcon(forecastDay.day.uv)} alt='uv-icon'></Image>
-                               {`${forecastDay.day.uv}`}
+                                <Image className='forecast-card-icon' src={getUvIcon(forecastDay.day.uv)}
+                                       alt='uv-icon'></Image>
+                                {`${forecastDay.day.uv}`}
                             </div>
                         </div>
                     </div>

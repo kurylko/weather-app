@@ -1,8 +1,11 @@
 import './global.css';
 
- const Loading = () => {
+const Loading = ({loaderText}) => {
+
     return (
-        <div className='loader'> Loading...</div>
+        <div className='loader'>
+            {!loaderText ? null : <span>{loaderText}</span>}
+        </div>
     )
 }
 export default Loading;
