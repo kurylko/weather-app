@@ -2,7 +2,7 @@ import './global.css';
 
  const Loading = () => {
     return (
-        <div> Loading...</div>
+        <div className='loader'> Loading...</div>
     )
 }
 export default Loading;

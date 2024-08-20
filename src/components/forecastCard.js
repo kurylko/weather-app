@@ -9,8 +9,11 @@ import getBigWeatherIcon from "@/utils/getBigWeatherIcon";
 
 
 const ForecastCard = ({forecast}) => {
+
+    const noForecastMessage = 'The weather forecast is not available. Please, try again later.';
+
     if (!forecast || !forecast.forecast) {
-        return <div>The weather forecast is not available. Please, try again later. </div>
+        return <div className='current-weather-card'>{noForecastMessage} </div>
     }
     const forecastWithCurrentDay = forecast.forecast["forecastday"];
     const forecastWithoutCurrentDay = forecastWithCurrentDay.slice(1);

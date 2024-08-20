@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import parseApiDateResponse from "@/utils/parseApiDateResponse";
 import Image from 'next/image';
 import humidity from './../../public/icons/humidity.png';
@@ -9,19 +9,20 @@ import getBigWeatherIcon from "@/utils/getBigWeatherIcon";
 import Loading from "@/app/loading";
 
 const CurrentWeatherCard = ({currentWeather, loading}) => {
-     if (!currentWeather || !currentWeather.current) {
+    console.log('loading value:', loading);
+    console.log('currentWeather:', currentWeather);
+
+    const noWeatherDataMessage = 'Sorry. The weather data is not available. Please, try again later.';
+
+    if (!currentWeather || !currentWeather.current) {
         return (
-            <div>The weather data is not available. Please, try again later. </div>
-        )
-    } else if (loading) {
-        return (loading);
-    } else {
+            <div className='current-weather-card'>{noWeatherDataMessage}</div>
+        );
+    }
 
         const currentDateString = currentWeather.location.localtime;
         const date = parseApiDateResponse(currentDateString);
 
-        //const date = new Date (dateString);
-        // const formattedDate = format(date, 'eeee, MMMM d, h:mm a');
 
         function getCloudDescription(cloudPercentage) {
             if (cloudPercentage >= 91) {
@@ -43,48 +44,43 @@ const CurrentWeatherCard = ({currentWeather, loading}) => {
 
 
         return (
-            <>
-                {loading ? <Loading/> :
-                    <div className='current-weather-card'>
+            <div className='current-weather-card'>
                 <span
                     className='current-location'>{`${currentWeather.location.name}, ${currentWeather.location.region} (${currentWeather.location.country})`}</span>
-                        <span className='current-date'>{date}</span>
-                        <div>
-                            <Image className='current-weather-image'
-                                   src={getBigWeatherIcon(currentWeather.current.condition.text)}
-                                   alt='big-weather-icon'></Image>
-                        </div>
-                        <div className='current-temperature-container'>
-                            <span className='current-temperature'>{`${currentWeather.current.temp_c} C°`}</span>
-                            <span
-                                className='feels-like-temp'>Feels like: {`${currentWeather.current.feelslike_c} C°`}</span>
-                        </div>
-                        <span className='cloud-desc-text'>{getCloudDescription(currentWeather.current.cloud)}</span>
-                        <div className='current-weather-numbers'>
-                            <div className='current-icon-number'>
-                                <Image className='current-card-icon' src={humidity} alt='windy-icon'></Image>
-                                <span className='current-card-icon-text'>{`${currentWeather.current.humidity}%`}</span>
-                            </div>
-                            <div className='current-icon-number'>
-                                <Image className='current-card-icon' src={wind} alt='windy-icon'></Image>
-                                <span
-                                    className='current-card-icon-text'>{`${currentWeather.current.wind_dir}, ${currentWeather.current.wind_kph} km/h`}</span>
-                            </div>
-                            <div className='current-icon-number'>
-                                <Image className='current-card-icon' src={pressure} alt='windy-icon'></Image>
-                                <span
-                                    className='current-card-icon-text'>{`${currentWeather.current.pressure_mb} mb`}</span>
-                            </div>
-                            <div className='current-icon-number'>
-                                <Image className='current-card-icon' src={getUvIcon(currentWeather.current.uv)}
-                                       alt='windy-icon'></Image>
-                                <span className='current-card-icon-text'>{currentWeather.current.uv}</span>
-                            </div>
-                        </div>
+                <span className='current-date'>{date}</span>
+                <div>
+                    <Image className='current-weather-image'
+                           src={getBigWeatherIcon(currentWeather.current.condition.text)}
+                           alt='big-weather-icon'></Image>
+                </div>
+                <div className='current-temperature-container'>
+                    <span className='current-temperature'>{`${currentWeather.current.temp_c} C°`}</span>
+                    <span
+                        className='feels-like-temp'>Feels like: {`${currentWeather.current.feelslike_c} C°`}</span>
+                </div>
+                <span className='cloud-desc-text'>{getCloudDescription(currentWeather.current.cloud)}</span>
+                <div className='current-weather-numbers'>
+                    <div className='current-icon-number'>
+                        <Image className='current-card-icon' src={humidity} alt='windy-icon'></Image>
+                        <span className='current-card-icon-text'>{`${currentWeather.current.humidity}%`}</span>
                     </div>
-                }
-            </>
+                    <div className='current-icon-number'>
+                        <Image className='current-card-icon' src={wind} alt='windy-icon'></Image>
+                        <span
+                            className='current-card-icon-text'>{`${currentWeather.current.wind_dir}, ${currentWeather.current.wind_kph} km/h`}</span>
+                    </div>
+                    <div className='current-icon-number'>
+                        <Image className='current-card-icon' src={pressure} alt='windy-icon'></Image>
+                        <span
+                            className='current-card-icon-text'>{`${currentWeather.current.pressure_mb} mb`}</span>
+                    </div>
+                    <div className='current-icon-number'>
+                        <Image className='current-card-icon' src={getUvIcon(currentWeather.current.uv)}
+                               alt='windy-icon'></Image>
+                        <span className='current-card-icon-text'>{currentWeather.current.uv}</span>
+                    </div>
+                </div>
+            </div>
         );
-    }
 }
 export default CurrentWeatherCard;
