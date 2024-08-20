@@ -62,13 +62,13 @@ export default function Home() {
     const {forecast, error: forecastError, loading: forecastLoading} = useForecast({forecastWeatherLocation: locationDisplay});
 
     return (
-        <main className='main-page'>
+        <div className='home-page'>
             <SearchBar searchInput={searchInput} handleChangeSearch={handleChangeSearch} handleSearch={handleSearch}/>
             <CurrentWeatherCard currentWeather={currentWeather} loading={currentWeatherLoading}/>
             <ForecastCard forecast={forecast} loading={forecastLoading}></ForecastCard>
             {actualLocation ? <p> {`User's location: ${actualLocation.lat}, ${actualLocation.lon}`} </p> :
                 <p> No location detected </p>}
             <p>{`User's Display location: ${locationDisplay.lat}, ${locationDisplay.lon}`}</p>
-        </main>
+        </div>
     );
 }
