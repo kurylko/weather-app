@@ -203,3 +203,7 @@ footer {
   background-color: rgb(var(--yellow-rgb));
   padding-left: 10px;
 }
+
+.loader {
+  background-color: red;
+}
