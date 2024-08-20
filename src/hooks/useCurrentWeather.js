@@ -14,7 +14,7 @@ const useCurrentWeather = ({currentWeatherLocation}) => {
 
         if (lat && lon) {
             setLoading(true);
-            const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat}, ${lon}&aqi=no`
+            const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat}, ${lon}&aqi=yes`
             axios.get(url)
                 .then(response => {
                     setCurrentWeather(currentWeather ? response.data : response.data)
