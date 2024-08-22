@@ -6,17 +6,12 @@ import SearchBar from "@/components/searchBar";
 import StoreProvider from "@/app/StoreProvider";
 
 
-export const metadata = {
-    title: "Weather App",
-    description: "Weather app with productivity advices",
-};
-
 export default function RootLayout({children}) {
     return (
         <html lang="en">
         <head>
-            <title>{metadata.title}</title>
-            <meta name="description" content={metadata.description}/>
+            <title>{'MD'}</title>
+            <meta name="description" content={'MDD'}/>
             <link rel="icon" href="/favicon.ico" sizes="any"/>
         </head>
         <body>
