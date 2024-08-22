@@ -1,3 +1,5 @@
+'use client';
+
 import "./global.css";
 import Footer from "@/components/footer";
 import SearchBar from "@/components/searchBar";
