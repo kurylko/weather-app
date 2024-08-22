@@ -1,9 +1,7 @@
-import {Inter} from "next/font/google";
 import "./global.css";
-import Header from "@/components/header";
 import Footer from "@/components/footer";
+import SearchBar from "@/components/searchBar";
 
-const inter = Inter({subsets: ["latin"]});
 
 export const metadata = {
     title: "Weather App",
@@ -19,7 +17,7 @@ export default function RootLayout({children}) {
             <link rel="icon" href="/favicon.ico" sizes="any"/>
         </head>
         <body>
-        <Header/>
+        <SearchBar/>
         <main>{children}</main>
         <Footer/>
         </body>
