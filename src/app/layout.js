@@ -1,26 +1,24 @@
-import {Inter} from "next/font/google";
+'use client';
+
 import "./global.css";
-import Header from "@/components/header";
 import Footer from "@/components/footer";
+import SearchBar from "@/components/searchBar";
+import StoreProvider from "@/app/StoreProvider";
 
-const inter = Inter({subsets: ["latin"]});
-
-export const metadata = {
-    title: "Weather App",
-    description: "Weather app with productivity advices",
-};
 
 export default function RootLayout({children}) {
     return (
         <html lang="en">
         <head>
-            <title>{metadata.title}</title>
-            <meta name="description" content={metadata.description}/>
+            <title>{'MD'}</title>
+            <meta name="description" content={'MDD'}/>
             <link rel="icon" href="/favicon.ico" sizes="any"/>
         </head>
         <body>
-        <Header/>
+       <StoreProvider>
+        <SearchBar/>
         <main>{children}</main>
+       </StoreProvider>
         <Footer/>
         </body>
         </html>
