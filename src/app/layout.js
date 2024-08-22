@@ -1,6 +1,7 @@
 import "./global.css";
 import Footer from "@/components/footer";
 import SearchBar from "@/components/searchBar";
+import StoreProvider from "@/app/StoreProvider";
 
 
 export const metadata = {
@@ -17,8 +18,10 @@ export default function RootLayout({children}) {
             <link rel="icon" href="/favicon.ico" sizes="any"/>
         </head>
         <body>
+       <StoreProvider>
         <SearchBar/>
         <main>{children}</main>
+       </StoreProvider>
         <Footer/>
         </body>
         </html>
