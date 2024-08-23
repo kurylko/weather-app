@@ -13,6 +13,7 @@ import HourlyWeatherCard from "@/components/HourlyWeatherCard";
 import parseApiDateResponse from "@/utils/parseApiDateResponse";
 import {getBigWeatherIcon} from "@/utils/getBigWeatherIcon";
 import {getUvIcon} from "@/utils/getUvIcon";
+import React from "react";
 
 export default function Home() {
     const {geoLocationData, geoLocationError} = useUserLocation();
@@ -40,7 +41,7 @@ export default function Home() {
 
     const getInteger = (number) => Math.round(number);
 
-    console.log('ttttvv',currentWeather)
+    console.log('ttttvv', currentWeather)
 
     function getCloudDescription(cloudPercentage) {
         if (cloudPercentage >= 91) {
@@ -61,10 +62,15 @@ export default function Home() {
     }
 
 
+    const forecastWithCurrentDay = forecast?.forecast["forecastday"];
+    const forecastWithoutCurrentDay = forecastWithCurrentDay?.slice(1);
+    console.log('forecast', forecastWithoutCurrentDay);
+
 
     return (
         <div className='home-page'>
-            <CurrentWeatherCard currentWeather={currentWeather} loading={currentWeatherLoading}
+            <CurrentWeatherCard currentWeather={currentWeather}
+                                loading={currentWeatherLoading}
                                 date={currentDayAndDateString}
                                 city={currentWeather?.location?.name}
                                 region={currentWeather?.location?.region}
@@ -80,10 +86,31 @@ export default function Home() {
                                 uvIndexIcon={getUvIcon({uvIndex: currentWeather?.current?.uv})}
                                 uvIndex={currentWeather?.current?.uv}
             />
-            <ForecastCard forecast={forecast} loading={forecastLoading}></ForecastCard>
+            <div className='forecast-cards-container'>
+                {!!forecast && <span>3 days forecast</span>}
+                <div className='forecast-cards'>
+                    {forecastWithoutCurrentDay ? forecastWithoutCurrentDay.map((forecastDay) =>
+                        <ForecastCard
+                            key={forecastDay.date}
+                            forecast={forecast}
+                            loading={forecastLoading}
+                            day={parseApiDateResponse(forecastDay?.date, 'dayOnly')}
+                            condition={getBigWeatherIcon({weatherCondition: forecastDay.day.condition.text})}
+                            maxTemp={getInteger(forecastDay.day.maxtemp_c)}
+                            minTemp={getInteger(forecastDay.day.mintemp_c)}
+                            humidityN={forecastDay.day.avghumidity}
+                            windN={getInteger(forecastDay.day.maxwind_kph)}
+                            uvIcon={getUvIcon({uvIndex: forecastDay.day.uv})}
+                            uvIndex={forecastDay.day.uv}
+                        />
+                    ) : null}
+                </div>
+            </div>
+
             {!!forecast && <span>Sun and Moon forecast</span>}
             <Astro forecast={forecast}/>
-            {!!currentDayAndDateString && <span className='current-day-hourly'>{`Weather on ${currentDayAndDateString}`}</span>}
+            {!!currentDayAndDateString &&
+                <span className='current-day-hourly'>{`Weather on ${currentDayAndDateString}`}</span>}
             <div className='hourly-weather-card-container'>
                 {hourlyWeatherDataForSpecificHours && hourlyWeatherDataForSpecificHours.map((hourly) =>
                     <HourlyWeatherCard key={hourly.time}
