@@ -280,16 +280,38 @@ footer {
 
 .hourly-weather-card-container {
     display: flex;
+    gap: 5px;
+    width: 90%;
 }
 .hourly-weather-card {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     width: 100%;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.97);
+    padding: 0 2px 10px;
 }
 
 .hourly-weather-card-item {
     display: flex;
+    gap: 5px;
     width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.hourly-weather-card-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.hourly-time {
+    background-color: rgb(var(--light-blue-rgb));
+}
+
+.condition-hourly-icon-big {
+    width: 50px;
+    height: 50px;
+    margin: 10px 0 10px;
 }

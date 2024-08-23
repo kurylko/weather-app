@@ -34,6 +34,7 @@ export default function Home() {
     const hourlyWeatherDataForSpecificHours = hourlyWeatherData.length ? [0, 6, 12, 18].map((hourIndex => hourlyWeatherData[hourIndex])) : null;
     console.log(hourlyWeatherDataForSpecificHours);
 
+    const getInteger = (number) => Math.round(number);
 
     return (
         <div className='home-page'>
@@ -44,9 +45,9 @@ export default function Home() {
                 {hourlyWeatherDataForSpecificHours && hourlyWeatherDataForSpecificHours.map((hourly) =>
                     <HourlyWeatherCard key={hourly.time}
                                        time={parseApiDateResponse((hourly.time), 'hourOnly')}
-                                       temp={hourly.temp_c}
+                                       temp={getInteger(hourly.temp_c)}
                                        humidity={hourly.humidity}
-                                       wind={hourly.wind_kph}
+                                       wind={getInteger(hourly.wind_kph)}
                                        rain={hourly.chance_of_rain}
                                        condition={hourly.condition.text}
                     />

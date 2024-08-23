@@ -27,11 +27,7 @@ const ForecastCard = ({forecast, loading}) => {
     const forecastWithCurrentDay = forecast.forecast["forecastday"];
     const forecastWithoutCurrentDay = forecastWithCurrentDay.slice(1);
 
-    const getInteger = (number) => {
-        const integer = Math.round(number);
-        return integer;
-    }
-
+    const getInteger = (number) => Math.round(number);
 
     return (
         <div className='forecast-cards-container'>
