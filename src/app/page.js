@@ -5,7 +5,7 @@ import useUserLocation from "@/hooks/useUserLocation";
 import useCurrentWeather from "@/hooks/useCurrentWeather";
 import CurrentWeatherCard from "@/components/CurrentWeatherCard";
 import ForecastCard from "@/components/ForecastCard";
-import Astro from "@/components/Astro";
+import AstroCard from "@/components/AstroCard";
 import useForecast from "@/hooks/useForecast";
 import {useSelector} from "react-redux";
 import {selectPlaceFromSearch} from "@/state/selectors";
@@ -15,6 +15,9 @@ import {getBigWeatherIcon} from "@/utils/getBigWeatherIcon";
 import {getUvIcon} from "@/utils/getUvIcon";
 import React from "react";
 import Loader from "@/components/Loader";
+import newMoon from "../../public/icons/new-moon.png";
+import fullMoon from "../../public/icons/full-moon.png";
+import crescentMoon from "../../public/icons/crescent-moon.png";
 
 export default function Home() {
     const {geoLocationData, geoLocationError} = useUserLocation();
@@ -65,10 +68,21 @@ export default function Home() {
 
     const forecastWithCurrentDay = forecast?.forecast["forecastday"];
     const forecastWithoutCurrentDay = forecastWithCurrentDay?.slice(1);
-    console.log('forecast', forecastWithoutCurrentDay);
     const noForecastMessage = 'The weather forecast is not available. Please, try again later.';
     const forecastLoaderText = 'Loading weather forecast...';
 
+    const astroOfCurrentDay = forecast?.forecast['forecastday'][0]['astro'];
+    console.log('forecast', astroOfCurrentDay);
+
+    function getMoonIcon(moonPhase) {
+        const moonIcons = {
+            'New Moon': newMoon,
+            'Waning Crescent': newMoon,
+            'Full Moon': fullMoon,
+        };
+
+        return moonIcons[moonPhase] || crescentMoon;
+    }
 
     return (
         <div className='home-page'>
@@ -117,7 +131,13 @@ export default function Home() {
             </div>
 
             {!!forecast && <span>Sun and Moon forecast</span>}
-            <Astro forecast={forecast}/>
+            <AstroCard
+                forecast={forecast}
+                sunriseTime={astroOfCurrentDay?.sunrise}
+                sunsetTime={astroOfCurrentDay?.sunset}
+                moonPhase={astroOfCurrentDay?.moon_phase}
+                moonIcon={getMoonIcon(astroOfCurrentDay?.moon_phase)}
+            />
             {!!currentDayAndDateString &&
                 <span className='current-day-hourly'>{`Weather on ${currentDayAndDateString}`}</span>}
             <div className='hourly-weather-card-container'>
