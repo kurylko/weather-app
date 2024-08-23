@@ -5,12 +5,19 @@ import useUserLocation from "@/hooks/useUserLocation";
 import useCurrentWeather from "@/hooks/useCurrentWeather";
 import CurrentWeatherCard from "@/components/CurrentWeatherCard";
 import ForecastCard from "@/components/ForecastCard";
-import Astro from "@/components/Astro";
+import AstroCard from "@/components/AstroCard";
 import useForecast from "@/hooks/useForecast";
 import {useSelector} from "react-redux";
 import {selectPlaceFromSearch} from "@/state/selectors";
 import HourlyWeatherCard from "@/components/HourlyWeatherCard";
 import parseApiDateResponse from "@/utils/parseApiDateResponse";
+import {getBigWeatherIcon} from "@/utils/getBigWeatherIcon";
+import {getUvIcon} from "@/utils/getUvIcon";
+import React from "react";
+import Loader from "@/components/Loader";
+import newMoon from "../../public/icons/new-moon.png";
+import fullMoon from "../../public/icons/full-moon.png";
+import crescentMoon from "../../public/icons/crescent-moon.png";
 
 export default function Home() {
     const {geoLocationData, geoLocationError} = useUserLocation();
@@ -38,14 +45,101 @@ export default function Home() {
 
     const getInteger = (number) => Math.round(number);
 
+    console.log('ttttvv', currentWeather)
+
+    function getCloudDescription(cloudPercentage) {
+        if (cloudPercentage >= 91) {
+            return 'The sky is completely overcast with dense clouds'
+        } else if (cloudPercentage >= 76) {
+            return 'The sky is mostly covered with clouds'
+        } else if (cloudPercentage >= 51) {
+            return 'The sky is mostly cloudy with some clear spots'
+        } else if (cloudPercentage >= 26) {
+            return 'The sky is partly cloudy with significant clear patches'
+        } else if (cloudPercentage >= 11) {
+            return 'The sky is partly cloudy with occasional clouds'
+        } else if (cloudPercentage >= 1) {
+            return 'The sky is mostly clear with a few clouds'
+        } else {
+            return 'The sky is completely clear with no clouds.'
+        }
+    }
+
+
+    const forecastWithCurrentDay = forecast?.forecast["forecastday"];
+    const forecastWithoutCurrentDay = forecastWithCurrentDay?.slice(1);
+    const noForecastMessage = 'The weather forecast is not available. Please, try again later.';
+    const forecastLoaderText = 'Loading weather forecast...';
+
+    const astroOfCurrentDay = forecast?.forecast['forecastday'][0]['astro'];
+    console.log('forecast', astroOfCurrentDay);
+
+    function getMoonIcon(moonPhase) {
+        const moonIcons = {
+            'New Moon': newMoon,
+            'Waning Crescent': newMoon,
+            'Full Moon': fullMoon,
+        };
+
+        return moonIcons[moonPhase] || crescentMoon;
+    }
 
     return (
         <div className='home-page'>
-            <CurrentWeatherCard currentWeather={currentWeather} loading={currentWeatherLoading}/>
-            <ForecastCard forecast={forecast} loading={forecastLoading}></ForecastCard>
+            <CurrentWeatherCard currentWeather={currentWeather}
+                                loading={currentWeatherLoading}
+                                date={currentDayAndDateString}
+                                city={currentWeather?.location?.name}
+                                region={currentWeather?.location?.region}
+                                country={currentWeather?.location?.country}
+                                condition={getBigWeatherIcon({weatherCondition: currentWeather?.current?.condition.text})}
+                                temperature={currentWeather?.current?.temp_c}
+                                feelsLike={currentWeather?.current?.feelslike_c}
+                                cloud={getCloudDescription(currentWeather?.current?.cloud)}
+                                humidityN={currentWeather?.current?.humidity}
+                                windDir={currentWeather?.current?.wind_dir}
+                                windKph={currentWeather?.current?.wind_kph}
+                                pressureN={currentWeather?.current?.pressure_mb}
+                                uvIndexIcon={getUvIcon({uvIndex: currentWeather?.current?.uv})}
+                                uvIndex={currentWeather?.current?.uv}
+            />
+            <div className='forecast-cards-container'>
+                {!!forecast && <span>3 days forecast</span>}
+                {forecastLoading ?
+                    <div className='current-weather-card no-weather-card'>
+                        <Loader loaderText={forecastLoaderText}/>
+                    </div> :
+
+                    <div className='forecast-cards'>
+                        {forecastWithoutCurrentDay ? forecastWithoutCurrentDay.map((forecastDay) =>
+                            <ForecastCard
+                                key={forecastDay.date}
+                                forecast={forecast}
+                                loading={forecastLoading}
+                                day={parseApiDateResponse(forecastDay?.date, 'dayOnly')}
+                                condition={getBigWeatherIcon({weatherCondition: forecastDay.day.condition.text})}
+                                maxTemp={getInteger(forecastDay.day.maxtemp_c)}
+                                minTemp={getInteger(forecastDay.day.mintemp_c)}
+                                humidityN={forecastDay.day.avghumidity}
+                                windN={getInteger(forecastDay.day.maxwind_kph)}
+                                uvIcon={getUvIcon({uvIndex: forecastDay.day.uv})}
+                                uvIndex={forecastDay.day.uv}
+                            />
+                        ) : <div className='current-weather-card'>{noForecastMessage} </div>}
+                    </div>
+                }
+            </div>
+
             {!!forecast && <span>Sun and Moon forecast</span>}
-            <Astro forecast={forecast}/>
-            {!!currentDayAndDateString && <span className='current-day-hourly'>{`Weather on ${currentDayAndDateString}`}</span>}
+            <AstroCard
+                forecast={forecast}
+                sunriseTime={astroOfCurrentDay?.sunrise}
+                sunsetTime={astroOfCurrentDay?.sunset}
+                moonPhase={astroOfCurrentDay?.moon_phase}
+                moonIcon={getMoonIcon(astroOfCurrentDay?.moon_phase)}
+            />
+            {!!currentDayAndDateString &&
+                <span className='current-day-hourly'>{`Weather on ${currentDayAndDateString}`}</span>}
             <div className='hourly-weather-card-container'>
                 {hourlyWeatherDataForSpecificHours && hourlyWeatherDataForSpecificHours.map((hourly) =>
                     <HourlyWeatherCard key={hourly.time}

@@ -1,15 +1,29 @@
 import React from "react";
-import parseApiDateResponse from "@/utils/parseApiDateResponse";
 import Image from 'next/image';
 import humidity from './../../public/icons/humidity.png';
 import pressure from './../../public/icons/pressure.png';
 import wind from './../../public/icons/wind.png';
-import {getUvIcon} from "@/utils/getUvIcon";
-import {getBigWeatherIcon} from "@/utils/getBigWeatherIcon";
 import mist from './../../public/icons/mist.png';
 import Loader from "@/components/Loader";
 
-const CurrentWeatherCard = ({currentWeather, loading}) => {
+const CurrentWeatherCard = ({
+                                currentWeather,
+                                loading,
+                                date,
+                                city,
+                                region,
+                                country,
+                                condition,
+                                temperature,
+                                feelsLike,
+                                cloud,
+                                humidityN,
+                                windDir,
+                                windKph,
+                                pressureN,
+                                uvIndex,
+                                uvIndexIcon
+                            }) => {
 
     const noWeatherDataMessage = 'Sorry. The weather data is not available. Please, try again later.';
     const currentWeatherLoaderText = 'Loading current weather data...';
@@ -30,64 +44,41 @@ const CurrentWeatherCard = ({currentWeather, loading}) => {
         );
     }
 
-    const currentDateString = currentWeather.location.localtime;
-    const date = parseApiDateResponse(currentDateString);
-
-
-    function getCloudDescription(cloudPercentage) {
-        if (cloudPercentage >= 91) {
-            return 'The sky is completely overcast with dense clouds'
-        } else if (cloudPercentage >= 76) {
-            return 'The sky is mostly covered with clouds'
-        } else if (cloudPercentage >= 51) {
-            return 'The sky is mostly cloudy with some clear spots'
-        } else if (cloudPercentage >= 26) {
-            return 'The sky is partly cloudy with significant clear patches'
-        } else if (cloudPercentage >= 11) {
-            return 'The sky is partly cloudy with occasional clouds'
-        } else if (cloudPercentage >= 1) {
-            return 'The sky is mostly clear with a few clouds'
-        } else {
-            return 'The sky is completely clear with no clouds.'
-        }
-    }
-
 
     return (
         <div className='current-weather-card'>
-                <span
-                    className='current-location'>{`${currentWeather.location.name}, ${currentWeather.location.region} (${currentWeather.location.country})`}</span>
+            <span className='current-location'>{`${city}, ${region} (${country})`}</span>
             <span className='current-date'>{date}</span>
             <div>
                 <Image className='current-weather-image'
-                       src={getBigWeatherIcon({weatherCondition: currentWeather.current.condition.text})}
+                       src={condition}
                        alt='big-weather-icon'></Image>
             </div>
             <div className='current-temperature-container'>
-                <span className='current-temperature'>{`${currentWeather.current.temp_c} C°`}</span>
+                <span className='current-temperature'>{`${temperature} C°`}</span>
                 <span
-                    className='feels-like-temp'>Feels like: {`${currentWeather.current.feelslike_c} C°`}</span>
+                    className='feels-like-temp'>Feels like: {`${feelsLike} C°`}</span>
             </div>
-            <span className='cloud-desc-text'>{getCloudDescription(currentWeather.current.cloud)}</span>
+            <span className='cloud-desc-text'>{cloud}</span>
             <div className='current-weather-numbers'>
                 <div className='current-icon-number'>
-                    <Image className='current-card-icon' src={humidity} alt='windy-icon'></Image>
-                    <span className='current-card-icon-text'>{`${currentWeather.current.humidity}%`}</span>
+                    <Image className='current-card-icon' src={humidity} alt='humidity-icon'></Image>
+                    <span className='current-card-icon-text'>{`${humidityN}%`}</span>
                 </div>
                 <div className='current-icon-number'>
                     <Image className='current-card-icon' src={wind} alt='windy-icon'></Image>
                     <span
-                        className='current-card-icon-text'>{`${currentWeather.current.wind_dir}, ${currentWeather.current.wind_kph} km/h`}</span>
+                        className='current-card-icon-text'>{`${windDir}, ${windKph} km/h`}</span>
                 </div>
                 <div className='current-icon-number'>
-                    <Image className='current-card-icon' src={pressure} alt='windy-icon'></Image>
+                    <Image className='current-card-icon' src={pressure} alt='pressure-icon'></Image>
                     <span
-                        className='current-card-icon-text'>{`${currentWeather.current.pressure_mb} mb`}</span>
+                        className='current-card-icon-text'>{`${pressureN} mb`}</span>
                 </div>
                 <div className='current-icon-number'>
-                    <Image className='current-card-icon' src={getUvIcon({uvIndex: currentWeather.current.uv})}
-                           alt='windy-icon'></Image>
-                    <span className='current-card-icon-text'>{currentWeather.current.uv}</span>
+                    <Image className='current-card-icon' src={uvIndexIcon}
+                           alt='uv-icon'></Image>
+                    <span className='current-card-icon-text'>{uvIndex}</span>
                 </div>
             </div>
         </div>
