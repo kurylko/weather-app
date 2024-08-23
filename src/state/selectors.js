@@ -1,11 +1,11 @@
 import {createSelector} from "@reduxjs/toolkit";
-import {parseGoogleApiPlace} from "@/utils/parseGoogleApiPlace";
+import {parsePlaceData} from "@/utils/parsePlaceData";
 
 const selectPlacesState = (state) => state.places;
 
 
 export const selectCurrentPlace = createSelector(
     [selectPlacesState],
-    placesState => parseGoogleApiPlace(placesState.data),
+    placesState => parsePlaceData(placesState.data),
 );
 

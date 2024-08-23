@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
+import {parsePlaceData} from "@/utils/parsePlaceData";
 
 const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
@@ -13,7 +14,7 @@ const initialState = {
 
 
 export const getCoordinates = createAsyncThunk(
-    'places/getCoordinates',
+    'searchPlace/getCoordinates',
     async ({ city }, { rejectWithValue }) => {
         const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${apiKey}`;
         console.log(1111)
@@ -25,8 +26,8 @@ export const getCoordinates = createAsyncThunk(
                 },
             });
 
-            const location = response?.data?.results[0]?.geometry?.location;
-            return location || rejectWithValue('No results found')
+            const placeData = response?.data?.results[0]?.geometry?.location;
+            return parsePlaceData({placeData}) || rejectWithValue('No results found')
         } catch (error) {
             console.error('Geocoding error:', error);
             return rejectWithValue('Failed to fetch coordinates');
@@ -34,8 +35,8 @@ export const getCoordinates = createAsyncThunk(
     }
 );
 
-const placesSlice = createSlice({
-    name: 'places',
+const searchPlaceSlice = createSlice({
+    name: 'searchPlace',
     initialState,
     reducers: {
         testRed: () => initialState
@@ -56,4 +57,4 @@ const placesSlice = createSlice({
     },
 });
 
-export default placesSlice.reducer;
+export default searchPlaceSlice.reducer;
