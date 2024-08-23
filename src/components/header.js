@@ -26,11 +26,13 @@ const Header = () => {
 
 
     return (
+        <header>
         <div className='search-bar'>
             <input className='search-input' type='text' placeholder='Type the location' value={searchInput}
                    onChange={handleChangeSearch} onKeyDown={handleKeyDown}></input>
             <button className='search-button' onClick={handleSearch}>Search</button>
         </div>
+        </header>
     );
 }
 export default Header;
