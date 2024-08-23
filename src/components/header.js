@@ -1,8 +1,8 @@
-import {getCoordinates} from "@/state/searchPlaceSlice";
 import {useState} from 'react';
+import {getCoordinates} from "@/state/searchPlaceSlice";
 import { useDispatch} from 'react-redux';
 
-const SearchBar = () => {
+const Header = () => {
     const dispatch = useDispatch()
 
     const [searchInput, setSearchInput] = useState('');
@@ -31,4 +31,4 @@ const SearchBar = () => {
         </div>
     );
 }
-export default SearchBar;
+export default Header;
