@@ -3,7 +3,7 @@
 import "./global.css";
 import Footer from "@/components/footer";
 import SearchBar from "@/components/searchBar";
-import StoreProvider from "@/app/StoreProvider";
+import StoreProvider from "./../state/StoreProvider";
 
 
 export default function RootLayout({children}) {

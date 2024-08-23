@@ -1,4 +1,4 @@
-import {getCoordinates} from "@/state/slice";
+import {getCoordinates} from "@/state/searchPlaceSlice";
 import {useState} from 'react';
 import { useDispatch} from 'react-redux';
 
