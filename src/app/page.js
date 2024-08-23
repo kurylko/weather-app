@@ -43,6 +43,7 @@ export default function Home() {
         <div className='home-page'>
             <CurrentWeatherCard currentWeather={currentWeather} loading={currentWeatherLoading}/>
             <ForecastCard forecast={forecast} loading={forecastLoading}></ForecastCard>
+            {!!forecast && <span>Sun and Moon forecast</span>}
             <Astro forecast={forecast}/>
             {!!currentDayAndDateString && <span className='current-day-hourly'>{`Weather on ${currentDayAndDateString}`}</span>}
             <div className='hourly-weather-card-container'>
