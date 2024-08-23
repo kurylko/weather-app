@@ -11,6 +11,8 @@ import {useSelector} from "react-redux";
 import {selectPlaceFromSearch} from "@/state/selectors";
 import HourlyWeatherCard from "@/components/HourlyWeatherCard";
 import parseApiDateResponse from "@/utils/parseApiDateResponse";
+import {getBigWeatherIcon} from "@/utils/getBigWeatherIcon";
+import {getUvIcon} from "@/utils/getUvIcon";
 
 export default function Home() {
     const {geoLocationData, geoLocationError} = useUserLocation();
@@ -38,10 +40,46 @@ export default function Home() {
 
     const getInteger = (number) => Math.round(number);
 
+    console.log('ttttvv',currentWeather)
+
+    function getCloudDescription(cloudPercentage) {
+        if (cloudPercentage >= 91) {
+            return 'The sky is completely overcast with dense clouds'
+        } else if (cloudPercentage >= 76) {
+            return 'The sky is mostly covered with clouds'
+        } else if (cloudPercentage >= 51) {
+            return 'The sky is mostly cloudy with some clear spots'
+        } else if (cloudPercentage >= 26) {
+            return 'The sky is partly cloudy with significant clear patches'
+        } else if (cloudPercentage >= 11) {
+            return 'The sky is partly cloudy with occasional clouds'
+        } else if (cloudPercentage >= 1) {
+            return 'The sky is mostly clear with a few clouds'
+        } else {
+            return 'The sky is completely clear with no clouds.'
+        }
+    }
+
+
 
     return (
         <div className='home-page'>
-            <CurrentWeatherCard currentWeather={currentWeather} loading={currentWeatherLoading}/>
+            <CurrentWeatherCard currentWeather={currentWeather} loading={currentWeatherLoading}
+                                date={currentDayAndDateString}
+                                city={currentWeather?.location?.name}
+                                region={currentWeather?.location?.region}
+                                country={currentWeather?.location?.country}
+                                condition={getBigWeatherIcon({weatherCondition: currentWeather?.current?.condition.text})}
+                                temperature={currentWeather?.current?.temp_c}
+                                feelsLike={currentWeather?.current?.feelslike_c}
+                                cloud={getCloudDescription(currentWeather?.current?.cloud)}
+                                humidityN={currentWeather?.current?.humidity}
+                                windDir={currentWeather?.current?.wind_dir}
+                                windKph={currentWeather?.current?.wind_kph}
+                                pressureN={currentWeather?.current?.pressure_mb}
+                                uvIndexIcon={getUvIcon({uvIndex: currentWeather?.current?.uv})}
+                                uvIndex={currentWeather?.current?.uv}
+            />
             <ForecastCard forecast={forecast} loading={forecastLoading}></ForecastCard>
             {!!forecast && <span>Sun and Moon forecast</span>}
             <Astro forecast={forecast}/>
