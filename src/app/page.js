@@ -32,15 +32,19 @@ export default function Home() {
 
     const hourlyWeatherData = forecast?.forecast['forecastday'][0]['hour'] || [];
     const hourlyWeatherDataForSpecificHours = hourlyWeatherData.length ? [0, 6, 12, 18].map((hourIndex => hourlyWeatherData[hourIndex])) : null;
-    console.log(hourlyWeatherDataForSpecificHours);
+
+    const currentDay = forecast?.forecast['forecastday'][0];
+    const currentDayString = currentDay?.date ? parseApiDateResponse((currentDay?.date), 'dayAndDate') : null;
 
     const getInteger = (number) => Math.round(number);
+
 
     return (
         <div className='home-page'>
             <CurrentWeatherCard currentWeather={currentWeather} loading={currentWeatherLoading}/>
             <ForecastCard forecast={forecast} loading={forecastLoading}></ForecastCard>
             <Astro forecast={forecast}/>
+            <span>{`Weather on ${currentDayString}`}</span>
             <div className='hourly-weather-card-container'>
                 {hourlyWeatherDataForSpecificHours && hourlyWeatherDataForSpecificHours.map((hourly) =>
                     <HourlyWeatherCard key={hourly.time}
