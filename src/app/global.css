@@ -271,12 +271,20 @@ footer {
 .astro-item {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 30%;
+    gap: 5px;
 }
 
 .astro-icon {
     width: 40px;
     height: 40px;
     margin-bottom: 8px;
+}
+
+.astro-text {
+    color: rgb(var(--main-text-color-rgb));
+    text-align: center;
 }
 
 .current-day-hourly {
@@ -295,7 +303,7 @@ footer {
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.97);
+    background-color: rgba(255, 255, 255, 0.99);
 }
 
 .hourly-weather-card-item-container {

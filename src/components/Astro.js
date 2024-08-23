@@ -28,14 +28,17 @@ const Astro = ({forecast}) => {
         <div className='astro-card'>
             <div className='astro-item'>
                 <Image className='astro-icon' src={sunrise} alt='sunrise-icon'></Image>
-                {astroOfCurrentDay.sunrise}</div>
+                <span className='astro-text'>{astroOfCurrentDay.sunrise}</span>
+                </div>
             <div className='astro-item'>
                 <Image className='astro-icon' src={sunset} alt='sunset-icon'></Image>
-                {astroOfCurrentDay.sunset}</div>
+                <span className='astro-text'>{astroOfCurrentDay.sunset}</span>
+                </div>
             <div className='astro-item'>
                 <Image className='astro-icon' src={handleMoonIcon(astroOfCurrentDay.moon_phase)}
                        alt='moon-icon'></Image>
-                {astroOfCurrentDay.moon_phase}</div>
+                <span className='astro-text'>{astroOfCurrentDay.moon_phase}</span>
+                </div>
         </div>
     );
 }
