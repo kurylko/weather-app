@@ -13,12 +13,14 @@ const Header = () => {
     }
 
     const handleSearch = () => {
-        dispatch(getCoordinates({city: searchInput}))
+        dispatch(getCoordinates({city: searchInput}));
+        setSearchInput('');
     }
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             handleSearch();
+            setSearchInput('');
         }
     };
 
