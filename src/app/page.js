@@ -9,6 +9,7 @@ import Astro from "@/components/Astro";
 import useForecast from "@/hooks/useForecast";
 import {useSelector} from "react-redux";
 import {selectPlaceFromSearch} from "@/state/selectors";
+import HourlyWeatherCard from "@/components/HourlyWeatherCard";
 
 export default function Home() {
     const {geoLocationData, geoLocationError} = useUserLocation();
@@ -33,6 +34,7 @@ export default function Home() {
             <CurrentWeatherCard currentWeather={currentWeather} loading={currentWeatherLoading}/>
             <ForecastCard forecast={forecast} loading={forecastLoading}></ForecastCard>
             <Astro forecast={forecast}/>
+            <HourlyWeatherCard forecast={forecast}/>
 
             {geoLocationData ? <p> {`User's location: ${geoLocationData.lat}, ${geoLocationData.lon}`} </p> :
                 <p> No location detected </p>}

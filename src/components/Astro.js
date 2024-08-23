@@ -7,7 +7,7 @@ import fullMoon from './../../public/icons/full-moon.png';
 
 const Astro = ({forecast}) => {
 
-    if (!forecast || !forecast.forecast) {
+    if (!forecast?.forecast) {
         return;
     }
 
