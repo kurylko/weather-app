@@ -14,6 +14,7 @@ import parseApiDateResponse from "@/utils/parseApiDateResponse";
 import {getBigWeatherIcon} from "@/utils/getBigWeatherIcon";
 import {getUvIcon} from "@/utils/getUvIcon";
 import React from "react";
+import Loader from "@/components/Loader";
 
 export default function Home() {
     const {geoLocationData, geoLocationError} = useUserLocation();
@@ -65,6 +66,8 @@ export default function Home() {
     const forecastWithCurrentDay = forecast?.forecast["forecastday"];
     const forecastWithoutCurrentDay = forecastWithCurrentDay?.slice(1);
     console.log('forecast', forecastWithoutCurrentDay);
+    const noForecastMessage = 'The weather forecast is not available. Please, try again later.';
+    const forecastLoaderText = 'Loading weather forecast...';
 
 
     return (
@@ -88,23 +91,29 @@ export default function Home() {
             />
             <div className='forecast-cards-container'>
                 {!!forecast && <span>3 days forecast</span>}
-                <div className='forecast-cards'>
-                    {forecastWithoutCurrentDay ? forecastWithoutCurrentDay.map((forecastDay) =>
-                        <ForecastCard
-                            key={forecastDay.date}
-                            forecast={forecast}
-                            loading={forecastLoading}
-                            day={parseApiDateResponse(forecastDay?.date, 'dayOnly')}
-                            condition={getBigWeatherIcon({weatherCondition: forecastDay.day.condition.text})}
-                            maxTemp={getInteger(forecastDay.day.maxtemp_c)}
-                            minTemp={getInteger(forecastDay.day.mintemp_c)}
-                            humidityN={forecastDay.day.avghumidity}
-                            windN={getInteger(forecastDay.day.maxwind_kph)}
-                            uvIcon={getUvIcon({uvIndex: forecastDay.day.uv})}
-                            uvIndex={forecastDay.day.uv}
-                        />
-                    ) : null}
-                </div>
+                {forecastLoading ?
+                    <div className='current-weather-card no-weather-card'>
+                        <Loader loaderText={forecastLoaderText}/>
+                    </div> :
+
+                    <div className='forecast-cards'>
+                        {forecastWithoutCurrentDay ? forecastWithoutCurrentDay.map((forecastDay) =>
+                            <ForecastCard
+                                key={forecastDay.date}
+                                forecast={forecast}
+                                loading={forecastLoading}
+                                day={parseApiDateResponse(forecastDay?.date, 'dayOnly')}
+                                condition={getBigWeatherIcon({weatherCondition: forecastDay.day.condition.text})}
+                                maxTemp={getInteger(forecastDay.day.maxtemp_c)}
+                                minTemp={getInteger(forecastDay.day.mintemp_c)}
+                                humidityN={forecastDay.day.avghumidity}
+                                windN={getInteger(forecastDay.day.maxwind_kph)}
+                                uvIcon={getUvIcon({uvIndex: forecastDay.day.uv})}
+                                uvIndex={forecastDay.day.uv}
+                            />
+                        ) : <div className='current-weather-card'>{noForecastMessage} </div>}
+                    </div>
+                }
             </div>
 
             {!!forecast && <span>Sun and Moon forecast</span>}
