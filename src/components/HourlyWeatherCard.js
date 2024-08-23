@@ -1,6 +1,12 @@
 const HourlyWeatherCard = ({forecast}) => {
+    if (!forecast?.forecast) {
+        return;
+    }
+
+    const hourlyWeather = forecast.forecast['forecastday'][0][''];
+
     return (
-        <div>hourly </div>
+        <div className='hourly-weather-card'>hourly </div>
     )
 }
 

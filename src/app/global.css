@@ -277,3 +277,8 @@ footer {
     height: 40px;
     margin-bottom: 8px;
 }
+
+.hourly-weather-card {
+    width: 85%;
+    background-color: white;
+}
