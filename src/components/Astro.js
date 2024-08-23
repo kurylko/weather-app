@@ -7,23 +7,20 @@ import fullMoon from './../../public/icons/full-moon.png';
 
 const Astro = ({forecast}) => {
 
-    if (!forecast || !forecast.forecast) {
+    if (!forecast?.forecast) {
         return;
     }
 
     const astroOfCurrentDay = forecast.forecast['forecastday'][0]['astro'];
 
-    function handleMoonIcon (moonPhase) {
-        let moonIcon;
+    function handleMoonIcon(moonPhase) {
+        const moonIcons = {
+            'New Moon': newMoon,
+            'Waning Crescent': newMoon,
+            'Full Moon': fullMoon,
+        };
 
-        if (moonPhase === 'New Moon' || moonPhase === 'Waning Crescent'){
-           moonIcon = newMoon;
-        } else if (moonPhase === 'Full Moon') {
-            moonIcon = fullMoon;
-        } else {
-            moonIcon = crescentMoon;
-        }
-        return moonIcon;
+        return moonIcons[moonPhase] || crescentMoon;
     }
 
 
@@ -31,13 +28,17 @@ const Astro = ({forecast}) => {
         <div className='astro-card'>
             <div className='astro-item'>
                 <Image className='astro-icon' src={sunrise} alt='sunrise-icon'></Image>
-                 {astroOfCurrentDay.sunrise}</div>
+                <span className='astro-text'>{astroOfCurrentDay.sunrise}</span>
+                </div>
             <div className='astro-item'>
                 <Image className='astro-icon' src={sunset} alt='sunset-icon'></Image>
-                {astroOfCurrentDay.sunset}</div>
+                <span className='astro-text'>{astroOfCurrentDay.sunset}</span>
+                </div>
             <div className='astro-item'>
-                <Image className='astro-icon' src={handleMoonIcon(astroOfCurrentDay.moon_phase)} alt='moon-icon'></Image>
-                {astroOfCurrentDay.moon_phase}</div>
+                <Image className='astro-icon' src={handleMoonIcon(astroOfCurrentDay.moon_phase)}
+                       alt='moon-icon'></Image>
+                <span className='astro-text'>{astroOfCurrentDay.moon_phase}</span>
+                </div>
         </div>
     );
 }

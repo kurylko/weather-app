@@ -7,7 +7,7 @@ import wind from './../../public/icons/wind.png';
 import {getUvIcon} from "@/utils/getUvIcon";
 import {getBigWeatherIcon} from "@/utils/getBigWeatherIcon";
 import mist from './../../public/icons/mist.png';
-import Loader from "@/components/loader";
+import Loader from "@/components/Loader";
 
 const CurrentWeatherCard = ({currentWeather, loading}) => {
 
