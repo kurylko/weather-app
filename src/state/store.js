@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import places from '../state/slice'
+import searchPlaceSlice from './searchPlaceSlice'
 
 export const makeStore = () => {
     return configureStore({
         reducer: {
-            places
+            searchPlaceSlice
         },
     })
 }
