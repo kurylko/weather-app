@@ -8,28 +8,24 @@ import ForecastCard from "@/components/forecastCard";
 import Astro from "@/components/astro";
 import useForecast from "@/hooks/useForecast";
 import {useSelector} from "react-redux";
-import {selectCurrentPlace} from "@/state/selectors";
+import {selectPlaceFromSearch} from "@/state/selectors";
 
-export default function Home({locationDisplayFromProps}) {
-    const {actualLocation, error: locationError} = useUserLocation();
-    const {lat: actualLat, lon: actualLon} = actualLocation;
+export default function Home() {
+    const {geoLocationData, geoLocationError} = useUserLocation();
+    const placeFromSearch = useSelector(selectPlaceFromSearch);
 
-    const {placeFromSearchLat, placeFromSearchLon} = useSelector(selectCurrentPlace);
-
-
-    const locationDisplay = locationDisplayFromProps || {lat: null, lon: null};
-    const {lat: locationDisplayLat, lon: locationDisplayLon} = locationDisplay;
+    const activeLocation = placeFromSearch || geoLocationData
 
     const {
         currentWeather,
         error: currentWeatherError,
         loading: currentWeatherLoading
-    } = useCurrentWeather({currentWeatherLocation: locationDisplay});
+    } = useCurrentWeather({currentWeatherLocation: activeLocation});
     const {
         forecast,
         error: forecastError,
         loading: forecastLoading
-    } = useForecast({forecastWeatherLocation: locationDisplay});
+    } = useForecast({forecastWeatherLocation: activeLocation});
 
 
     return (
@@ -37,9 +33,10 @@ export default function Home({locationDisplayFromProps}) {
             <CurrentWeatherCard currentWeather={currentWeather} loading={currentWeatherLoading}/>
             <ForecastCard forecast={forecast} loading={forecastLoading}></ForecastCard>
             <Astro forecast={forecast}/>
-            {actualLocation ? <p> {`User's location: ${actualLocation.lat}, ${actualLocation.lon}`} </p> :
+
+            {geoLocationData ? <p> {`User's location: ${geoLocationData.lat}, ${geoLocationData.lon}`} </p> :
                 <p> No location detected </p>}
-            {placeFromSearchLat && <p>{`User's Display location: ${placeFromSearchLat}, ${placeFromSearchLon}`}</p>}
+            {!!placeFromSearch && <p>{`User's Display location: ${placeFromSearch.lat}, ${placeFromSearch.lon}`}</p>}
         </div>
     );
 }

@@ -1,8 +1,8 @@
-import {getCoordinates} from "@/state/slice";
 import {useState} from 'react';
+import {getCoordinates} from "@/state/searchPlaceSlice";
 import { useDispatch} from 'react-redux';
 
-const SearchBar = () => {
+const Header = () => {
     const dispatch = useDispatch()
 
     const [searchInput, setSearchInput] = useState('');
@@ -13,22 +13,26 @@ const SearchBar = () => {
     }
 
     const handleSearch = () => {
-        dispatch(getCoordinates({city: searchInput}))
+        dispatch(getCoordinates({city: searchInput}));
+        setSearchInput('');
     }
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             handleSearch();
+            setSearchInput('');
         }
     };
 
 
     return (
+        <header>
         <div className='search-bar'>
             <input className='search-input' type='text' placeholder='Type the location' value={searchInput}
                    onChange={handleChangeSearch} onKeyDown={handleKeyDown}></input>
             <button className='search-button' onClick={handleSearch}>Search</button>
         </div>
+        </header>
     );
 }
-export default SearchBar;
+export default Header;

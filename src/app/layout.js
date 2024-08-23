@@ -2,8 +2,8 @@
 
 import "./global.css";
 import Footer from "@/components/footer";
-import SearchBar from "@/components/searchBar";
-import StoreProvider from "@/app/StoreProvider";
+import Header from "@/components/header";
+import StoreProvider from "./../state/StoreProvider";
 
 
 export default function RootLayout({children}) {
@@ -16,7 +16,7 @@ export default function RootLayout({children}) {
         </head>
         <body>
        <StoreProvider>
-        <SearchBar/>
+        <Header/>
         <main>{children}</main>
        </StoreProvider>
         <Footer/>

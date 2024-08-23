@@ -1,11 +1,8 @@
 import {createSelector} from "@reduxjs/toolkit";
-import {parseGoogleApiPlace} from "@/utils/parseGoogleApiPlace";
 
-const selectPlacesState = (state) => state.places;
+const selectPlacesState = (state) => state.searchPlaceSlice;
 
-
-export const selectCurrentPlace = createSelector(
+export const selectPlaceFromSearch = createSelector(
     [selectPlacesState],
-    placesState => parseGoogleApiPlace(placesState.data),
+    placesState => placesState.data,
 );
-

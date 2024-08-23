@@ -4,8 +4,8 @@ import Image from 'next/image';
 import humidity from './../../public/icons/humidity.png';
 import pressure from './../../public/icons/pressure.png';
 import wind from './../../public/icons/wind.png';
-import getUvIcon from "@/utils/getUvIcon";
-import getBigWeatherIcon from "@/utils/getBigWeatherIcon";
+import {getUvIcon} from "@/utils/getUvIcon";
+import {getBigWeatherIcon} from "@/utils/getBigWeatherIcon";
 import mist from './../../public/icons/mist.png';
 import Loader from "@/components/loader";
 
@@ -60,7 +60,7 @@ const CurrentWeatherCard = ({currentWeather, loading}) => {
             <span className='current-date'>{date}</span>
             <div>
                 <Image className='current-weather-image'
-                       src={getBigWeatherIcon(currentWeather.current.condition.text)}
+                       src={getBigWeatherIcon({weatherCondition: currentWeather.current.condition.text})}
                        alt='big-weather-icon'></Image>
             </div>
             <div className='current-temperature-container'>
@@ -85,7 +85,7 @@ const CurrentWeatherCard = ({currentWeather, loading}) => {
                         className='current-card-icon-text'>{`${currentWeather.current.pressure_mb} mb`}</span>
                 </div>
                 <div className='current-icon-number'>
-                    <Image className='current-card-icon' src={getUvIcon(currentWeather.current.uv)}
+                    <Image className='current-card-icon' src={getUvIcon({uvIndex: currentWeather.current.uv})}
                            alt='windy-icon'></Image>
                     <span className='current-card-icon-text'>{currentWeather.current.uv}</span>
                 </div>
