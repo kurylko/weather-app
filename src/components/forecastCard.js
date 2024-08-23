@@ -5,7 +5,7 @@ import thermometer from './../../public/icons/thermometer.png';
 import humidity from './../../public/icons/humidity.png';
 import wind from './../../public/icons/wind.png';
 import {getUvIcon} from "@/utils/getUvIcon";
-import getBigWeatherIcon from "@/utils/getBigWeatherIcon";
+import {getBigWeatherIcon} from "@/utils/getBigWeatherIcon";
 import Loader from "@/components/loader";
 
 
@@ -26,7 +26,6 @@ const ForecastCard = ({forecast, loading}) => {
 
     const forecastWithCurrentDay = forecast.forecast["forecastday"];
     const forecastWithoutCurrentDay = forecastWithCurrentDay.slice(1);
-    //const forecastDateString = forecast.forecast["forecastday"]["date"];
 
     const getInteger = (number) => {
         const integer = Math.round(number);
@@ -41,7 +40,8 @@ const ForecastCard = ({forecast, loading}) => {
                 {forecastWithoutCurrentDay.map((forecastDay) =>
                     <div key={forecastDay.date} className='forecast-card'>
                         <span className='forecast-day'>{parseApiDateResponse(forecastDay["date"], 'dayOnly')}</span>
-                        <Image className='forecast-big-icon' src={getBigWeatherIcon(forecastDay.day.condition.text)}
+                        <Image className='forecast-big-icon'
+                               src={getBigWeatherIcon({weatherCondition: forecastDay.day.condition.text})}
                                alt='weather-condition-icon'></Image>
                         <span className='forecast-max-temp'> {`${getInteger(forecastDay.day.maxtemp_c)} C°`}</span>
                         <div className='forecast-number-icon-container'>

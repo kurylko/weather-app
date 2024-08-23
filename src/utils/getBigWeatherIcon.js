@@ -13,7 +13,7 @@ import freezyrain from './../../public/icons/freezingrain.png';
 import thundersnow from './../../public/icons/thundersnow.png';
 import hail from './../../public/icons/hail.png';
 
-const getBigWeatherIcon = (weatherCondition) => {
+export const getBigWeatherIcon = ({weatherCondition}) => {
     let bigWeatherIcon;
 
     if (weatherCondition === 'Sunny' || weatherCondition === 'Clear ') {
@@ -51,5 +51,3 @@ const getBigWeatherIcon = (weatherCondition) => {
 
     return bigWeatherIcon;
 }
-
-export default getBigWeatherIcon;
