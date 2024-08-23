@@ -17,7 +17,6 @@ export const getCoordinates = createAsyncThunk(
     'searchPlace/getCoordinates',
     async ({ city }, { rejectWithValue }) => {
         const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${apiKey}`;
-        console.log(1111)
         try {
             const response = await axios.get(url, {
                 params: {
