@@ -14,6 +14,10 @@ const parseApiDateResponse = (dateString, formatType = 'dayAndDate') => {
         case 'dateOnly':
             formattedDate = format(date, 'MMMM d'); // August 15
             break;
+        case 'hourOnly':
+            formattedDate = new Intl.DateTimeFormat('en-US', { hour: 'numeric', hour12: true }).format(date);
+            formattedDate = formattedDate.toLowerCase().replace(/^0/, '');
+            break;
         default: formattedDate = format(date, 'eeee, MMMM d'); // Monday, August 15
     }
 
