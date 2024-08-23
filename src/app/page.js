@@ -3,9 +3,9 @@
 import './global.css';
 import useUserLocation from "@/hooks/useUserLocation";
 import useCurrentWeather from "@/hooks/useCurrentWeather";
-import CurrentWeatherCard from "@/components/currentWeatherCard";
-import ForecastCard from "@/components/forecastCard";
-import Astro from "@/components/astro";
+import CurrentWeatherCard from "@/components/CurrentWeatherCard";
+import ForecastCard from "@/components/ForecastCard";
+import Astro from "@/components/Astro";
 import useForecast from "@/hooks/useForecast";
 import {useSelector} from "react-redux";
 import {selectPlaceFromSearch} from "@/state/selectors";

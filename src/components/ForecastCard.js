@@ -6,7 +6,7 @@ import humidity from './../../public/icons/humidity.png';
 import wind from './../../public/icons/wind.png';
 import {getUvIcon} from "@/utils/getUvIcon";
 import {getBigWeatherIcon} from "@/utils/getBigWeatherIcon";
-import Loader from "@/components/loader";
+import Loader from "@/components/Loader";
 
 
 const ForecastCard = ({forecast, loading}) => {
