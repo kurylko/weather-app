@@ -4,7 +4,7 @@ import parseApiDateResponse from "@/utils/parseApiDateResponse";
 import thermometer from './../../public/icons/thermometer.png';
 import humidity from './../../public/icons/humidity.png';
 import wind from './../../public/icons/wind.png';
-import getUvIcon from "@/utils/getUvIcon";
+import {getUvIcon} from "@/utils/getUvIcon";
 import getBigWeatherIcon from "@/utils/getBigWeatherIcon";
 import Loader from "@/components/loader";
 
@@ -57,7 +57,7 @@ const ForecastCard = ({forecast, loading}) => {
                                 {`${getInteger(forecastDay.day.maxwind_kph)} km/h`}
                             </div>
                             <div className='forecast-number-icon'>
-                                <Image className='forecast-card-icon' src={getUvIcon(forecastDay.day.uv)}
+                                <Image className='forecast-card-icon' src={getUvIcon({uvIndex: forecastDay.day.uv})}
                                        alt='uv-icon'></Image>
                                 {`${forecastDay.day.uv}`}
                             </div>
