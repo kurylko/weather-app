@@ -29,13 +29,28 @@ export default function Home() {
     } = useForecast({forecastWeatherLocation: activeLocation});
 
 
+    const hourlyWeatherData = forecast?.forecast['forecastday'][0]['hour'] || [];
+    const hourlyWeatherDataForSpecificHours = [0, 6, 12, 18].map((hourIndex => hourlyWeatherData[hourIndex]));
+    console.log(hourlyWeatherDataForSpecificHours);
+
+
     return (
         <div className='home-page'>
             <CurrentWeatherCard currentWeather={currentWeather} loading={currentWeatherLoading}/>
             <ForecastCard forecast={forecast} loading={forecastLoading}></ForecastCard>
             <Astro forecast={forecast}/>
-            <HourlyWeatherCard forecast={forecast}/>
-
+            <div className='hourly-weather-card-container'>
+            {hourlyWeatherDataForSpecificHours && hourlyWeatherDataForSpecificHours.map((hourly) =>
+                <HourlyWeatherCard key={hourly?.time}
+                                   time={hourly?.time}
+                                   temp={hourly?.temp_c}
+                                   humidity={hourly?.humidity}
+                                   wind={hourly?.wind_kph}
+                                   rain={hourly?.chance_of_rain}
+                                   condition={hourly?.condition.text}
+                />
+            )}
+            </div>
             {geoLocationData ? <p> {`User's location: ${geoLocationData.lat}, ${geoLocationData.lon}`} </p> :
                 <p> No location detected </p>}
             {!!placeFromSearch && <p>{`User's Display location: ${placeFromSearch.lat}, ${placeFromSearch.lon}`}</p>}
