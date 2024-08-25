@@ -101,11 +101,11 @@ export default function Home() {
                                     uvIndexIcon={getUvIcon({uvIndex: currentWeather?.current?.uv})}
                                     uvIndex={currentWeather?.current?.uv}
                 />
-                <DayAndLocationCard city={currentWeather?.location?.name}
-                                    region={currentWeather?.location?.region}
-                                    country={currentWeather?.location?.country}
-                                    date={currentDayAndDateString}
-                />
+                {currentWeather && <DayAndLocationCard city={currentWeather?.location?.name}
+                                                       region={currentWeather?.location?.region}
+                                                       country={currentWeather?.location?.country}
+                                                       date={currentDayAndDateString}
+                />}
             </div>
 
             <div className='forecast-cards-container'>
