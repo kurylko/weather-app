@@ -129,14 +129,7 @@ export default function Home() {
                 }
             </div>
 
-            {!!forecast && <span>Sun and Moon forecast</span>}
-            <AstroCard
-                forecast={forecast}
-                sunriseTime={astroOfCurrentDay?.sunrise}
-                sunsetTime={astroOfCurrentDay?.sunset}
-                moonPhase={astroOfCurrentDay?.moon_phase}
-                moonIcon={getMoonIcon(astroOfCurrentDay?.moon_phase)}
-            />
+
             {!!currentDayAndDateString &&
                 <span className='current-day-hourly'>{`Weather on ${currentDayAndDateString}`}</span>}
             <div className='hourly-weather-card-container'>
@@ -151,6 +144,16 @@ export default function Home() {
                     />
                 )}
             </div>
+            {!!forecast && <span>Sun and Moon forecast</span>}
+            <AstroCard
+                forecast={forecast}
+                sunriseTime={astroOfCurrentDay?.sunrise}
+                sunsetTime={astroOfCurrentDay?.sunset}
+                moonPhase={astroOfCurrentDay?.moon_phase}
+                moonIcon={getMoonIcon(astroOfCurrentDay?.moon_phase)}
+            />
+
+
             {geoLocationData ? <p> {`User's location: ${geoLocationData.lat}, ${geoLocationData.lon}`} </p> :
                 <p> No location detected </p>}
             {!!placeFromSearch && <p>{`User's Display location: ${placeFromSearch.lat}, ${placeFromSearch.lon}`}</p>}

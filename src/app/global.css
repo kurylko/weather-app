@@ -296,6 +296,7 @@ footer {
     display: flex;
     gap: 5px;
     width: 90%;
+    margin-bottom: 20px;
 }
 
 .hourly-weather-card {
@@ -348,6 +349,15 @@ footer {
     .current-weather-card {
         width: 40%;
     }
+    .current-weather-image {
+        width: 145px;
+        height: 145px;
+        margin-top: 10px;
+    }
+    .current-card-icon {
+        width: 45px;
+        height: 45px;
+    }
     .forecast-cards {
         width: 60%;
         gap: 40px;
@@ -357,6 +367,10 @@ footer {
     }
     .astro-card {
         width: 40%;
+    }
+    .astro-icon {
+        width: 45px;
+        height: 45px;
     }
     .hourly-weather-card-container {
         width: 75%;
