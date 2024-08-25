@@ -6,7 +6,6 @@ import Image from "next/image";
 import HeaderLocation from "@/components/HeaderLocation";
 import useUserLocation from "@/hooks/useUserLocation";
 import {getCityName} from "@/utils/getCityName";
-import {parsePlaceData} from "@/utils/parsePlaceData";
 
 const Header = () => {
     const [city, setCity] = useState(null);
