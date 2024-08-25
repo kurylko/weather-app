@@ -476,8 +476,19 @@ footer {
     align-self: center;
 }
 
+.air-quality-card {
+    background-color: red;
+    margin-top: 10px;
+    width: 35%;
+    align-items: center;
+    justify-content: center;
+}
+
 
 @media (max-width: 768px) {
+    .air-quality-card{
+        display: none;
+    }
     .location-card {
         display: none;
     }
@@ -500,10 +511,11 @@ footer {
     .location-and-current {
         width: 95%;
         justify-content: space-between;
+        gap: 20px;
     }
 
     .current-weather-card {
-        width: 100%;
+        width: 55%;
     }
 
     .current-weather-image {
