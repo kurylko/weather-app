@@ -145,15 +145,14 @@ export default function Home() {
                 )}
             </div>
             {!!forecast && <h1>Sun and Moon forecast</h1>}
-            <AstroCard
+            {!!forecast && <AstroCard
                 forecast={forecast}
                 sunriseTime={astroOfCurrentDay?.sunrise}
                 sunsetTime={astroOfCurrentDay?.sunset}
                 moonPhase={astroOfCurrentDay?.moon_phase}
                 moonIcon={getMoonIcon(astroOfCurrentDay?.moon_phase)}
             />
-
-
+            }
             {geoLocationData ? <p> {`User's location: ${geoLocationData.lat}, ${geoLocationData.lon}`} </p> :
                 <p> No location detected </p>}
             {!!placeFromSearch && <p>{`User's Display location: ${placeFromSearch.lat}, ${placeFromSearch.lon}`}</p>}
