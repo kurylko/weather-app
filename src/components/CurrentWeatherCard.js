@@ -37,7 +37,7 @@ const CurrentWeatherCard = ({
     } else if (!currentWeather || !currentWeather.current) {
         return (
             <div className='current-weather-card'>
-                <Image src={mist} alt='no weather data'
+                <Image src={mist} alt='no weather data' priority
                        style={{width: '100px', height: '100px', marginBottom: '10px'}}></Image>
                 {noWeatherDataMessage}
             </div>
@@ -51,7 +51,7 @@ const CurrentWeatherCard = ({
             <span className='current-date'>{date}</span>
             <div>
                 <Image className='current-weather-image'
-                       src={condition}
+                       src={condition} priority
                        alt='big-weather-icon'></Image>
             </div>
             <div className='current-temperature-container'>

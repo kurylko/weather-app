@@ -13,7 +13,7 @@ const HourlyWeatherCard = ({time, temp, humidity, wind, rain, condition}) => {
             <h3 className='hourly-time'>{time}</h3>
             <div className='hourly-weather-card-item-container'>
                 <Image className='condition-hourly-icon-big' src={getBigWeatherIcon({weatherCondition: condition})}
-                       alt='weather-icon'></Image>
+                       alt='weather-icon' priority></Image>
                 <div className='hourly-weather-card-item'>
                     <Image className='hourly-weather-card-icon' src={thermometerIcon} alt='temperature-icon'></Image>
                     <span className='hourly-text'>{`${temp} C°`}</span>
