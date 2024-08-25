@@ -18,6 +18,8 @@ import newMoon from "../../public/icons/new-moon.png";
 import fullMoon from "../../public/icons/full-moon.png";
 import crescentMoon from "../../public/icons/crescent-moon.png";
 import DayAndLocationCard from "@/components/DayAndLocationCard";
+import AirQualityCard from "@/components/AirQualityCard";
+import {getAirQualityDescription} from "@/utils/getAirQualityDescription";
 
 export default function Home() {
     const {geoLocationData, geoLocationError} = useUserLocation();
@@ -81,9 +83,13 @@ export default function Home() {
         return moonIcons[moonPhase] || crescentMoon;
     }
 
+    const {co, defraIndex,no2, o3, pm2_5, pm10, so2, epaIndex} = forecast?.current?.air_quality || {};
+    const airQualityDescription = getAirQualityDescription({co, defraIndex, no2, o3, pm2_5, pm10, so2, epaIndex});
+
     return (
         <div className='home-page'>
             <div className='location-and-current'>
+                {currentWeather && <AirQualityCard airQuialityDescription={airQualityDescription?.overallAirDescription}/>}
                 <CurrentWeatherCard currentWeather={currentWeather}
                                     loading={currentWeatherLoading}
                                     date={currentDayAndDateString}
