@@ -13,7 +13,6 @@ import HourlyWeatherCard from "@/components/HourlyWeatherCard";
 import parseApiDateResponse from "@/utils/parseApiDateResponse";
 import {getBigWeatherIcon} from "@/utils/getBigWeatherIcon";
 import {getUvIcon} from "@/utils/getUvIcon";
-import React from "react";
 import Loader from "@/components/Loader";
 import newMoon from "../../public/icons/new-moon.png";
 import fullMoon from "../../public/icons/full-moon.png";
@@ -67,7 +66,7 @@ export default function Home() {
 
 
     const forecastWithCurrentDay = forecast?.forecast["forecastday"];
-    const forecastWithoutCurrentDay = forecastWithCurrentDay?.slice(1);
+    //const forecastWithoutCurrentDay = forecastWithCurrentDay?.slice(1);
     const noForecastMessage = 'The weather forecast is not available. Please, try again later.';
     const forecastLoaderText = 'Loading weather forecast...';
 
@@ -111,7 +110,7 @@ export default function Home() {
                     </div> :
 
                     <div className='forecast-cards'>
-                        {forecastWithoutCurrentDay ? forecastWithoutCurrentDay.map((forecastDay) =>
+                        {forecastWithCurrentDay ? forecastWithCurrentDay.map((forecastDay) =>
                             <ForecastCard
                                 key={forecastDay.date}
                                 forecast={forecast}
