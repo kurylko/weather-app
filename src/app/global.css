@@ -120,9 +120,6 @@ main {
     margin: 10px 0;
 }
 
-.city-name {
-    font-size: xx-large;
-}
 
 .home-page {
     width: 100vw;
@@ -146,6 +143,17 @@ main {
     margin-top: 10px;
     align-items: center;
     justify-content: center;
+}
+.city-name {
+    font-size: xx-large;
+}
+
+.region-name {
+    font-size: larger;
+}
+
+.location-card-day {
+    margin-top: 20px;
 }
 
 .current-weather-card {

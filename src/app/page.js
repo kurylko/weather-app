@@ -17,7 +17,7 @@ import Loader from "@/components/Loader";
 import newMoon from "../../public/icons/new-moon.png";
 import fullMoon from "../../public/icons/full-moon.png";
 import crescentMoon from "../../public/icons/crescent-moon.png";
-import LocationCard from "@/components/LocationCard";
+import DayAndLocationCard from "@/components/DayAndLocationCard";
 
 export default function Home() {
     const {geoLocationData, geoLocationError} = useUserLocation();
@@ -101,9 +101,11 @@ export default function Home() {
                                     uvIndexIcon={getUvIcon({uvIndex: currentWeather?.current?.uv})}
                                     uvIndex={currentWeather?.current?.uv}
                 />
-                <LocationCard  city={currentWeather?.location?.name}
-                               region={currentWeather?.location?.region}
-                               country={currentWeather?.location?.country}/>
+                <DayAndLocationCard city={currentWeather?.location?.name}
+                                    region={currentWeather?.location?.region}
+                                    country={currentWeather?.location?.country}
+                                    date={currentDayAndDateString}
+                />
             </div>
 
             <div className='forecast-cards-container'>
