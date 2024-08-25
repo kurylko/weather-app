@@ -113,6 +113,17 @@ main {
     color: rgb(var(--main-text-color-rgb));
 }
 
+.divider {
+    display: block;
+    height: 1px;
+    background-color: white;
+    margin: 10px 0;
+}
+
+.city-name {
+    font-size: xx-large;
+}
+
 .home-page {
     width: 100vw;
     min-height: 100%;
@@ -124,18 +135,15 @@ main {
 
 .location-and-current {
     display: flex;
+    align-items: flex-start;
     width: 85%;
 }
 
 .location-card {
     display: flex;
     flex-direction: column;
-    background-color: rgb(var(--light-blue-rgb));
     width: 35%;
-    height: fit-content;
     margin-top: 10px;
-    box-shadow: 2px 3px 4px rgb(var(--deep-blue-rgb), 0.3);
-    border-radius: 10px;
     align-items: center;
     justify-content: center;
 }

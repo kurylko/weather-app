@@ -1,9 +1,10 @@
 const LocationCard = ({city, region, country}) => {
     return (
-        <div className='location-card'>Location:
-            <div>{city}</div>
-            <div>{region}</div>
-            <div>{country}</div>
+        <div className='location-card'>
+            <span className='city-name'>{city}</span>
+            <span className='divider' style={{width: '80%'}}></span>
+            <span>{`${region}, ${country}`}</span>
+            <div></div>
         </div>
     )
 }
