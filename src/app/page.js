@@ -17,6 +17,7 @@ import Loader from "@/components/Loader";
 import newMoon from "../../public/icons/new-moon.png";
 import fullMoon from "../../public/icons/full-moon.png";
 import crescentMoon from "../../public/icons/crescent-moon.png";
+import DayAndLocationCard from "@/components/DayAndLocationCard";
 
 export default function Home() {
     const {geoLocationData, geoLocationError} = useUserLocation();
@@ -82,23 +83,31 @@ export default function Home() {
 
     return (
         <div className='home-page'>
-            <CurrentWeatherCard currentWeather={currentWeather}
-                                loading={currentWeatherLoading}
-                                date={currentDayAndDateString}
-                                city={currentWeather?.location?.name}
-                                region={currentWeather?.location?.region}
-                                country={currentWeather?.location?.country}
-                                condition={getBigWeatherIcon({weatherCondition: currentWeather?.current?.condition.text})}
-                                temperature={currentWeather?.current?.temp_c}
-                                feelsLike={currentWeather?.current?.feelslike_c}
-                                cloud={getCloudDescription(currentWeather?.current?.cloud)}
-                                humidityN={currentWeather?.current?.humidity}
-                                windDir={currentWeather?.current?.wind_dir}
-                                windKph={currentWeather?.current?.wind_kph}
-                                pressureN={currentWeather?.current?.pressure_mb}
-                                uvIndexIcon={getUvIcon({uvIndex: currentWeather?.current?.uv})}
-                                uvIndex={currentWeather?.current?.uv}
-            />
+            <div className='location-and-current'>
+                <CurrentWeatherCard currentWeather={currentWeather}
+                                    loading={currentWeatherLoading}
+                                    date={currentDayAndDateString}
+                                    city={currentWeather?.location?.name}
+                                    region={currentWeather?.location?.region}
+                                    country={currentWeather?.location?.country}
+                                    condition={getBigWeatherIcon({weatherCondition: currentWeather?.current?.condition.text})}
+                                    temperature={currentWeather?.current?.temp_c}
+                                    feelsLike={currentWeather?.current?.feelslike_c}
+                                    cloud={getCloudDescription(currentWeather?.current?.cloud)}
+                                    humidityN={currentWeather?.current?.humidity}
+                                    windDir={currentWeather?.current?.wind_dir}
+                                    windKph={currentWeather?.current?.wind_kph}
+                                    pressureN={currentWeather?.current?.pressure_mb}
+                                    uvIndexIcon={getUvIcon({uvIndex: currentWeather?.current?.uv})}
+                                    uvIndex={currentWeather?.current?.uv}
+                />
+                {currentWeather && <DayAndLocationCard city={currentWeather?.location?.name}
+                                                       region={currentWeather?.location?.region}
+                                                       country={currentWeather?.location?.country}
+                                                       date={currentDayAndDateString}
+                />}
+            </div>
+
             <div className='forecast-cards-container'>
                 {!!forecast && <h1>Forecast for 3 days</h1>}
                 {forecastLoading ?
