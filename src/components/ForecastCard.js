@@ -10,7 +10,7 @@ const ForecastCard = ({day, condition, maxTemp, minTemp, humidityN, windN, uvIco
 
     return (
         <div className='forecast-card'>
-            <span className='forecast-day'>{day}</span>
+            <h3 className='forecast-day'>{day}</h3>
             <Image className='forecast-big-icon'
                    src={condition}
                    alt='weather-condition-icon'></Image>

@@ -44,8 +44,6 @@ export default function Home() {
 
     const getInteger = (number) => Math.round(number);
 
-    console.log('ttttvv', currentWeather)
-
     function getCloudDescription(cloudPercentage) {
         if (cloudPercentage >= 91) {
             return 'The sky is completely overcast with dense clouds'
@@ -71,7 +69,6 @@ export default function Home() {
     const forecastLoaderText = 'Loading weather forecast...';
 
     const astroOfCurrentDay = forecast?.forecast['forecastday'][0]['astro'];
-    console.log('forecast', astroOfCurrentDay);
 
     function getMoonIcon(moonPhase) {
         const moonIcons = {
@@ -103,7 +100,7 @@ export default function Home() {
                                 uvIndex={currentWeather?.current?.uv}
             />
             <div className='forecast-cards-container'>
-                {!!forecast && <span>3 days forecast</span>}
+                {!!forecast && <h1>Forecast for 3 days</h1>}
                 {forecastLoading ?
                     <div className='current-weather-card no-weather-card'>
                         <Loader loaderText={forecastLoaderText}/>
@@ -129,16 +126,9 @@ export default function Home() {
                 }
             </div>
 
-            {!!forecast && <span>Sun and Moon forecast</span>}
-            <AstroCard
-                forecast={forecast}
-                sunriseTime={astroOfCurrentDay?.sunrise}
-                sunsetTime={astroOfCurrentDay?.sunset}
-                moonPhase={astroOfCurrentDay?.moon_phase}
-                moonIcon={getMoonIcon(astroOfCurrentDay?.moon_phase)}
-            />
+
             {!!currentDayAndDateString &&
-                <span className='current-day-hourly'>{`Weather on ${currentDayAndDateString}`}</span>}
+                <h1 className='current-day-hourly'>{`Weather on ${currentDayAndDateString}`}</h1>}
             <div className='hourly-weather-card-container'>
                 {hourlyWeatherDataForSpecificHours && hourlyWeatherDataForSpecificHours.map((hourly) =>
                     <HourlyWeatherCard key={hourly.time}
@@ -151,6 +141,15 @@ export default function Home() {
                     />
                 )}
             </div>
+            {!!forecast && <h1>Sun and Moon forecast</h1>}
+            {!!forecast && <AstroCard
+                forecast={forecast}
+                sunriseTime={astroOfCurrentDay?.sunrise}
+                sunsetTime={astroOfCurrentDay?.sunset}
+                moonPhase={astroOfCurrentDay?.moon_phase}
+                moonIcon={getMoonIcon(astroOfCurrentDay?.moon_phase)}
+            />
+            }
             {geoLocationData ? <p> {`User's location: ${geoLocationData.lat}, ${geoLocationData.lon}`} </p> :
                 <p> No location detected </p>}
             {!!placeFromSearch && <p>{`User's Display location: ${placeFromSearch.lat}, ${placeFromSearch.lon}`}</p>}
