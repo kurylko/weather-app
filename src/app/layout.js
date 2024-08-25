@@ -16,8 +16,8 @@ export default function RootLayout({children}) {
     return (
         <html lang="en">
         <head>
-            <title>{'MD'}</title>
-            <meta name="description" content={'MDD'}/>
+            <title>{'Weather'}</title>
+            <meta name="Weather App" content={'Weather App'}/>
             <link rel="icon" href="/favicon.ico" sizes="any"/>
         </head>
         <body className={manrope.className}>
