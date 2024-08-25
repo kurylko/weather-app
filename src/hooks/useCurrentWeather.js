@@ -6,13 +6,15 @@ const useCurrentWeather = ({currentWeatherLocation}) => {
     const [currentWeather, setCurrentWeather] = useState(null);
     const [error, setError] = useState(null);
     const {lat, lon} = currentWeatherLocation || {};
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
 
         const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
-        if(lat && lon ) {
-            const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat}, ${lon}&aqi=no`
+        if (lat && lon) {
+            setLoading(true);
+            const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat}, ${lon}&aqi=yes`
             axios.get(url)
                 .then(response => {
                     setCurrentWeather(currentWeather ? response.data : response.data)
@@ -20,10 +22,14 @@ const useCurrentWeather = ({currentWeatherLocation}) => {
                 .catch(error => {
                     setError('Can not catch weather data');
                     console.log("Can not catch weather data");
-                });}
-        }, [lat, lon]);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
+        }
+    }, [lat, lon]);
 
-    return {currentWeather, error};
+    return {currentWeather, error, loading};
 }
 
 export default useCurrentWeather;

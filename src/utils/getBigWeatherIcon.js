@@ -13,7 +13,7 @@ import freezyrain from './../../public/icons/freezingrain.png';
 import thundersnow from './../../public/icons/thundersnow.png';
 import hail from './../../public/icons/hail.png';
 
-const getBigWeatherIcon = (weatherCondition) => {
+export const getBigWeatherIcon = ({weatherCondition}) => {
     let bigWeatherIcon;
 
     if (weatherCondition === 'Sunny' || weatherCondition === 'Clear ') {
@@ -32,11 +32,11 @@ const getBigWeatherIcon = (weatherCondition) => {
         bigWeatherIcon = blizzard;
     } else if (weatherCondition === 'Patchy light drizzle' || weatherCondition === 'Light drizzle' || weatherCondition === 'Light freezing rain' || weatherCondition === 'Freezing drizzle' || weatherCondition === 'Patchy light rain' || weatherCondition === 'Light rain' || weatherCondition === 'Moderate rain at times' || weatherCondition === 'Moderate rain' || weatherCondition === 'Light freezing rain') {
         bigWeatherIcon = drizzle;
-    } else if (weatherCondition === 'Heavy rain at times' || weatherCondition === 'Heavy rain') {
+    } else if (weatherCondition === 'Heavy rain at times' || weatherCondition === 'Heavy rain'|| weatherCondition === 'Moderate or heavy rain shower') {
         bigWeatherIcon = rain;
     } else if (weatherCondition === 'Moderate or heavy freezing rain' || weatherCondition === 'Heavy freezing drizzle' ){
         bigWeatherIcon = freezyrain;
-    } else if (weatherCondition === 'Light sleet' || weatherCondition === 'Moderate or heavy sleet' || weatherCondition === 'Patchy light snow' || weatherCondition === 'Light snow' || weatherCondition === 'Patchy moderate snow' || weatherCondition === 'Moderate snow' || weatherCondition === 'Patchy heavy snow' || weatherCondition === 'Heavy snow' || weatherCondition === 'Moderate or heavy rain shower' || weatherCondition === 'Moderate or heavy sleet showers' || weatherCondition === 'Light snow showers' || weatherCondition === 'Moderate or heavy snow showers'){
+    } else if (weatherCondition === 'Light sleet' || weatherCondition === 'Moderate or heavy sleet' || weatherCondition === 'Patchy light snow' || weatherCondition === 'Light snow' || weatherCondition === 'Patchy moderate snow' || weatherCondition === 'Moderate snow' || weatherCondition === 'Patchy heavy snow' || weatherCondition === 'Heavy snow' || weatherCondition === 'Moderate or heavy sleet showers' || weatherCondition === 'Light snow showers' || weatherCondition === 'Moderate or heavy snow showers'){
         bigWeatherIcon = snowy;
     } else if (weatherCondition === 'Patchy light snow with thunder' || weatherCondition === 'Moderate or heavy snow with thunder'){
         bigWeatherIcon = thundersnow;
@@ -51,5 +51,3 @@ const getBigWeatherIcon = (weatherCondition) => {
 
     return bigWeatherIcon;
 }
-
-export default getBigWeatherIcon;

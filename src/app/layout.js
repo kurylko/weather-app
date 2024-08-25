@@ -1,26 +1,30 @@
-import {Inter} from "next/font/google";
+'use client';
+
 import "./global.css";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import StoreProvider from "./../state/StoreProvider";
+import { Manrope } from "next/font/google";
 
-const inter = Inter({subsets: ["latin"]});
+const manrope = Manrope({
+    subsets: ['latin'],
+    weight: ['300', '400', '500', '700'],
+});
 
-export const metadata = {
-    title: "Weather App",
-    description: "Weather app with productivity advices",
-};
 
 export default function RootLayout({children}) {
     return (
         <html lang="en">
         <head>
-            <title>{metadata.title}</title>
-            <meta name="description" content={metadata.description}/>
-            <link rel="icon" href="/favicon.ico" sizes="any" />
+            <title>Weather</title>
+            <meta name="description" content='Weather App'/>
+            <link rel="icon" href="/favicon.ico" sizes="any"/>
         </head>
-        <body className={inter.className}>
+        <body className={manrope.className}>
+       <StoreProvider>
         <Header/>
-        {children}
+        <main>{children}</main>
+       </StoreProvider>
         <Footer/>
         </body>
         </html>
