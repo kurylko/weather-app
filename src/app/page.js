@@ -44,8 +44,6 @@ export default function Home() {
 
     const getInteger = (number) => Math.round(number);
 
-    console.log('ttttvv', currentWeather)
-
     function getCloudDescription(cloudPercentage) {
         if (cloudPercentage >= 91) {
             return 'The sky is completely overcast with dense clouds'
@@ -71,7 +69,6 @@ export default function Home() {
     const forecastLoaderText = 'Loading weather forecast...';
 
     const astroOfCurrentDay = forecast?.forecast['forecastday'][0]['astro'];
-    console.log('forecast', astroOfCurrentDay);
 
     function getMoonIcon(moonPhase) {
         const moonIcons = {

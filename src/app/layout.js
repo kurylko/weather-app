@@ -8,7 +8,7 @@ import { Manrope } from '@next/font/google';
 
 const manrope = Manrope({
     subsets: ['latin'],
-    weight: ['400', '500', '700'],
+    weight: ['300', '400', '500', '700'],
 });
 
 
@@ -16,8 +16,8 @@ export default function RootLayout({children}) {
     return (
         <html lang="en">
         <head>
-            <title>{'Weather'}</title>
-            <meta name="Weather App" content={'Weather App'}/>
+            <title>Weather</title>
+            <meta name="description" content='Weather App'/>
             <link rel="icon" href="/favicon.ico" sizes="any"/>
         </head>
         <body className={manrope.className}>
