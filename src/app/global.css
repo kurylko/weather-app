@@ -12,6 +12,7 @@
     --light-schell-rgb: 255, 251, 240;
     --dark-deep-blue-rgb: 11, 37, 46;
     --main-text-color-rgb: 11, 37, 46;
+    --orange-rgb: 255, 109, 47;
 }
 
 * {
@@ -254,12 +255,19 @@ main {
 .search-input {
     width: 70%;
     border: 1px solid rgb(var(--dark-blue-rgb), 0.3);
-    border-radius: 10px;
+    border-radius: 5px;
     padding-left: 20px;
+    outline: none;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: rgba(var(--orange-rgb), 0.7);
+    background-color: rgb(var(--light-schell-rgb));
 }
 
 .search-button {
-    background-color: rgba(255, 109, 47, 0.98);
+    background-color: rgba(var(--orange-rgb), 0.98);
     border: 1px solid rgb(var(--dark-blue-rgb), 0.3);
     border-radius: 10px;
     margin-left: 2px;
