@@ -147,6 +147,7 @@ main {
 
 .city-name {
     font-size: xx-large;
+    text-align: center;
 }
 
 .region-name {
@@ -493,6 +494,7 @@ footer {
 
     .search-bar {
         width: 35%;
+        right: 5px;
     }
 
     .location-and-current {

@@ -53,8 +53,6 @@ const Header = () => {
         fetchCityName();
     }, [locationData]);
 
-    console.log(locationData ? `cityName: ${city}`  : '');
-
 
     return (
         <header>
