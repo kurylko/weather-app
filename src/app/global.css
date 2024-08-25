@@ -494,6 +494,12 @@ footer {
     .forecast-number-icon {
         gap: 15px;
     }
+    .current-location {
+        display: none;
+    }
+    .current-date {
+        display: none;
+    }
 
     .astro-card {
         width: 40%;

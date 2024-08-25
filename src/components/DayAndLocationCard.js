@@ -3,7 +3,7 @@ const DayAndLocationCard = ({city, region, country, date}) => {
         <div className='location-card'>
             <span className='city-name'>{city}</span>
             <span className='divider' style={{width: '80%'}}></span>
-            <span className='region-name'>{`${region}, ${country}`}</span>
+            <span className='region-name'>{`${region ? `${region}, ` : ''}${country}`}</span>
             <div className='location-card-day'>{date}</div>
         </div>
     )
