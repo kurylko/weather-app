@@ -55,7 +55,7 @@ const CurrentWeatherCard = ({
                        alt='big-weather-icon'></Image>
             </div>
             <div className='current-temperature-container'>
-                <span className='current-temperature'>{`${temperature} C°`}</span>
+                <h1 className='current-temperature'>{`${temperature} C°`}</h1>
                 <span
                     className='feels-like-temp'>Feels like: {`${feelsLike} C°`}</span>
             </div>

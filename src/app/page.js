@@ -103,7 +103,7 @@ export default function Home() {
                                 uvIndex={currentWeather?.current?.uv}
             />
             <div className='forecast-cards-container'>
-                {!!forecast && <span>3 days forecast</span>}
+                {!!forecast && <h1>Forecast for 3 days</h1>}
                 {forecastLoading ?
                     <div className='current-weather-card no-weather-card'>
                         <Loader loaderText={forecastLoaderText}/>
@@ -131,7 +131,7 @@ export default function Home() {
 
 
             {!!currentDayAndDateString &&
-                <span className='current-day-hourly'>{`Weather on ${currentDayAndDateString}`}</span>}
+                <h1 className='current-day-hourly'>{`Weather on ${currentDayAndDateString}`}</h1>}
             <div className='hourly-weather-card-container'>
                 {hourlyWeatherDataForSpecificHours && hourlyWeatherDataForSpecificHours.map((hourly) =>
                     <HourlyWeatherCard key={hourly.time}
@@ -144,7 +144,7 @@ export default function Home() {
                     />
                 )}
             </div>
-            {!!forecast && <span>Sun and Moon forecast</span>}
+            {!!forecast && <h1>Sun and Moon forecast</h1>}
             <AstroCard
                 forecast={forecast}
                 sunriseTime={astroOfCurrentDay?.sunrise}
