@@ -144,12 +144,14 @@ main {
     align-items: center;
     justify-content: center;
 }
+
 .city-name {
     font-size: xx-large;
 }
 
 .region-name {
     font-size: larger;
+    text-align: center;
 }
 
 .location-card-day {
@@ -455,13 +457,40 @@ footer {
     margin: 0 0 10px;
 }
 
+.header-location-card {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.header-city {
+    text-align: center;
+    color: white;
+}
+
+.geo-icon {
+    width: 20px;
+    height: 20px;
+    filter: invert(100%);
+    align-self: center;
+}
+
+
 @media (max-width: 768px) {
     .location-card {
+        display: none;
+    }
+
+    .header-location-card {
         display: none;
     }
 }
 
 @media screen and (min-width: 1024px) {
+    header {
+        justify-content: space-between;
+    }
+
     .search-bar {
         width: 35%;
     }
@@ -494,9 +523,11 @@ footer {
     .forecast-number-icon {
         gap: 15px;
     }
+
     .current-location {
         display: none;
     }
+
     .current-date {
         display: none;
     }
