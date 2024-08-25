@@ -514,7 +514,7 @@ footer {
 
     .location-and-current {
         width: 95%;
-        justify-content: space-between;
+        justify-content: center;
         gap: 20px;
     }
 

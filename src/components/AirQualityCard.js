@@ -6,7 +6,7 @@ const AirQualityCard = ({airQuialityDescription}) => {
     return (
         <div className='air-quality-card'>
             <Image className='air-quality-icon' src={dust} alt='dust-icon'/>
-        <div>{airQuialityDescription}</div>
+        <span>{airQuialityDescription}</span>
         </div>
     );
 }
