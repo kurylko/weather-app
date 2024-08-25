@@ -1,4 +1,3 @@
-
 const Loader = ({loaderText}) => {
 
     return (

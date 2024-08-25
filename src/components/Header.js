@@ -1,6 +1,8 @@
 import {useRef, useState} from 'react';
 import {getCoordinates} from "@/state/searchPlaceSlice";
 import {useDispatch} from 'react-redux';
+import searchIcon from './../../public/icons/search.png';
+import Image from "next/image";
 
 const Header = () => {
     const dispatch = useDispatch()
@@ -35,8 +37,11 @@ const Header = () => {
     return (
         <header>
             <div className='search-bar'>
+                <div className='search-input-wrapper'>
                 <input className='search-input' type='text' placeholder='Type the location' value={searchInput}
                        onChange={handleChangeSearch} onKeyDown={handleKeyDown} ref={inputRef}></input>
+                    <Image src={searchIcon} alt="search icon" className="search-icon" />
+                </div>
                 <button className='search-button' onClick={handleSearch}>Search</button>
             </div>
         </header>
