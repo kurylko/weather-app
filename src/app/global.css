@@ -297,11 +297,11 @@ footer {
     gap: 5px;
     width: 90%;
 }
+
 .hourly-weather-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.99);
 }
@@ -310,6 +310,7 @@ footer {
     display: flex;
     flex-direction: column;
     padding: 3px 2px 10px 2px;
+    gap: 5px;
 }
 
 .hourly-weather-card-item {
@@ -327,14 +328,45 @@ footer {
 
 .hourly-time {
     background-color: rgb(var(--light-blue-rgb));
+    width: 100%;
+    text-align: center;
+    color: rgb(var(--main-text-color-rgb));
 }
 
 .condition-hourly-icon-big {
     width: 50px;
     height: 50px;
+    align-self: center;
     margin: 10px 0 10px;
 }
-.hourly-text{
-    align-content: center;
-    color: rgb(var(--main-text-color-rgb));
+
+
+@media screen and (min-width: 1024px) {
+    .search-bar {
+        width: 35%;
+    }
+    .current-weather-card {
+        width: 40%;
+    }
+    .forecast-cards {
+        width: 60%;
+        gap: 40px;
+    }
+    .forecast-number-icon {
+        gap: 15px;
+    }
+    .astro-card {
+        width: 40%;
+    }
+    .hourly-weather-card-container {
+        width: 75%;
+        gap: 15px;
+    }
+    .hourly-weather-card-item-container {
+        gap: 5px;
+    }
+    .hourly-weather-card-item {
+        gap: 15px;
+        justify-content: space-between;
+    }
 }
