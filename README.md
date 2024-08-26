@@ -1,7 +1,17 @@
-* Weather Web App 
+# Weather Web App 
+
+* Features:
+- Current weather;
+- Weather forecast for 3 days;
+- Hourly weather forecast;
+- Air Quality monitor;
+- Sun & Moon information.
 
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Technologies used:
+**Fontend:** React, Next.js, CSS, Redux Toolkit, geoCoding
+**API:** WeatherAPI
+
 
 ## Getting Started
 
