@@ -402,12 +402,19 @@ footer {
 
 .current-day-hourly {
     margin: 10px 0 15px;
+    text-align: center;
 }
 
-.hourly-weather-card-container {
+.hourly-weather-cards-container {
     display: flex;
-    gap: 5px;
+   flex-direction: column;
     width: 90%;
+}
+
+.hourly-weather-cards{
+    display: flex;
+    width: 100%;
+    gap: 5px;
     margin-bottom: 20px;
 }
 
@@ -502,21 +509,56 @@ footer {
     }
 }
 
-@media screen and (min-width: 1024px) {
+
+.forecast-and-hourly-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+}
+
+@media screen and (min-width: 750px) {
     header {
         justify-content: space-between;
     }
-
+    .forecast-and-hourly-container {
+        flex-direction: column-reverse;
+    }
+    .forecast-cards {
+        width: 60%;
+        gap: 40px;
+    }
+    .hourly-text {
+        font-size: initial;
+    }
     .search-bar {
         width: 35%;
         right: 5px;
     }
-
     .location-and-current {
         width: 95%;
         justify-content: center;
         gap: 20px;
     }
+    .current-location {
+        display: none;
+    }
+
+    .current-date {
+        display: none;
+    }
+    .hourly-weather-card {
+        background-color: transparent;
+    }
+    .hourly-time {
+        width: 60%;
+    }
+    .current-day-hourly {
+        margin: 10px 0 20px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
 
     .current-weather-card {
         width: 55%;
@@ -533,21 +575,8 @@ footer {
         height: 45px;
     }
 
-    .forecast-cards {
-        width: 60%;
-        gap: 40px;
-    }
-
     .forecast-number-icon {
         gap: 15px;
-    }
-
-    .current-location {
-        display: none;
-    }
-
-    .current-date {
-        display: none;
     }
 
     .astro-card {

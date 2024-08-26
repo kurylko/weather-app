@@ -83,13 +83,14 @@ export default function Home() {
         return moonIcons[moonPhase] || crescentMoon;
     }
 
-    const {co, defraIndex,no2, o3, pm2_5, pm10, so2, epaIndex} = forecast?.current?.air_quality || {};
+    const {co, defraIndex, no2, o3, pm2_5, pm10, so2, epaIndex} = forecast?.current?.air_quality || {};
     const airQualityDescription = getAirQualityDescription({co, defraIndex, no2, o3, pm2_5, pm10, so2, epaIndex});
 
     return (
         <div className='home-page'>
             <div className='location-and-current'>
-                {currentWeather && <AirQualityCard airQuialityDescription={airQualityDescription?.overallAirDescription}/>}
+                {currentWeather &&
+                    <AirQualityCard airQuialityDescription={airQualityDescription?.overallAirDescription}/>}
                 <CurrentWeatherCard currentWeather={currentWeather}
                                     loading={currentWeatherLoading}
                                     date={currentDayAndDateString}
@@ -114,48 +115,53 @@ export default function Home() {
                 />}
             </div>
 
-            <div className='forecast-cards-container'>
-                {!!forecast && <h1>Forecast for 3 days</h1>}
-                {forecastLoading ?
-                    <div className='current-weather-card no-weather-card'>
-                        <Loader loaderText={forecastLoaderText}/>
-                    </div> :
+            <div className='forecast-and-hourly-container'>
 
-                    <div className='forecast-cards'>
-                        {forecastWithCurrentDay ? forecastWithCurrentDay.map((forecastDay) =>
-                            <ForecastCard
-                                key={forecastDay.date}
-                                forecast={forecast}
-                                loading={forecastLoading}
-                                day={parseApiDateResponse(forecastDay?.date, 'dayOnly')}
-                                condition={getBigWeatherIcon({weatherCondition: forecastDay.day.condition.text})}
-                                maxTemp={getInteger(forecastDay.day.maxtemp_c)}
-                                minTemp={getInteger(forecastDay.day.mintemp_c)}
-                                humidityN={forecastDay.day.avghumidity}
-                                windN={getInteger(forecastDay.day.maxwind_kph)}
-                                uvIcon={getUvIcon({uvIndex: forecastDay.day.uv})}
-                                uvIndex={forecastDay.day.uv}
+                <div className='forecast-cards-container'>
+                    {!!forecast && <h1>Forecast for 3 days</h1>}
+                    {forecastLoading ?
+                        <div className='current-weather-card no-weather-card'>
+                            <Loader loaderText={forecastLoaderText}/>
+                        </div> :
+
+                        <div className='forecast-cards'>
+                            {forecastWithCurrentDay ? forecastWithCurrentDay.map((forecastDay) =>
+                                <ForecastCard
+                                    key={forecastDay.date}
+                                    forecast={forecast}
+                                    loading={forecastLoading}
+                                    day={parseApiDateResponse(forecastDay?.date, 'dayOnly')}
+                                    condition={getBigWeatherIcon({weatherCondition: forecastDay.day.condition.text})}
+                                    maxTemp={getInteger(forecastDay.day.maxtemp_c)}
+                                    minTemp={getInteger(forecastDay.day.mintemp_c)}
+                                    humidityN={forecastDay.day.avghumidity}
+                                    windN={getInteger(forecastDay.day.maxwind_kph)}
+                                    uvIcon={getUvIcon({uvIndex: forecastDay.day.uv})}
+                                    uvIndex={forecastDay.day.uv}
+                                />
+                            ) : <div className='current-weather-card'>{noForecastMessage} </div>}
+                        </div>
+                    }
+                </div>
+
+                <div className='hourly-weather-cards-container'>
+                    {!!currentDayAndDateString &&
+                        <h1 className='current-day-hourly'>{`Weather on ${currentDayAndDateString}`}</h1>}
+                    <div className='hourly-weather-cards'>
+                        {hourlyWeatherDataForSpecificHours && hourlyWeatherDataForSpecificHours.map((hourly) =>
+                            <HourlyWeatherCard key={hourly.time}
+                                               time={parseApiDateResponse((hourly.time), 'hourOnly')}
+                                               temp={getInteger(hourly.temp_c)}
+                                               humidity={hourly.humidity}
+                                               wind={getInteger(hourly.wind_kph)}
+                                               rain={hourly.chance_of_rain}
+                                               condition={hourly.condition.text}
                             />
-                        ) : <div className='current-weather-card'>{noForecastMessage} </div>}
+                        )}
                     </div>
-                }
+                </div>
             </div>
 
-
-            {!!currentDayAndDateString &&
-                <h1 className='current-day-hourly'>{`Weather on ${currentDayAndDateString}`}</h1>}
-            <div className='hourly-weather-card-container'>
-                {hourlyWeatherDataForSpecificHours && hourlyWeatherDataForSpecificHours.map((hourly) =>
-                    <HourlyWeatherCard key={hourly.time}
-                                       time={parseApiDateResponse((hourly.time), 'hourOnly')}
-                                       temp={getInteger(hourly.temp_c)}
-                                       humidity={hourly.humidity}
-                                       wind={getInteger(hourly.wind_kph)}
-                                       rain={hourly.chance_of_rain}
-                                       condition={hourly.condition.text}
-                    />
-                )}
-            </div>
             {!!forecast && <h1>Sun and Moon forecast</h1>}
             {!!forecast && <AstroCard
                 forecast={forecast}
