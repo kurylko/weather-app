@@ -26,9 +26,9 @@ export const getCoordinates = createAsyncThunk(
             }
 
             const data = await response.json();
-            console.log('data', data.placeData);
+            console.log('data', data);
 
-            if (data?.results && data.results.length > 0) {
+            if (data?.placeData) {
                 const placeData = data.placeData;
                 return parsePlaceData({placeData}) || rejectWithValue('No results found');
             }
@@ -52,6 +52,7 @@ const searchPlaceSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(getCoordinates.fulfilled, (state, action) => {
+                console.log('Fulfilled with payload:', action.payload);
                 state.isLoading = false;
                 state.data = action.payload
             })
