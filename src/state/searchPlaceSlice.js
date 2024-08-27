@@ -10,20 +10,26 @@ const initialState = {
 export const getCoordinates = createAsyncThunk(
     'searchPlace/getCoordinates',
     async ({city}, {rejectWithValue}) => {
+
         //const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${apiKey}`;
+
         const url = `/api/get-coordinates/?address=${encodeURIComponent(city)}`;
         console.log(url)
         try {
+            //const response = await fetch(url);
             const response = await fetch(url);
+            console.log('Response:', response);
+
 
             if (!response.ok) {
                 return rejectWithValue(`Error: ${response.statusText}`);
             }
 
             const data = await response.json();
+            console.log('data', data.placeData);
 
             if (data?.results && data.results.length > 0) {
-                const placeData = data?.results[0]?.geometry?.location;
+                const placeData = data.placeData;
                 return parsePlaceData({placeData}) || rejectWithValue('No results found');
             }
 
