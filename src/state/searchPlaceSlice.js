@@ -14,19 +14,14 @@ export const getCoordinates = createAsyncThunk(
         //const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${apiKey}`;
 
         const url = `/api/get-coordinates/?address=${encodeURIComponent(city)}`;
-        console.log(url)
         try {
-            //const response = await fetch(url);
             const response = await fetch(url);
-            console.log('Response:', response);
-
 
             if (!response.ok) {
                 return rejectWithValue(`Error: ${response.statusText}`);
             }
 
             const data = await response.json();
-            console.log('data', data);
 
             if (data?.placeData) {
                 const placeData = data.placeData;
