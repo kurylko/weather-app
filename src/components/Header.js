@@ -53,6 +53,7 @@ const Header = () => {
     }, [locationData]);
 
 
+
     return (
         <header>
             <HeaderLocation city={city}/>
