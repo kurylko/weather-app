@@ -1,10 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
+import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {parsePlaceData} from "@/utils/parsePlaceData";
-
-const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-
 
 const initialState = {
     data: null,
@@ -12,21 +7,26 @@ const initialState = {
 }
 
 
-
 export const getCoordinates = createAsyncThunk(
     'searchPlace/getCoordinates',
-    async ({ city }, { rejectWithValue }) => {
-        const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${apiKey}`;
+    async ({city}, {rejectWithValue}) => {
+        //const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=${apiKey}`;
+        const url = `/api/get-coordinates/?address=${encodeURIComponent(city)}`;
+        console.log(url)
         try {
-            const response = await axios.get(url, {
-                params: {
-                    address: city,
-                    key: apiKey,
-                },
-            });
+            const response = await fetch(url);
 
-            const placeData = response?.data?.results[0]?.geometry?.location;
-            return parsePlaceData({placeData}) || rejectWithValue('No results found')
+            if (!response.ok) {
+                return rejectWithValue(`Error: ${response.statusText}`);
+            }
+
+            const data = await response.json();
+
+            if (data?.results && data.results.length > 0) {
+                const placeData = data?.results[0]?.geometry?.location;
+                return parsePlaceData({placeData}) || rejectWithValue('No results found');
+            }
+
         } catch (error) {
             console.error('Geocoding error:', error);
             return rejectWithValue('Failed to fetch coordinates');
