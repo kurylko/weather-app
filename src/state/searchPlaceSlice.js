@@ -47,7 +47,6 @@ const searchPlaceSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(getCoordinates.fulfilled, (state, action) => {
-                console.log('Fulfilled with payload:', action.payload);
                 state.isLoading = false;
                 state.data = action.payload
             })
