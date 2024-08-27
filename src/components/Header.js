@@ -9,6 +9,7 @@ import {getCityName} from "@/utils/getCityName";
 
 const Header = () => {
     const [city, setCity] = useState(null);
+    const [error, setError] = useState(null);
 
     const dispatch = useDispatch()
 
@@ -51,6 +52,7 @@ const Header = () => {
 
         fetchCityName();
     }, [locationData]);
+
 
 
     return (
