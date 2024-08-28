@@ -87,7 +87,7 @@ export default function Home() {
 
     const {co, defraIndex, no2, o3, pm2_5, pm10, so2, epaIndex} = forecast?.current?.air_quality || {};
     const airQualityDescription = getAirQualityDescription({co, defraIndex, no2, o3, pm2_5, pm10, so2, epaIndex});
-    const {uVlevel, alertMessage} = getUvAlert({uVIndex: 11});
+    const {uVlevel, alertMessage} = getUvAlert({uVIndex: currentWeather?.current?.uv});
 
 
     return (

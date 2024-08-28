@@ -4,7 +4,7 @@ export function getUvAlert({uVIndex}) {
 
     if (uVIndex <= 2) {
         uVlevel = 'Low UV-index';
-        alertMessage = 'Wear sunglasses';
+        alertMessage = 'Wear sunglasses if it`s bright outside.';
     } else if (uVIndex >= 3 && uVIndex <= 5) {
         uVlevel = 'Moderate UV-index'
         alertMessage = 'Wear sunglasses and use sunscreen with at least SPF 30';
