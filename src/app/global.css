@@ -483,6 +483,13 @@ footer {
     align-self: center;
 }
 
+.geo-weather-icon {
+    width: 25px;
+    height: 25px;
+    align-self: center;
+    margin: 0 0 0 5px;
+}
+
 .air-quality-card {
     margin-top: 10px;
     width: 35%;
