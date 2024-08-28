@@ -4,8 +4,9 @@ import thermometerIcon from './../../public/icons/thermometer.png';
 import rainIcon from './../../public/icons/rain.png';
 import Image from "next/image";
 import {getBigWeatherIcon} from "@/utils/getBigWeatherIcon";
+import {getUvIcon} from "@/utils/getUvIcon";
 
-const HourlyWeatherCard = ({time, temp, humidity, wind, rain, condition}) => {
+const HourlyWeatherCard = ({time, temp, humidity, wind, rain, condition, uv}) => {
 
 
     return (
@@ -29,6 +30,10 @@ const HourlyWeatherCard = ({time, temp, humidity, wind, rain, condition}) => {
                 <div className='hourly-weather-card-item'>
                     <Image className='hourly-weather-card-icon' src={rainIcon} alt='rain-icon'></Image>
                     <span className='hourly-text'>{`${rain} %`}</span>
+                </div>
+                <div className='hourly-weather-card-item'>
+                    <Image className='hourly-weather-card-icon' src={getUvIcon({uvIndex: uv})} alt='uv-icon'></Image>
+                    <span className='hourly-text'>{uv}</span>
                 </div>
             </div>
         </div>

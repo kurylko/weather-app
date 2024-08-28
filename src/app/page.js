@@ -21,6 +21,7 @@ import DayAndLocationCard from "@/components/DayAndLocationCard";
 import AirQualityCard from "@/components/AirQualityCard";
 import {getAirQualityDescription} from "@/utils/getAirQualityDescription";
 import UvAlertCard from "@/components/UvAlertCard";
+import {getUvAlert} from "@/utils/getUvAlert";
 
 export default function Home() {
     const {geoLocationData, geoLocationError} = useUserLocation();
@@ -86,6 +87,8 @@ export default function Home() {
 
     const {co, defraIndex, no2, o3, pm2_5, pm10, so2, epaIndex} = forecast?.current?.air_quality || {};
     const airQualityDescription = getAirQualityDescription({co, defraIndex, no2, o3, pm2_5, pm10, so2, epaIndex});
+    const {uVlevel, alertMessage} = getUvAlert({uVIndex: 11});
+
 
     return (
         <div className='home-page'>
@@ -93,7 +96,7 @@ export default function Home() {
                 {currentWeather &&
                     <div className='weather-alerts'>
                         <AirQualityCard airQuialityDescription={airQualityDescription?.overallAirDescription}/>
-                        <UvAlertCard />
+                        <UvAlertCard uVlevel={uVlevel} alertMessage={alertMessage} />
                     </div>
                     }
                 <CurrentWeatherCard currentWeather={currentWeather}
@@ -161,6 +164,7 @@ export default function Home() {
                                                wind={getInteger(hourly.wind_kph)}
                                                rain={hourly.chance_of_rain}
                                                condition={hourly.condition.text}
+                                               uv={hourly.uv}
                             />
                         )}
                     </div>

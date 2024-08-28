@@ -585,6 +585,11 @@ footer {
         background-color: transparent;
     }
 
+    .hourly-weather-card-item {
+        gap: 15px;
+        justify-content: left;
+    }
+
     .hourly-time {
         width: 60%;
     }
@@ -631,10 +636,5 @@ footer {
 
     .hourly-weather-card-item-container {
         gap: 5px;
-    }
-
-    .hourly-weather-card-item {
-        gap: 15px;
-        justify-content: space-between;
     }
 }
