@@ -407,11 +407,11 @@ footer {
 
 .hourly-weather-cards-container {
     display: flex;
-   flex-direction: column;
+    flex-direction: column;
     width: 90%;
 }
 
-.hourly-weather-cards{
+.hourly-weather-cards {
     display: flex;
     width: 100%;
     gap: 5px;
@@ -490,11 +490,18 @@ footer {
     margin: 0 0 0 5px;
 }
 
-.air-quality-card {
+.weather-alerts {
+    display: flex;
+    flex-direction: column;
+    gap:20px;
     margin-top: 10px;
     width: 35%;
     align-items: center;
     justify-content: center;
+}
+
+.air-quality-card {
+    width: 100%;
 }
 
 .air-quality-icon {
@@ -502,11 +509,24 @@ footer {
     height: 50px;
 }
 
+.uv-alert-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.uv-alert-icon {
+    width: 50px;
+    height: 50px;
+}
+
 
 @media (max-width: 768px) {
-    .air-quality-card{
+    .weather-alerts {
         display: none;
     }
+
     .location-card {
         display: none;
     }
@@ -528,25 +548,31 @@ footer {
     header {
         justify-content: space-between;
     }
+
     .forecast-and-hourly-container {
         flex-direction: column-reverse;
     }
+
     .forecast-cards {
         width: 60%;
         gap: 40px;
     }
+
     .hourly-text {
         font-size: initial;
     }
+
     .search-bar {
         width: 35%;
         right: 5px;
     }
+
     .location-and-current {
         width: 95%;
         justify-content: center;
         gap: 20px;
     }
+
     .current-location {
         display: none;
     }
@@ -554,12 +580,15 @@ footer {
     .current-date {
         display: none;
     }
+
     .hourly-weather-card {
         background-color: transparent;
     }
+
     .hourly-time {
         width: 60%;
     }
+
     .current-day-hourly {
         margin: 10px 0 20px;
     }

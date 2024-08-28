@@ -20,6 +20,7 @@ import crescentMoon from "../../public/icons/crescent-moon.png";
 import DayAndLocationCard from "@/components/DayAndLocationCard";
 import AirQualityCard from "@/components/AirQualityCard";
 import {getAirQualityDescription} from "@/utils/getAirQualityDescription";
+import UvAlertCard from "@/components/UvAlertCard";
 
 export default function Home() {
     const {geoLocationData, geoLocationError} = useUserLocation();
@@ -90,7 +91,11 @@ export default function Home() {
         <div className='home-page'>
             <div className='location-and-current'>
                 {currentWeather &&
-                    <AirQualityCard airQuialityDescription={airQualityDescription?.overallAirDescription}/>}
+                    <div className='weather-alerts'>
+                        <AirQualityCard airQuialityDescription={airQualityDescription?.overallAirDescription}/>
+                        <UvAlertCard />
+                    </div>
+                    }
                 <CurrentWeatherCard currentWeather={currentWeather}
                                     loading={currentWeatherLoading}
                                     date={currentDayAndDateString}
