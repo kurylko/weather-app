@@ -6,6 +6,8 @@ import Image from "next/image";
 import HeaderLocation from "@/components/HeaderLocation";
 import useUserLocation from "@/hooks/useUserLocation";
 import {getCityName} from "@/utils/getCityName";
+import useCurrentWeather from "@/hooks/useCurrentWeather";
+import {getBigWeatherIcon} from "@/utils/getBigWeatherIcon";
 
 const Header = () => {
     const [city, setCity] = useState(null);
@@ -53,10 +55,20 @@ const Header = () => {
     }, [locationData]);
 
 
+    const {
+        currentWeather,
+        error: currentWeatherError,
+        loading: currentWeatherLoading
+    } = useCurrentWeather({currentWeatherLocation: locationData});
+
+
+    const currentWeatherCondition = currentWeather?.current?.condition?.text;
+    const currentWeatherIcon = getBigWeatherIcon({weatherCondition: currentWeatherCondition});
+
 
     return (
         <header>
-            <HeaderLocation city={city}/>
+            <HeaderLocation city={city} icon={currentWeatherIcon}/>
             <div className='search-bar'>
                 <div className='search-input-wrapper'>
                     <input className='search-input' type='text' placeholder='Type the location' value={searchInput}

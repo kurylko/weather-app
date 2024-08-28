@@ -1,11 +1,12 @@
 import pin from './../../public/icons/pin.png'
 import Image from "next/image";
 
-const HeaderLocation = ({city}) => {
+const HeaderLocation = ({city, icon}) => {
     return (
         <div className='header-location-card'>
             <Image className='geo-icon' src={pin} alt='geo-icon'/>
             <span className='header-city'>{city}</span>
+            <Image className='geo-weather-icon' src={icon} alt='weather-icon'/>
         </div>
     )
 }
