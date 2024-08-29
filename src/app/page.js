@@ -17,7 +17,7 @@ import Loader from "@/components/Loader";
 import newMoon from "../../public/icons/new-moon.png";
 import fullMoon from "../../public/icons/full-moon.png";
 import crescentMoon from "../../public/icons/crescent-moon.png";
-import DayAndLocationCard from "@/components/DayAndLocationCard";
+import LocationCard from "@/components/LocationCard";
 import AirQualityCard from "@/components/AirQualityCard";
 import {getAirQualityDescription} from "@/utils/getAirQualityDescription";
 import UvAlertCard from "@/components/UvAlertCard";
@@ -93,12 +93,6 @@ export default function Home() {
     return (
         <div className='home-page'>
             <div className='location-and-current'>
-                {currentWeather &&
-                    <div className='weather-alerts'>
-                        <AirQualityCard airQuialityDescription={airQualityDescription?.overallAirDescription}/>
-                        <UvAlertCard uVlevel={uVlevel} alertMessage={alertMessage} />
-                    </div>
-                    }
                 <CurrentWeatherCard currentWeather={currentWeather}
                                     loading={currentWeatherLoading}
                                     date={currentDayAndDateString}
@@ -116,11 +110,17 @@ export default function Home() {
                                     uvIndexIcon={getUvIcon({uvIndex: currentWeather?.current?.uv})}
                                     uvIndex={currentWeather?.current?.uv}
                 />
-                {currentWeather && <DayAndLocationCard city={currentWeather?.location?.name}
-                                                       region={currentWeather?.location?.region}
-                                                       country={currentWeather?.location?.country}
-                                                       date={currentDayAndDateString}
-                />}
+                {currentWeather &&
+                    <div className='location-and-alerts-container'>
+                        <LocationCard city={currentWeather?.location?.name}
+                                      region={currentWeather?.location?.region}
+                                      country={currentWeather?.location?.country}
+                        />
+                        <div className='date'>{currentDayAndDateString}</div>
+                        <AirQualityCard airQuialityDescription={airQualityDescription?.overallAirDescription}/>
+                        <UvAlertCard uVlevel={uVlevel} alertMessage={alertMessage}/>
+                    </div>
+                }
             </div>
 
             <div className='forecast-and-hourly-container'>
