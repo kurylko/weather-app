@@ -4,6 +4,7 @@ import humidity from './../../public/icons/humidity.png';
 import pressure from './../../public/icons/pressure.png';
 import wind from './../../public/icons/wind.png';
 import mist from './../../public/icons/mist.png';
+import humidity2 from './../../public/icons/humidity-2.png';
 import Loader from "@/components/Loader";
 
 const CurrentWeatherCard = ({
@@ -62,7 +63,7 @@ const CurrentWeatherCard = ({
             <span className='cloud-desc-text'>{cloud}</span>
             <div className='current-weather-numbers'>
                 <div className='current-icon-number'>
-                    <Image className='current-card-icon' src={humidity} alt='humidity-icon'></Image>
+                    <Image className='current-card-icon' src={humidity2} alt='humidity-icon'></Image>
                     <span className='current-card-icon-text'>{`${humidityN}%`}</span>
                 </div>
                 <div className='current-icon-number'>
