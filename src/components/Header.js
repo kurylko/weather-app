@@ -1,8 +1,6 @@
 import {useEffect, useRef, useState} from 'react';
 import {getCoordinates} from "@/state/searchPlaceSlice";
 import {useDispatch} from 'react-redux';
-import searchIcon from './../../public/icons/search.png';
-import Image from "next/image";
 import HeaderLocation from "@/components/HeaderLocation";
 import useUserLocation from "@/hooks/useUserLocation";
 import {getCityName} from "@/utils/getCityName";

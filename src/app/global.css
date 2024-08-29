@@ -583,8 +583,11 @@ footer {
 .no-user-geolocation {
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 95%;
     background-color: aquamarine;
+    gap: 10px;
+    padding: 10px 0 20px;
 }
 
 @media screen and (min-width: 750px) {
@@ -672,7 +675,7 @@ footer {
     }
 
     .astro-card {
-        width: 40%;
+        width: 100%;
     }
 
     .astro-icon {

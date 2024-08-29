@@ -1,7 +1,7 @@
 import Image from "next/image";
-import searchIcon from "../../public/icons/search.png";
+import searchIcon from "../../../public/icons/search.png";
 
-const NoUserGeoLocationCard = () => {
+export default async function NoGeoData() {
     return (
         <div className='no-user-geolocation'>
             Can`t get your geolocation. Please, type the location in search to discover the weather forecast.
@@ -15,5 +15,3 @@ const NoUserGeoLocationCard = () => {
         </div>
     );
 }
-
-export default NoUserGeoLocationCard
