@@ -164,12 +164,12 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgb(var(--dark-blue-rgb), 0.2);
+    background-color: rgb(var(--light-schell-rgb));
     margin: 10px 10px 25px 10px;
     padding: 10px;
     border-radius: 10px;
     width: 100%;
-    box-shadow: 2px 3px 4px rgb(var(--deep-blue-rgb), 0.3);
+    box-shadow: 2px 3px 2px rgb(var(--light-blue-rgb), 0.3);
 }
 
 .current-location {
@@ -551,6 +551,7 @@ footer {
     }
 
     .forecast-and-hourly-container {
+        width: 80%;
         flex-direction: column-reverse;
     }
 
@@ -569,7 +570,7 @@ footer {
     }
 
     .location-and-current {
-        width: 95%;
+        width: 80%;
         justify-content: center;
         gap: 20px;
     }
@@ -596,7 +597,7 @@ footer {
     }
 
     .current-day-hourly {
-        margin: 10px 0 20px;
+        margin: 40px 60px;
     }
 }
 
