@@ -68,7 +68,7 @@ const Header = () => {
 
     return (
         <header>
-            <HeaderLocation city={city} icon={currentWeatherIcon}/>
+            <HeaderLocation city={city} icon={currentWeatherIcon} currentWeatherCondition={currentWeatherCondition}/>
             <div className='search-bar'>
                 <div className='search-input-wrapper'>
                     <input className='search-input' type='text' placeholder='Type the location' value={searchInput}
