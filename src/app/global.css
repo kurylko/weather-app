@@ -580,6 +580,13 @@ footer {
     width: 90%;
 }
 
+.no-user-geolocation {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    background-color: aquamarine;
+}
+
 @media screen and (min-width: 750px) {
     header {
         justify-content: space-between;

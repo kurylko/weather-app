@@ -22,6 +22,7 @@ import AirQualityCard from "@/components/AirQualityCard";
 import {getAirQualityDescription} from "@/utils/getAirQualityDescription";
 import UvAlertCard from "@/components/UvAlertCard";
 import {getUvAlert} from "@/utils/getUvAlert";
+import NoUserGeoLocationCard from "@/components/NoUserGeoLocationCard";
 
 export default function Home() {
     const {geoLocationData, geoLocationError} = useUserLocation();
@@ -92,6 +93,7 @@ export default function Home() {
 
     return (
         <div className='home-page'>
+            {!geoLocationData && <NoUserGeoLocationCard/>}
             <div className='location-and-current'>
                 <CurrentWeatherCard currentWeather={currentWeather}
                                     loading={currentWeatherLoading}

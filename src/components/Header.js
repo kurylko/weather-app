@@ -8,6 +8,7 @@ import useUserLocation from "@/hooks/useUserLocation";
 import {getCityName} from "@/utils/getCityName";
 import useCurrentWeather from "@/hooks/useCurrentWeather";
 import {getBigWeatherIcon} from "@/utils/getBigWeatherIcon";
+import SearchBar from "@/components/SearchBar";
 
 const Header = () => {
     const [city, setCity] = useState(null);
@@ -46,7 +47,7 @@ const Header = () => {
     useEffect(() => {
         const fetchCityName = async () => {
             if (locationData) {
-                const cityName = await getCityName({ geolocationData: locationData });
+                const cityName = await getCityName({geolocationData: locationData});
                 setCity(cityName);
             }
         };
@@ -69,14 +70,8 @@ const Header = () => {
     return (
         <header>
             <HeaderLocation city={city} icon={currentWeatherIcon} currentWeatherCondition={currentWeatherCondition}/>
-            <div className='search-bar'>
-                <div className='search-input-wrapper'>
-                    <input className='search-input' type='text' placeholder='Type the location' value={searchInput}
-                           onChange={handleChangeSearch} onKeyDown={handleKeyDown} ref={inputRef}></input>
-                    <Image src={searchIcon} alt="search icon" className="search-icon"/>
-                </div>
-                <button className='search-button' onClick={handleSearch}>Search</button>
-            </div>
+            <SearchBar onClick={handleSearch} onKeyDown={handleKeyDown} onChange={handleChangeSearch}
+                       searchInput={searchInput} inputRef={inputRef}/>
         </header>
     );
 }
