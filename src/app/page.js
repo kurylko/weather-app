@@ -147,7 +147,7 @@ export default function Home() {
                                     uvIcon={getUvIcon({uvIndex: forecastDay.day.uv})}
                                     uvIndex={forecastDay.day.uv}
                                 />
-                            ) : <div className='current-weather-card'>{noForecastMessage} </div>}
+                            ) : <span>{noForecastMessage} </span>}
                         </div>
                     }
                 </div>
