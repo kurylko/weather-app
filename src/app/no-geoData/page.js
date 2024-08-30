@@ -3,7 +3,7 @@ import {useRouter} from "next/navigation";
 import {useDispatch} from "react-redux";
 import {getCoordinates} from "@/state/searchPlaceSlice";
 import SearchBar from "@/components/SearchBar";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 
 export default function NoGeoDataPage() {
     const router = useRouter();
@@ -37,6 +37,21 @@ export default function NoGeoDataPage() {
             }
         }
     };
+
+    useEffect(() => {
+        if ('geolocation' in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    router.push('/weather');
+                },
+                (error) => {
+                    console.warn('Geolocation error:', error.message);
+                }
+            );
+        } else {
+            console.warn('No geolocation in browser')
+        }
+    }, [router]);
 
 
     return (
