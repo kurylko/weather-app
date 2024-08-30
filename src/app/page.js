@@ -13,12 +13,6 @@ export default async function Home() {
         if ('geolocation' in navigator) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
-                    const { latitude, longitude } = position.coords;
-                    const locationInfo = {
-                        lat: latitude,
-                        lon: longitude,
-                        name: 'Detected Location',
-                    };
                     router.push('/weather');
                 },
                 (error) => {
