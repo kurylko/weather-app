@@ -17,18 +17,15 @@ import Loader from "@/components/Loader";
 import ForecastCard from "@/components/ForecastCard";
 import HourlyWeatherCard from "@/components/HourlyWeatherCard";
 import AstroCard from "@/components/AstroCard";
-import {useSearchParams} from "next/navigation";
 import useUserLocation from "@/hooks/useUserLocation";
 import {useSelector} from "react-redux";
 import {selectPlaceFromSearch} from "@/state/selectors";
 
 export default function WeatherPage() {
-
-    const {geoLocationData, geoLocationError} = useUserLocation();
+    const {geoLocationData, geoLocationLoading} = useUserLocation();
     const placeFromSearch = useSelector(selectPlaceFromSearch);
 
-    const activeLocation = placeFromSearch || geoLocationData
-
+    const activeLocation = placeFromSearch || geoLocationData;
 
     const {
         currentWeather,
@@ -70,7 +67,6 @@ export default function WeatherPage() {
 
 
     const forecastWithCurrentDay = forecast?.forecast["forecastday"];
-    //const forecastWithoutCurrentDay = forecastWithCurrentDay?.slice(1);
     const noForecastMessage = 'The weather forecast is not available. Please, try again later.';
     const forecastLoaderText = 'Loading weather forecast...';
 
@@ -94,23 +90,24 @@ export default function WeatherPage() {
     return (
         <div className='weather-page'>
             <div className='location-and-current'>
-                <CurrentWeatherCard currentWeather={currentWeather}
-                                    error={currentWeatherError}
-                                    loading={currentWeatherLoading}
-                                    date={currentDayAndDateString}
-                                    city={currentWeather?.location?.name}
-                                    region={currentWeather?.location?.region}
-                                    country={currentWeather?.location?.country}
-                                    condition={getBigWeatherIcon({weatherCondition: currentWeather?.current?.condition.text})}
-                                    temperature={currentWeather?.current?.temp_c}
-                                    feelsLike={currentWeather?.current?.feelslike_c}
-                                    cloud={getCloudDescription(currentWeather?.current?.cloud)}
-                                    humidityN={currentWeather?.current?.humidity}
-                                    windDir={currentWeather?.current?.wind_dir}
-                                    windKph={currentWeather?.current?.wind_kph}
-                                    pressureN={currentWeather?.current?.pressure_mb}
-                                    uvIndexIcon={getUvIcon({uvIndex: currentWeather?.current?.uv})}
-                                    uvIndex={currentWeather?.current?.uv}
+                <CurrentWeatherCard
+                    currentWeather={currentWeather}
+                    error={currentWeatherError}
+                    loading={currentWeatherLoading || geoLocationLoading}
+                    date={currentDayAndDateString}
+                    city={currentWeather?.location?.name}
+                    region={currentWeather?.location?.region}
+                    country={currentWeather?.location?.country}
+                    condition={getBigWeatherIcon({weatherCondition: currentWeather?.current?.condition.text})}
+                    temperature={currentWeather?.current?.temp_c}
+                    feelsLike={currentWeather?.current?.feelslike_c}
+                    cloud={getCloudDescription(currentWeather?.current?.cloud)}
+                    humidityN={currentWeather?.current?.humidity}
+                    windDir={currentWeather?.current?.wind_dir}
+                    windKph={currentWeather?.current?.wind_kph}
+                    pressureN={currentWeather?.current?.pressure_mb}
+                    uvIndexIcon={getUvIcon({uvIndex: currentWeather?.current?.uv})}
+                    uvIndex={currentWeather?.current?.uv}
                 />
                 {currentWeather &&
                     <div className='location-and-alerts-container'>
@@ -158,7 +155,7 @@ export default function WeatherPage() {
                     {!!currentDayAndDateString &&
                         <h1 className='current-day-hourly'>{`Weather on ${currentDayAndDateString}`}</h1>}
                     <div className='hourly-weather-cards'>
-                        {hourlyWeatherDataForSpecificHours && hourlyWeatherDataForSpecificHours.map((hourly) =>
+                        {hourlyWeatherDataForSpecificHours?.map((hourly) =>
                             <HourlyWeatherCard key={hourly.time}
                                                time={parseApiDateResponse((hourly.time), 'hourOnly')}
                                                temp={getInteger(hourly.temp_c)}

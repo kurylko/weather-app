@@ -31,7 +31,7 @@ const CurrentWeatherCard = ({
 
     if (loading) {
         return (
-            <div className='current-weather-card no-weather-card'>
+            <div className='no-weather-card'>
                 <Loader loaderText={currentWeatherLoaderText}/>
             </div>
         );
