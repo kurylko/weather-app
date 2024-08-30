@@ -95,6 +95,7 @@ export default function WeatherPage() {
         <div className='weather-page'>
             <div className='location-and-current'>
                 <CurrentWeatherCard currentWeather={currentWeather}
+                                    error={currentWeatherError}
                                     loading={currentWeatherLoading}
                                     date={currentDayAndDateString}
                                     city={currentWeather?.location?.name}
