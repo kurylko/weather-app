@@ -3,6 +3,7 @@
 import './global.css';
 import {useRouter} from "next/navigation";
 import {useEffect} from "react";
+import Loader from "@/components/Loader";
 
 export default async function Home() {
     const router = useRouter();
@@ -35,6 +36,8 @@ export default async function Home() {
 
 
     return (
-        <h1 style={{marginTop: '70px'}}>Loading... </h1>
+        <div className='start-page'>
+            <Loader loaderText={'Loading'}/>
+        </div>
     );
 }

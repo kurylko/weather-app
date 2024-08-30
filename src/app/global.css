@@ -585,9 +585,19 @@ footer {
     flex-direction: column;
     align-items: center;
     width: 100vw;
-    background-color: aquamarine;
     gap: 20px;
     padding: 150px 0 80px;
+}
+
+.no-geolocation-text {
+    width: 80%;
+    text-align: center;
+}
+
+.start-page {
+    display: flex;
+    justify-content: center;
+    padding-top: 200px;
 }
 
 @media screen and (min-width: 750px) {

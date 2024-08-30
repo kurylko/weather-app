@@ -8,7 +8,7 @@ export default async function NoGeoData() {
 
     return (
         <div className='no-user-geolocation-page'>
-            Can`t get your geolocation. Please, type the location in search to discover the weather forecast.
+            <span className='no-geolocation-text'>Can`t get your geolocation. Please, type the location in search to see the weather forecast.</span>
             <div className='search-bar'>
                 <div className='search-input-wrapper'>
                     <input className='search-input' type='text' placeholder='Type the location'></input>
