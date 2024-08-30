@@ -7,8 +7,11 @@ import {getCityName} from "@/utils/getCityName";
 import useCurrentWeather from "@/hooks/useCurrentWeather";
 import {getBigWeatherIcon} from "@/utils/getBigWeatherIcon";
 import SearchBar from "@/components/SearchBar";
+import { usePathname } from 'next/navigation';
 
 const Header = () => {
+    const pathname = usePathname();
+
     const [city, setCity] = useState(null);
 
     const dispatch = useDispatch()
@@ -68,8 +71,10 @@ const Header = () => {
     return (
         <header>
             <HeaderLocation city={city} icon={currentWeatherIcon} currentWeatherCondition={currentWeatherCondition}/>
-            <SearchBar onClick={handleSearch} onKeyDown={handleKeyDown} onChange={handleChangeSearch}
-                       searchInput={searchInput} inputRef={inputRef}/>
+            {pathname !== '/no-geoData' && (
+                <SearchBar onClick={handleSearch} onKeyDown={handleKeyDown} onChange={handleChangeSearch}
+                           searchInput={searchInput} inputRef={inputRef}/>
+            )}
         </header>
     );
 }
