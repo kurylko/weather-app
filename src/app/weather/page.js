@@ -23,9 +23,6 @@ import {useSelector} from "react-redux";
 import {selectPlaceFromSearch} from "@/state/selectors";
 
 export default function WeatherPage() {
-    const searchParams = useSearchParams();
-    //const [activeLocation, setActiveLocation] = useState(null);
-
 
     const {geoLocationData, geoLocationError} = useUserLocation();
     const placeFromSearch = useSelector(selectPlaceFromSearch);
