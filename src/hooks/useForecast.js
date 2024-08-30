@@ -17,7 +17,7 @@ const useForecast = ({forecastWeatherLocation}) => {
             const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${lat}, ${lon}&days=4&aqi=yes&alerts=yes`
             axios.get(url)
                 .then(response => {
-                    setForecast(forecast ? response.data : response.data)
+                    setForecast(response.data)
                 })
                 .catch(error => {
                     console.log("Can not catch weather forecast data");
