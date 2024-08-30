@@ -8,6 +8,7 @@ const useCurrentWeather = ({currentWeatherLocation}) => {
     const {lat, lon} = currentWeatherLocation || {};
     const [loading, setLoading] = useState(false);
 
+
     useEffect(() => {
 
         const apiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -20,8 +21,8 @@ const useCurrentWeather = ({currentWeatherLocation}) => {
                     setCurrentWeather(currentWeather ? response.data : response.data)
                 })
                 .catch(error => {
-                    setError('Can not catch weather data');
-                    console.log("Can not catch weather data");
+                    setError('Sorry. The weather data is not available. Please, try again later');
+                    console.warn("Can not catch weather data");
                 })
                 .finally(() => {
                     setLoading(false);

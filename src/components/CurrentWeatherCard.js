@@ -1,6 +1,5 @@
 import React from "react";
 import Image from 'next/image';
-import humidity from './../../public/icons/humidity.png';
 import pressure from './../../public/icons/pressure.png';
 import wind from './../../public/icons/wind.png';
 import mist from './../../public/icons/mist.png';
@@ -9,6 +8,7 @@ import Loader from "@/components/Loader";
 
 const CurrentWeatherCard = ({
                                 currentWeather,
+                                error,
                                 loading,
                                 date,
                                 city,

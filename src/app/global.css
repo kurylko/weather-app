@@ -121,7 +121,7 @@ main {
 }
 
 
-.home-page {
+.weather-page {
     width: 100vw;
     min-height: 100%;
     display: flex;
@@ -580,6 +580,26 @@ footer {
     width: 90%;
 }
 
+.no-user-geolocation-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    gap: 20px;
+    padding: 150px 0 80px;
+}
+
+.no-geolocation-text {
+    width: 80%;
+    text-align: center;
+}
+
+.start-page {
+    display: flex;
+    justify-content: center;
+    padding-top: 200px;
+}
+
 @media screen and (min-width: 750px) {
     header {
         justify-content: space-between;
@@ -665,7 +685,7 @@ footer {
     }
 
     .astro-card {
-        width: 40%;
+        width: 100%;
     }
 
     .astro-icon {
