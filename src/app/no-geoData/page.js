@@ -3,7 +3,7 @@ import Image from "next/image";
 import searchIcon from "../../../public/icons/search.png";
 import {useRouter} from "next/navigation";
 
-export default async function NoGeoData() {
+export default async function NoGeoDataPage() {
     const router = useRouter();
 
     return (

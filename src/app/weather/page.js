@@ -31,7 +31,6 @@ export default function WeatherPage() {
     const placeFromSearch = useSelector(selectPlaceFromSearch);
 
     const activeLocation = placeFromSearch || geoLocationData
-    console.log('444' , activeLocation)
 
 
     const {
@@ -191,9 +190,4 @@ export default function WeatherPage() {
 
         </div>
     );
-}
-
-async function fetchSomeLocationData() {
-    // Simulate fetching data
-    return 'New York, USA';
 }
