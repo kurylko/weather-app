@@ -1,3 +1,4 @@
+'use client';
 import useCurrentWeather from "@/hooks/useCurrentWeather";
 import useForecast from "@/hooks/useForecast";
 import parseApiDateResponse from "@/utils/parseApiDateResponse";
@@ -17,18 +18,20 @@ import ForecastCard from "@/components/ForecastCard";
 import HourlyWeatherCard from "@/components/HourlyWeatherCard";
 import AstroCard from "@/components/AstroCard";
 import {useSearchParams} from "next/navigation";
-import {useEffect, useState} from "react";
+import useUserLocation from "@/hooks/useUserLocation";
+import {useSelector} from "react-redux";
+import {selectPlaceFromSearch} from "@/state/selectors";
 
-export default async function WeatherPage() {
+export default function WeatherPage() {
     const searchParams = useSearchParams();
-    const [activeLocation, setActiveLocation] = useState(null);
+    //const [activeLocation, setActiveLocation] = useState(null);
 
-    useEffect(() => {
-        const locationParam = searchParams.get('location');
-        if (locationParam) {
-            setActiveLocation(JSON.parse(locationParam));
-        }
-    }, [searchParams]);
+
+    const {geoLocationData, geoLocationError} = useUserLocation();
+    const placeFromSearch = useSelector(selectPlaceFromSearch);
+
+    const activeLocation = placeFromSearch || geoLocationData
+    console.log('444' , activeLocation)
 
 
     const {
@@ -93,7 +96,7 @@ export default async function WeatherPage() {
 
 
     return (
-        <div className='home-page'>
+        <div className='weather-page'>
             <div className='location-and-current'>
                 <CurrentWeatherCard currentWeather={currentWeather}
                                     loading={currentWeatherLoading}
@@ -185,9 +188,7 @@ export default async function WeatherPage() {
                     />
                 </div>
             }
-            {geoLocationData ? <p> {`User's location: ${geoLocationData.lat}, ${geoLocationData.lon}`} </p> :
-                <p> No location detected </p>}
-            {!!placeFromSearch && <p>{`User's Display location: ${placeFromSearch.lat}, ${placeFromSearch.lon}`}</p>}
+
         </div>
     );
 }
