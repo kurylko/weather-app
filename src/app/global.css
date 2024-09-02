@@ -131,6 +131,7 @@ main {
     flex-direction: column;
     align-items: center;
     padding-top: 60px;
+    gap: 30px;
 }
 
 .location-and-current {
@@ -170,7 +171,7 @@ main {
     align-items: center;
     justify-content: center;
     background-color: rgb(var(--light-schell-rgb));
-    margin: 10px 10px 25px 10px;
+    margin: 10px 10px 0 10px;
     padding: 10px;
     border-radius: 10px;
     width: 100%;
@@ -239,7 +240,6 @@ main {
     align-items: center;
     gap: 5px;
     width: 85%;
-    margin-bottom: 12px;
 }
 
 .forecast-cards {
@@ -379,11 +379,12 @@ footer {
     display: flex;
     justify-content: space-between;
     background-color: rgb(var(--dark-blue-rgb), 0.2);
-    margin: 0 10px 20px 10px;
+    margin: 0 10px 30px 10px;
     padding: 10px;
     border-radius: 10px;
-    width: 85%;
+    width: 100%;
     box-shadow: 2px 3px 4px rgb(var(--deep-blue-rgb), 0.3);
+    gap: 30px;
 }
 
 .astro-item {
@@ -406,7 +407,6 @@ footer {
 }
 
 .current-day-hourly {
-    margin: 10px 0 15px;
     text-align: center;
 }
 
@@ -420,7 +420,6 @@ footer {
     display: flex;
     width: 100%;
     gap: 5px;
-    margin-bottom: 20px;
 }
 
 .hourly-weather-card {
@@ -499,7 +498,6 @@ footer {
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    max-height: 100%;
     width: 100%;
     gap: 20px;
 }
@@ -588,6 +586,7 @@ footer {
     flex-direction: column;
     align-items: center;
     width: 90%;
+    gap: 30px;
 }
 
 .no-user-geolocation-page {
@@ -647,6 +646,9 @@ footer {
         width: 55%;
         right: 5px;
     }
+    .location-and-alerts-container {
+        height: 400px;
+    }
 
     .location-and-current {
         width: 80%;
@@ -669,9 +671,6 @@ footer {
         width: 60%;
     }
 
-    .current-day-hourly {
-        margin: 40px 60px;
-    }
 }
 
 @media screen and (min-width: 1024px) {
@@ -682,12 +681,16 @@ footer {
         height: 430px;
     }
 
+    .location-and-alerts-container {
+        height: 430px;
+    }
+
     .location-card {
         width: 55%;
     }
 
     .current-weather-card {
-        width: 55%;
+        width: 65%;
         margin-top: 0;
         margin-bottom: 0;
         padding-bottom: 10px;

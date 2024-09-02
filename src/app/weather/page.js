@@ -203,7 +203,7 @@ export default function WeatherPage() {
 
       {!!forecast && (
         <div>
-          <h1>Sun and Moon forecast</h1>
+          <h1 className='current-day-hourly'>Sun and Moon forecast</h1>
           <AstroCard
             forecast={forecast}
             sunriseTime={astroOfCurrentDay?.sunrise}
