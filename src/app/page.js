@@ -13,7 +13,7 @@ export default async function Home() {
   useEffect(() => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
-        (position) => {
+        () => {
           router.push('/weather')
         },
         (error) => {
