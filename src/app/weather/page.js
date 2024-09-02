@@ -126,17 +126,21 @@ export default function WeatherPage() {
         />
         {currentWeather && (
           <div className="location-and-alerts-container">
-            <LocationCard
-              city={currentWeather?.location?.name}
-              region={currentWeather?.location?.region}
-              country={currentWeather?.location?.country}
-            />
-            <div className="date">{currentDayAndDateString}</div>
-            <AirQualityCard
-              airQualityDescription={
-                airQualityDescription?.overallAirDescription
-              }
-            />
+            <div className="location-and-alerts-top">
+              <LocationCard
+                city={currentWeather?.location?.name}
+                region={currentWeather?.location?.region}
+                country={currentWeather?.location?.country}
+              />
+              <div className="date-and-air">
+                <div className="date">{currentDayAndDateString}</div>
+                <AirQualityCard
+                  airQualityDescription={
+                    airQualityDescription?.overallAirDescription
+                  }
+                />
+              </div>
+            </div>
             <UvAlertCard uVlevel={uVlevel} alertMessage={alertMessage} />
           </div>
         )}
