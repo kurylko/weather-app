@@ -9,7 +9,6 @@ import Loader from '@/components/Loader'
 
 const CurrentWeatherCard = ({
   currentWeather,
-  error,
   loading,
   date,
   city,

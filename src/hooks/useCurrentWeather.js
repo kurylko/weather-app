@@ -23,7 +23,7 @@ const useCurrentWeather = ({ currentWeatherLocation }) => {
           setError(
             'Sorry. The weather data is not available. Please, try again later'
           )
-          console.warn('Can not catch weather data')
+          console.warn('Can not catch weather data', error)
         })
         .finally(() => {
           setLoading(false)

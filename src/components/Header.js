@@ -60,11 +60,9 @@ const Header = () => {
     fetchCityName()
   }, [locationData])
 
-  const {
-    currentWeather,
-    error: currentWeatherError,
-    loading: currentWeatherLoading,
-  } = useCurrentWeather({ currentWeatherLocation: locationData })
+  const { currentWeather } = useCurrentWeather({
+    currentWeatherLocation: locationData,
+  })
 
   const currentWeatherCondition = currentWeather?.current?.condition?.text
   const currentWeatherIcon = getBigWeatherIcon({

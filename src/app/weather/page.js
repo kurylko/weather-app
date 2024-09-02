@@ -33,11 +33,9 @@ export default function WeatherPage() {
     error: currentWeatherError,
     loading: currentWeatherLoading,
   } = useCurrentWeather({ currentWeatherLocation: activeLocation })
-  const {
-    forecast,
-    error: forecastError,
-    loading: forecastLoading,
-  } = useForecast({ forecastWeatherLocation: activeLocation })
+  const { forecast, loading: forecastLoading } = useForecast({
+    forecastWeatherLocation: activeLocation,
+  })
 
   const hourlyWeatherData = forecast?.forecast['forecastday'][0]['hour'] || []
   const hourlyWeatherDataForSpecificHours = hourlyWeatherData.length
