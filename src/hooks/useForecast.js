@@ -21,7 +21,8 @@ const useForecast = ({ forecastWeatherLocation }) => {
           setForecast(response.data)
         })
         .catch((error) => {
-          console.log('Can not catch weather forecast data')
+          console.log('Can not catch weather forecast data', error)
+          setError('Can not catch weather forecast data')
         })
         .finally(() => {
           setLoading(false)

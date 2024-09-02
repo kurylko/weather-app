@@ -14,7 +14,7 @@ const useUserLocation = () => {
           setLoading(false)
           setGeoLocationData(parsePlaceData({ placeData: position?.coords }))
         },
-        (error) => {
+        () => {
           setLoading(false)
           setGeoLocationError('Oops.Can not get your geolocation')
         }
