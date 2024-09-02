@@ -1,5 +1,5 @@
+import searchIcon from '@public/icons/search.png'
 import Image from 'next/image'
-import searchIcon from '../../public/icons/search.png'
 
 const SearchBar = ({ searchInput, onChange, onKeyDown, inputRef, onClick }) => {
   return (

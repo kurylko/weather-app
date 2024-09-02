@@ -1,4 +1,4 @@
-import pin from './../../public/icons/pin.png'
+import pin from '@public/icons/pin.png'
 import Image from 'next/image'
 
 const HeaderLocation = ({ city, icon, currentWeatherCondition }) => {

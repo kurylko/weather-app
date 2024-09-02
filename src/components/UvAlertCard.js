@@ -1,5 +1,5 @@
+import uv from '@public/icons/uv-warn.png'
 import Image from 'next/image'
-import uv from './../../public/icons/uv-warn.png'
 
 const UvAlertCard = ({ uVlevel, alertMessage }) => {
   return (

@@ -1,8 +1,10 @@
 'use client'
 
 import './global.css'
+
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
+
 import Loader from '@/components/Loader'
 
 export default async function Home() {

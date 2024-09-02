@@ -1,8 +1,9 @@
-import humidityIcon from './../../public/icons/humidity.png'
-import windIcon from './../../public/icons/wind.png'
-import thermometerIcon from './../../public/icons/thermometer.png'
-import rainIcon from './../../public/icons/rain.png'
+import humidityIcon from '@public/icons/humidity.png'
+import rainIcon from '@public/icons/rain.png'
+import thermometerIcon from '@public/icons/thermometer.png'
+import windIcon from '@public/icons/wind.png'
 import Image from 'next/image'
+
 import { getBigWeatherIcon } from '@/utils/getBigWeatherIcon'
 import { getUvIcon } from '@/utils/getUvIcon'
 

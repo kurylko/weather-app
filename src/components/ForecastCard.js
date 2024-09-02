@@ -1,8 +1,7 @@
-import React from 'react'
+import humidity from '@public/icons/humidity.png'
+import thermometer from '@public/icons/thermometer.png'
+import wind from '@public/icons/wind.png'
 import Image from 'next/image'
-import thermometer from './../../public/icons/thermometer.png'
-import humidity from './../../public/icons/humidity.png'
-import wind from './../../public/icons/wind.png'
 
 const ForecastCard = ({
   day,

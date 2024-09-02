@@ -1,9 +1,10 @@
 'use client'
 import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { getCoordinates } from '@/state/searchPlaceSlice'
+
 import SearchBar from '@/components/SearchBar'
-import { useEffect, useRef, useState } from 'react'
+import { getCoordinates } from '@/state/searchPlaceSlice'
 
 export default function NoGeoDataPage() {
   const router = useRouter()

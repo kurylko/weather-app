@@ -1,25 +1,26 @@
 'use client'
-import useCurrentWeather from '@/hooks/useCurrentWeather'
-import useForecast from '@/hooks/useForecast'
-import parseApiDateResponse from '@/utils/parseApiDateResponse'
-import newMoon from '../../../public/icons/new-moon.png'
-import fullMoon from '../../../public/icons/full-moon.png'
-import crescentMoon from '../../../public/icons/crescent-moon.png'
-import { getAirQualityDescription } from '@/utils/getAirQualityDescription'
-import { getUvAlert } from '@/utils/getUvAlert'
-import CurrentWeatherCard from '@/components/CurrentWeatherCard'
-import { getBigWeatherIcon } from '@/utils/getBigWeatherIcon'
-import { getUvIcon } from '@/utils/getUvIcon'
-import LocationCard from '@/components/LocationCard'
+import crescentMoon from '@public/icons/crescent-moon.png'
+import fullMoon from '@public/icons/full-moon.png'
+import newMoon from '@public/icons/new-moon.png'
+import { useSelector } from 'react-redux'
+
 import AirQualityCard from '@/components/AirQualityCard'
-import UvAlertCard from '@/components/UvAlertCard'
-import Loader from '@/components/Loader'
+import AstroCard from '@/components/AstroCard'
+import CurrentWeatherCard from '@/components/CurrentWeatherCard'
 import ForecastCard from '@/components/ForecastCard'
 import HourlyWeatherCard from '@/components/HourlyWeatherCard'
-import AstroCard from '@/components/AstroCard'
+import Loader from '@/components/Loader'
+import LocationCard from '@/components/LocationCard'
+import UvAlertCard from '@/components/UvAlertCard'
+import useCurrentWeather from '@/hooks/useCurrentWeather'
+import useForecast from '@/hooks/useForecast'
 import useUserLocation from '@/hooks/useUserLocation'
-import { useSelector } from 'react-redux'
 import { selectPlaceFromSearch } from '@/state/selectors'
+import { getAirQualityDescription } from '@/utils/getAirQualityDescription'
+import { getBigWeatherIcon } from '@/utils/getBigWeatherIcon'
+import { getUvAlert } from '@/utils/getUvAlert'
+import { getUvIcon } from '@/utils/getUvIcon'
+import parseApiDateResponse from '@/utils/parseApiDateResponse'
 
 export default function WeatherPage() {
   const { geoLocationData, geoLocationLoading } = useUserLocation()
@@ -134,7 +135,7 @@ export default function WeatherPage() {
             />
             <div className="date">{currentDayAndDateString}</div>
             <AirQualityCard
-              airQuialityDescription={
+              airQualityDescription={
                 airQualityDescription?.overallAirDescription
               }
             />

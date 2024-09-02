@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
 import axios from 'axios'
 import process from 'next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss'
+import { useEffect, useState } from 'react'
 
 const useForecast = ({ forecastWeatherLocation }) => {
   const [forecast, setForecast] = useState(null)

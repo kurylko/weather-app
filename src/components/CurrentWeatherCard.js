@@ -1,12 +1,11 @@
+import humidity2 from '@public/icons/humidity-2.png'
+import mist from '@public/icons/mist.png'
+import pressure from '@public/icons/pressure.png'
+import wind from '@public/icons/wind.png'
 import Image from 'next/image'
 import React from 'react'
 
 import Loader from '@/components/Loader'
-
-import humidity2 from './../../public/icons/humidity-2.png'
-import mist from './../../public/icons/mist.png'
-import pressure from './../../public/icons/pressure.png'
-import wind from './../../public/icons/wind.png'
 
 const CurrentWeatherCard = ({
   currentWeather,

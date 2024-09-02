@@ -1,6 +1,6 @@
+import sunrise from '@public/icons/sunrise.png'
+import sunset from '@public/icons/sunset.png'
 import Image from 'next/image'
-import sunrise from './../../public/icons/sunrise.png'
-import sunset from './../../public/icons/sunset.png'
 
 const AstroCard = ({ sunriseTime, sunsetTime, moonPhase, moonIcon }) => {
   return (

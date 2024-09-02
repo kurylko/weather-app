@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
+
 import { parsePlaceData } from '@/utils/parsePlaceData'
 
 const useUserLocation = () => {
