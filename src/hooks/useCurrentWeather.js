@@ -20,9 +20,7 @@ const useCurrentWeather = ({ currentWeatherLocation }) => {
           setCurrentWeather(currentWeather ? response.data : response.data)
         })
         .catch((error) => {
-          setError(
-            'Sorry. The weather data is not available. Please, try again later'
-          )
+          setError('The weather data is not available. Please, try again later')
           console.warn('Can not catch weather data', error)
         })
         .finally(() => {
