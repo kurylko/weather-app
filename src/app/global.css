@@ -644,7 +644,7 @@ footer {
     }
 
     .search-bar {
-        width: 35%;
+        width: 55%;
         right: 5px;
     }
 
@@ -725,5 +725,9 @@ footer {
 
     .hourly-weather-card-item-container {
         gap: 5px;
+    }
+
+    .search-bar {
+        width: 40%;
     }
 }
