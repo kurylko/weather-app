@@ -1,19 +1,18 @@
-# Weather Web App 
+# Weather Web App
 
-* Features:
-- Current weather;
-- Weather forecast for 3 days;
-- Hourly weather forecast;
-- Air Quality monitor;
-- Sun & Moon information.
+- Features:
 
+* Current weather;
+* Weather forecast for 3 days;
+* Hourly weather forecast;
+* Air Quality monitor;
+* Sun & Moon information.
 
 ## Technologies used:
 
 **Fontend:** React, Next.js, CSS, Redux Toolkit, geoCoding
 
 **API:** WeatherAPI
-
 
 ## Getting Started
 
