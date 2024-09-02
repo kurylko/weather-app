@@ -1,8 +1,4 @@
-import React from "react"
-
 const Footer = () => {
-    return(
-        <footer>ⓒ Created by Val 2024 </footer>
-    );
+  return <footer>ⓒ Created by Val 2024 </footer>
 }
-export default Footer;
+export default Footer
