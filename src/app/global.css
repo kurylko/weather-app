@@ -615,6 +615,10 @@ footer {
         justify-content: space-between;
     }
 
+    .weather-page {
+        gap: 50px;
+    }
+
     .current-weather-card {
         height: 100%;
         margin: 0;
