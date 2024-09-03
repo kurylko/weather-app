@@ -549,13 +549,19 @@ footer {
     display: flex;
     align-items: center;
     width: 100%;
-    gap: 5px;
+    gap: 20px;
     background-color: rgb(var(--light-schell-rgb));
     border-radius: 10px;
     padding: 20px;
     justify-self: center;
     box-shadow: 2px 3px 2px rgb(var(--light-blue-rgb), 0.3);
     margin-top: auto;
+}
+
+.uv-alert-text {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .uv-alert-icon {
