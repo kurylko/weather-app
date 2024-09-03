@@ -1,21 +1,17 @@
-import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
+export async function getCityName({ geolocationData }) {
+  //const {lat: lat, lon: lng} = geolocationData;
 
-export async function getCityName({geolocationData}) {
-    const {lat: lat, lon: lng} = geolocationData;
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+  //const apiKey = process.env.GOOGLE_MAPS_API_KEY;
+  //const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`;
 
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`;
+  const url = `/api/get-city-name?lat=${geolocationData.lat}&lng=${geolocationData.lon}`
 
-    const response = await fetch(url);
-    const data = await response.json();
-    if (data.status === 'OK') {
-        const addressComponents = data.results[0].address_components;
-        const city = addressComponents.find(component =>
-            component.types.includes('locality')
-        );
-        return city ? city.long_name : 'City not found';
+  const response = await fetch(url)
 
-    } else {
-        return 'City not found';
-    }
+  if (!response.ok) {
+    throw new Error(`Error: ${response.statusText} can not fetch`)
+  }
+
+  const data = await response.json()
+  return data?.city || 'City not found'
 }

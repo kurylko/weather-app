@@ -1,35 +1,35 @@
-import {useState, useEffect} from "react";
-import axios from "axios";
-import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
+import axios from 'axios'
+import process from 'next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss'
+import { useEffect, useState } from 'react'
 
-const useCurrentWeather = ({currentWeatherLocation}) => {
-    const [currentWeather, setCurrentWeather] = useState(null);
-    const [error, setError] = useState(null);
-    const {lat, lon} = currentWeatherLocation || {};
-    const [loading, setLoading] = useState(false);
+const useCurrentWeather = ({ currentWeatherLocation }) => {
+  const [currentWeather, setCurrentWeather] = useState(null)
+  const [error, setError] = useState(null)
+  const { lat, lon } = currentWeatherLocation || {}
+  const [loading, setLoading] = useState(false)
 
-    useEffect(() => {
+  useEffect(() => {
+    const apiKey = process.env.NEXT_PUBLIC_API_KEY
 
-        const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+    if (lat && lon) {
+      setLoading(true)
+      const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat}, ${lon}&aqi=yes`
+      axios
+        .get(url)
+        .then((response) => {
+          setCurrentWeather(currentWeather ? response.data : response.data)
+        })
+        .catch((error) => {
+          setError('The weather data is not available. Please, try again later')
+          console.warn('Can not catch weather data', error)
+        })
+        .finally(() => {
+          setLoading(false)
+        })
+    }
+  }, [lat, lon])
 
-        if (lat && lon) {
-            setLoading(true);
-            const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${lat}, ${lon}&aqi=yes`
-            axios.get(url)
-                .then(response => {
-                    setCurrentWeather(currentWeather ? response.data : response.data)
-                })
-                .catch(error => {
-                    setError('Can not catch weather data');
-                    console.log("Can not catch weather data");
-                })
-                .finally(() => {
-                    setLoading(false);
-                });
-        }
-    }, [lat, lon]);
-
-    return {currentWeather, error, loading};
+  return { currentWeather, error, loading }
 }
 
-export default useCurrentWeather;
+export default useCurrentWeather
