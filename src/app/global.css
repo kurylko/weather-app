@@ -408,6 +408,9 @@ footer {
 
 .current-day-hourly {
     text-align: center;
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 1px;
 }
 
 .hourly-weather-cards-container {
@@ -597,13 +600,33 @@ footer {
     padding-top: 200px;
 }
 
-.forecast-title-desc {
+.forecast-title-desk {
     display: block;
-    margin-left: 80px;
+    margin-left: 10px;
+    height: 4px;
+}
+
+.forecast-title-desk > h1 {
+    font-size: 3rem;
+    line-height: 1.2;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+}
+
+.forecast-title-desk > h2 {
+    font-size: 1.5rem;
+    line-height: 1.5;
+    margin: 0;
+    font-weight: 300;
+    letter-spacing: 1px;
 }
 
 .forecast-title-mob {
-    font-size: xx-large;
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 1px;
 }
 
 
@@ -625,7 +648,7 @@ footer {
         display: none;
     }
 
-    .forecast-title-desc {
+    .forecast-title-desk {
         display: none;
     }
 }
@@ -638,7 +661,15 @@ footer {
     }
 
     .weather-page {
-        gap: 50px;
+        gap: 80px;
+    }
+
+    .current-day-hourly {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 300;
+        letter-spacing: 1px;
+        padding-bottom: 20px;
     }
 
     .current-weather-card {
@@ -654,7 +685,7 @@ footer {
         display: none;
     }
 
-    .forecast-title-desc {
+    .forecast-title-desk {
         display: none;
     }
 
@@ -685,6 +716,7 @@ footer {
         border-radius: 10px;
         padding: 0 10px;
         width: 100%;
+        box-shadow: 2px 3px 2px rgb(var(--light-blue-rgb), 0.3);
     }
 
     .forecast-day {
@@ -787,7 +819,7 @@ footer {
         display: none;
     }
 
-    .forecast-title-desc {
+    .forecast-title-desk {
         display: block;
     }
 
@@ -834,5 +866,9 @@ footer {
 
     .search-bar {
         width: 40%;
+    }
+
+    .current-day-hourly {
+        padding-bottom: 30px;
     }
 }

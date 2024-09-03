@@ -163,7 +163,7 @@ export default function WeatherPage() {
             <h1 className="forecast-title-mob">Forecast for 3 days</h1>
           )}
           {!!forecast && (
-            <span className="forecast-title-desc">
+            <span className="forecast-title-desk">
               <h1>Forecast</h1>
               <h2> for 3 days</h2>
             </span>
