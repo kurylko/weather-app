@@ -1,6 +1,6 @@
 # Weather Web App
 
-- Features:
+## Features:
 
 * Current weather;
 * Weather forecast for 3 days;
@@ -30,4 +30,4 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-![Project screen](public/weather-app-24.png)
+![Project screen](public/weather-2024.png)
