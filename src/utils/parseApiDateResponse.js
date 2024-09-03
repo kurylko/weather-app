@@ -11,7 +11,7 @@ const parseApiDateResponse = (dateString, formatType = 'dayAndDate') => {
     case 'dayOnly':
       formattedDate = format(date, 'eeee') // Monday
       break
-    case 'dateOnly':
+    case 'dateAndMonth':
       formattedDate = format(date, 'MMMM d') // August 15
       break
     case 'hourOnly':

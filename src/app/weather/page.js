@@ -47,6 +47,14 @@ export default function WeatherPage() {
     ? parseApiDateResponse(currentDay?.date, 'dayAndDate')
     : null
 
+  const currentDateString = currentDay?.date
+    ? parseApiDateResponse(currentDay?.date, 'dateAndMonth')
+    : null
+
+  const currentDayString = currentDay?.date
+    ? parseApiDateResponse(currentDay?.date, 'dayOnly')
+    : null
+
   const getInteger = (number) => Math.round(number)
 
   function getCloudDescription(cloudPercentage) {
@@ -126,17 +134,24 @@ export default function WeatherPage() {
         />
         {currentWeather && (
           <div className="location-and-alerts-container">
-            <LocationCard
-              city={currentWeather?.location?.name}
-              region={currentWeather?.location?.region}
-              country={currentWeather?.location?.country}
-            />
-            <div className="date">{currentDayAndDateString}</div>
-            <AirQualityCard
-              airQualityDescription={
-                airQualityDescription?.overallAirDescription
-              }
-            />
+            <div className="location-and-alerts-top">
+              <LocationCard
+                city={currentWeather?.location?.name}
+                region={currentWeather?.location?.region}
+                country={currentWeather?.location?.country}
+              />
+              <div className="date-and-air">
+                <div className="date">
+                  <p style={{ fontWeight: 'bold' }}>{currentDayString}</p>
+                  <p>{currentDateString}</p>
+                </div>
+                <AirQualityCard
+                  airQualityDescription={
+                    airQualityDescription?.overallAirDescription
+                  }
+                />
+              </div>
+            </div>
             <UvAlertCard uVlevel={uVlevel} alertMessage={alertMessage} />
           </div>
         )}
@@ -199,7 +214,7 @@ export default function WeatherPage() {
 
       {!!forecast && (
         <div>
-          <h1>Sun and Moon forecast</h1>
+          <h1 className="current-day-hourly">Sun and Moon forecast</h1>
           <AstroCard
             forecast={forecast}
             sunriseTime={astroOfCurrentDay?.sunrise}

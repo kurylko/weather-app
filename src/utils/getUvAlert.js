@@ -15,11 +15,11 @@ export function getUvAlert({ uVIndex }) {
   } else if (uVIndex >= 8 && uVIndex <= 10) {
     uVlevel = 'Very high UV-index'
     alertMessage =
-      'Seek shade, wear protective clothing, avoid being outdoors. Use sunscreen with SPF 30+ or higher and reapply every two hours.'
+      'Seek shade, wear protective clothing, avoid being outdoors. Use SPF 30+ or higher and reapply every two hours.'
   } else {
     uVlevel = 'Extreme high UV-index'
     alertMessage =
-      'Wear a wide-brimmed hat, sunglasses, protective clothing. Avoid outdoor activities. Apply sunscreen with SPF 50+ every two hours.'
+      'Wear a wide-brimmed hat, sunglasses, protective clothing. Avoid outdoor activities. Apply SPF 50+ every two hours.'
   }
 
   return { uVlevel, alertMessage }
