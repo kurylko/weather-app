@@ -597,6 +597,15 @@ footer {
     padding-top: 200px;
 }
 
+.forecast-title-desc {
+    display: block;
+    margin-left: 80px;
+}
+
+.forecast-title-mob {
+    font-size: xx-large;
+}
+
 
 
 @media (max-width: 599px) {
@@ -645,44 +654,59 @@ footer {
         display: none;
     }
 
-    .forecast-title-mob {
-        display: none;
-    }
-
     .forecast-title-desc {
-        width: 20%;
+        display: none;
     }
 
     .forecast-and-hourly-container {
         width: 80%;
         flex-direction: column-reverse;
-        gap: 60px;
+        gap: 80px;
     }
 
     .forecast-cards-container {
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
         width: 100%;
     }
 
     .forecast-cards {
         flex-direction: column;
-        width: 65%;
+        align-items: end;
+        width: 90%;
         gap: 25px;
+        margin-right: 10px;
     }
 
     .forecast-card {
         flex-direction: row;
-        gap: 5px;
+        justify-content: space-around;
+        gap: 10px;
+        background-color: rgb(var(--light-schell-rgb));
+        border-radius: 10px;
+        padding: 0 10px;
+        width: 100%;
+    }
+
+    .forecast-day {
+        margin: 0 0 0;
     }
 
     .forecast-number-icon-container {
         flex-direction: row;
+        gap: 10px;
+    }
+
+    .forecast-number-icon {
+        gap: 5px;
     }
 
     .forecast-big-icon {
         width: 60px;
         height: 60px;
+    }
+
+    .forecast-max-temp {
+        font-size: larger;
     }
 
     .hourly-text {
@@ -755,9 +779,40 @@ footer {
         height: 45px;
     }
 
+    .forecast-cards-container {
+        flex-direction: row;
+    }
+
+    .forecast-title-mob {
+        display: none;
+    }
+
+    .forecast-title-desc {
+        display: block;
+    }
+
+    .forecast-cards {
+        margin-right: 40px;
+    }
+
+    .forecast-card {
+        width: 85%;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+
+    .forecast-number-icon-container {
+        gap: 15px;
+    }
+
     .forecast-number-icon {
         gap: 15px;
     }
+
+    .forecast-max-temp {
+        font-size: x-large;
+    }
+
 
     .astro-card {
         width: 100%;
