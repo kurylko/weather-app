@@ -159,7 +159,15 @@ export default function WeatherPage() {
 
       <div className="forecast-and-hourly-container">
         <div className="forecast-cards-container">
-          {!!forecast && <h1>Forecast for 3 days</h1>}
+          {!!forecast && (
+            <h1 className="forecast-title-mob">Forecast for 3 days</h1>
+          )}
+          {!!forecast && (
+            <span className="forecast-title-desc">
+              <h1>Forecast</h1>
+              <h2> for 3 days</h2>
+            </span>
+          )}
           {forecastLoading ? (
             <div className="current-weather-card no-weather-card">
               <Loader loaderText={forecastLoaderText} />
