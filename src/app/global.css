@@ -21,15 +21,12 @@
 }
 
 .dark {
-    --background-color: #121212;
+    --background-color: radial-gradient(circle at top left, rgba(10, 24, 50, 1), rgba(0, 0, 20, 0.8) 50%, rgba(0, 0, 40, 0.5) 100%);
     --text-color: #ffffff;
     --header-background-color: #1c1c1c;
 
 }
 
-.dark .current-weather-card {
-    background-color: rgb(var(--dark-blue-rgb));
-}
 
 * {
     box-sizing: border-box;
@@ -190,8 +187,9 @@ main {
     box-shadow: 2px 3px 2px rgb(var(--light-blue-rgb), 0.3);
 }
 
-.current-weather-card-dark {
-    background-color: rgb(var(--dark-deep-blue-rgb));
+.dark .current-weather-card {
+    background-color: transparent;
+    box-shadow: none;
 }
 
 .current-location {
@@ -557,6 +555,10 @@ footer {
     text-align: center;
 }
 
+.dark .air-quality-card {
+    background-color: transparent;
+}
+
 .air-quality-icon {
     width: 50px;
     height: 50px;
@@ -573,6 +575,11 @@ footer {
     justify-self: center;
     box-shadow: 2px 3px 2px rgb(var(--light-blue-rgb), 0.3);
     margin-top: auto;
+}
+
+.dark .uv-alert-card {
+    background-color: transparent;
+    box-shadow: none;
 }
 
 .uv-alert-text {
