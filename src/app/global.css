@@ -44,7 +44,7 @@ body {
     font-size: 14px;
     line-height: 1.6;
     box-sizing: border-box;
-    color: rgb(var(--foreground-rgb));
+    color:var(--text-color);
     background: var(--background-color);
 }
 
