@@ -12,7 +12,23 @@
     --dark-deep-blue-rgb: 11, 37, 46;
     --main-text-color-rgb: 11, 37, 46;
     --orange-rgb: 255, 109, 47;
+    --night-sky-rgb: 10, 24, 50;
+    --text-color: rgb(var(--main-text-color-rgb));
+    --background-color: linear-gradient(
+            to bottom,
+            transparent,
+            rgb(var(--light-schell-rgb))
+    ) rgb(var(--yellow-rgb));
+    --header-background-color: rgb(var(--blue-rgb));
 }
+
+.dark {
+    --background-color: radial-gradient(circle at top left, rgba(10, 24, 50, 1), rgba(0, 0, 20, 0.8) 50%, rgba(0, 0, 40, 0.5) 100%);
+    --text-color: #ffffff;
+    --header-background-color: rgb(var(--night-sky-rgb));
+    --footer-color: rgb(var(--night-sky-rgb));
+}
+
 
 * {
     box-sizing: border-box;
@@ -32,12 +48,8 @@ body {
     font-size: 14px;
     line-height: 1.6;
     box-sizing: border-box;
-    color: rgb(var(--foreground-rgb));
-    background: linear-gradient(
-            to bottom,
-            transparent,
-            rgb(var(--light-schell-rgb))
-    ) rgb(var(--yellow-rgb));
+    color:var(--text-color);
+    background: var(--background-color);
 }
 
 h1,
@@ -47,7 +59,6 @@ h4,
 h5,
 h6 {
     font-family: 'Manrope', sans-serif;
-    color: rgb(var(--main-text-color-rgb));
     margin: 0 0 1em;
 }
 
@@ -92,10 +103,10 @@ h3 {
 header {
     display: flex;
     height: fit-content;
+    background-color: var(--header-background-color);
     top: 0;
     right: 0;
     width: 100%;
-    background-color: rgb(var(--blue-rgb));
     margin-bottom: 14px;
     padding: 10px;
     justify-content: flex-end;
@@ -178,6 +189,11 @@ main {
     box-shadow: 2px 3px 2px rgb(var(--light-blue-rgb), 0.3);
 }
 
+.dark .current-weather-card {
+    background-color: transparent;
+    box-shadow: none;
+}
+
 .current-location {
     text-align: center;
 }
@@ -256,6 +272,12 @@ main {
     align-items: center;
 }
 
+.dark .forecast-card {
+    background-color: transparent;
+    box-shadow: none;
+    border: 1px solid rgb(var(--light-schell-rgb));
+}
+
 .forecast-day {
     margin: 0 0 10px;
 }
@@ -269,6 +291,10 @@ main {
     font-size: x-large;
     margin: 10px 0 20px 0;
     color: rgb(var(--main-text-color-rgb));
+}
+
+.dark .forecast-max-temp {
+    color: var(--text-color);
 }
 
 .forecast-card-icon {
@@ -335,12 +361,14 @@ main {
     border-radius: 10px;
     margin-left: 2px;
     padding: 0 10px;
+    color: var(--text-color);
 }
 
 footer {
     width: 100%;
     background-color: rgb(var(--yellow-rgb));
     padding-left: 10px;
+    color: var(--footer-color);
 }
 
 .loader-container {
@@ -402,6 +430,10 @@ footer {
 .astro-text {
     color: rgb(var(--main-text-color-rgb));
     text-align: center;
+}
+
+.dark .astro-text {
+    color: var(--text-color);
 }
 
 .current-day-hourly {
@@ -541,6 +573,10 @@ footer {
     text-align: center;
 }
 
+.dark .air-quality-card {
+    background-color: transparent;
+}
+
 .air-quality-icon {
     width: 50px;
     height: 50px;
@@ -557,6 +593,11 @@ footer {
     justify-self: center;
     box-shadow: 2px 3px 2px rgb(var(--light-blue-rgb), 0.3);
     margin-top: auto;
+}
+
+.dark .uv-alert-card {
+    background-color: transparent;
+    box-shadow: none;
 }
 
 .uv-alert-text {
@@ -627,6 +668,48 @@ footer {
     letter-spacing: 1px;
 }
 
+.search-and-toggle {
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+    width: 100%;
+}
+
+.theme-toggle {
+    width: 60px;
+    height: 30px;
+    background-color: rgb(var(--light-schell-rgb));
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    position: relative;
+    padding: 5px;
+    transition: background-color 0.3s;
+}
+
+.theme-toggle:hover {
+    background-color: rgb(var(--light-schell-rgb));
+}
+
+.toggle-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(var(--orange-rgb));
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    transition: left 0.3s ease, background-color 0.3s ease;
+}
+
+.toggle-circle-dark {
+    left: 35px;
+    background-color: rgb(var(--night-sky-rgb));
+}
 
 
 @media (max-width: 599px) {
@@ -644,6 +727,10 @@ footer {
 
     .header-location-card {
         display: none;
+    }
+
+    .dark .forecast-card {
+        border: none;
     }
 
     .forecast-title-desk {
@@ -770,6 +857,10 @@ footer {
 
     .hourly-time {
         width: 60%;
+    }
+
+    .theme-toggle {
+        margin-right: 10px;
     }
 
 }

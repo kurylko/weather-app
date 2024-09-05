@@ -3,6 +3,7 @@
 import './global.css'
 
 import { Manrope } from 'next/font/google'
+import { useEffect, useState } from 'react'
 
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
@@ -15,8 +16,31 @@ const manrope = Manrope({
 })
 
 export default function RootLayout({ children }) {
+  const [theme, setTheme] = useState('light')
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem('theme')
+    const systemPrefersDark = window.matchMedia(
+      '(prefers-color-scheme: dark)'
+    ).matches
+
+    if (storedTheme) {
+      setTheme(storedTheme)
+    } else if (systemPrefersDark) {
+      setTheme('dark')
+    }
+  }, [])
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [theme])
+
   return (
-    <html lang="en">
+    <html lang="en" className={theme}>
       <head>
         <title>Weather</title>
         <meta name="description" content="Weather App" />
