@@ -9,6 +9,7 @@ import useUserLocation from '@/hooks/useUserLocation'
 import { getCoordinates } from '@/state/searchPlaceSlice'
 import { getBigWeatherIcon } from '@/utils/getBigWeatherIcon'
 import { getCityName } from '@/utils/getCityName'
+import ThemeSwitcher from "@/components/ThemeSwitcher";
 
 const Header = () => {
   const pathname = usePathname()
@@ -85,6 +86,7 @@ const Header = () => {
           inputRef={inputRef}
         />
       )}
+      <ThemeSwitcher />
     </header>
   )
 }

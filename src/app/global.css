@@ -12,6 +12,13 @@
     --dark-deep-blue-rgb: 11, 37, 46;
     --main-text-color-rgb: 11, 37, 46;
     --orange-rgb: 255, 109, 47;
+    --text-color: rgb(var(--main-text-color-rgb));
+}
+
+.dark {
+    --background-color: #121212;
+    --text-color: #ffffff;
+    --header-background-color: #1c1c1c;
 }
 
 * {
@@ -47,7 +54,6 @@ h4,
 h5,
 h6 {
     font-family: 'Manrope', sans-serif;
-    color: rgb(var(--main-text-color-rgb));
     margin: 0 0 1em;
 }
 
