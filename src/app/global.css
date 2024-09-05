@@ -12,19 +12,21 @@
     --dark-deep-blue-rgb: 11, 37, 46;
     --main-text-color-rgb: 11, 37, 46;
     --orange-rgb: 255, 109, 47;
+    --night-sky-rgb: 10, 24, 50;
     --text-color: rgb(var(--main-text-color-rgb));
     --background-color: linear-gradient(
             to bottom,
             transparent,
             rgb(var(--light-schell-rgb))
     ) rgb(var(--yellow-rgb));
+    --header-background-color: rgb(var(--blue-rgb));
 }
 
 .dark {
     --background-color: radial-gradient(circle at top left, rgba(10, 24, 50, 1), rgba(0, 0, 20, 0.8) 50%, rgba(0, 0, 40, 0.5) 100%);
     --text-color: #ffffff;
-    --header-background-color: #1c1c1c;
-
+    --header-background-color: rgb(var(--night-sky-rgb));
+    --footer-color: rgb(var(--night-sky-rgb));
 }
 
 
@@ -101,10 +103,10 @@ h3 {
 header {
     display: flex;
     height: fit-content;
+    background-color: var(--header-background-color);
     top: 0;
     right: 0;
     width: 100%;
-    background-color: rgb(var(--blue-rgb));
     margin-bottom: 14px;
     padding: 10px;
     justify-content: flex-end;
@@ -359,12 +361,14 @@ main {
     border-radius: 10px;
     margin-left: 2px;
     padding: 0 10px;
+    color: var(--text-color);
 }
 
 footer {
     width: 100%;
     background-color: rgb(var(--yellow-rgb));
     padding-left: 10px;
+    color: var(--footer-color);
 }
 
 .loader-container {
@@ -688,6 +692,9 @@ footer {
 }
 
 .toggle-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 20px;
     height: 20px;
     background-color: rgb(var(--orange-rgb));
@@ -701,11 +708,8 @@ footer {
 
 .toggle-circle-dark {
     left: 35px;
-    background-color: rgb(var(--deep-blue-rgb));
+    background-color: rgb(var(--night-sky-rgb));
 }
-
-
-
 
 
 @media (max-width: 599px) {
@@ -723,6 +727,10 @@ footer {
 
     .header-location-card {
         display: none;
+    }
+
+    .dark .forecast-card {
+        border: none;
     }
 
     .forecast-title-desk {
@@ -849,6 +857,10 @@ footer {
 
     .hourly-time {
         width: 60%;
+    }
+
+    .theme-toggle {
+        margin-right: 10px;
     }
 
 }

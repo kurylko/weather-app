@@ -1,5 +1,5 @@
+import sun from '@public/icons/empty-sun.png'
 import moon from '@public/icons/new-moon.png'
-import sunny from '@public/icons/sunny.png'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
@@ -36,9 +36,13 @@ const ThemeSwitcher = () => {
         className={`toggle-circle ${theme === 'dark' ? 'toggle-circle-dark' : ''}`}
       >
         <Image
-          style={{ width: '18px', height: '18px' }}
-          src={theme === 'light' ? sunny : moon}
-          alt="day"
+          style={{
+            width: '15px',
+            height: '15px',
+            filter: theme === 'light' && 'invert(100%)',
+          }}
+          src={theme === 'light' ? sun : moon}
+          alt="mode-icon"
         />
       </span>
     </button>
