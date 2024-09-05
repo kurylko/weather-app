@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
-import Image from "next/image";
+import moon from '@public/icons/new-moon.png'
 import sunny from '@public/icons/sunny.png'
+import Image from 'next/image'
+import { useEffect, useState } from 'react'
 
 const ThemeSwitcher = () => {
   const [theme, setTheme] = useState('light')
@@ -33,7 +34,12 @@ const ThemeSwitcher = () => {
     <button className="theme-toggle" onClick={toggleTheme}>
       <span
         className={`toggle-circle ${theme === 'dark' ? 'toggle-circle-dark' : ''}`}
-      ><Image style={{width: '18px', height: '18px'}} src={sunny} alt='day'/>
+      >
+        <Image
+          style={{ width: '18px', height: '18px' }}
+          src={theme === 'light' ? sunny : moon}
+          alt="day"
+        />
       </span>
     </button>
   )

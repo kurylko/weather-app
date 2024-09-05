@@ -667,7 +667,7 @@ footer {
 .theme-toggle {
     width: 60px;
     height: 30px;
-    background-color: #ddd;
+    background-color: rgb(var(--light-schell-rgb));
     border: none;
     border-radius: 30px;
     cursor: pointer;
@@ -677,13 +677,13 @@ footer {
 }
 
 .theme-toggle:hover {
-    background-color: #ccc;
+    background-color: rgb(var(--light-schell-rgb));
 }
 
 .toggle-circle {
     width: 20px;
     height: 20px;
-    background-color: #fff;
+    background-color: rgb(var(--orange-rgb));
     border-radius: 50%;
     position: absolute;
     top: 50%;
@@ -694,7 +694,7 @@ footer {
 
 .toggle-circle-dark {
     left: 35px;
-    background-color: #121212;
+    background-color: rgb(var(--deep-blue-rgb));
 }
 
 
