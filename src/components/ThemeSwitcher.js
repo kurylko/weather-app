@@ -12,15 +12,18 @@ const ThemeSwitcher = () => {
     }
   }, [])
 
+  useEffect(() => {
+    document.documentElement.classList.remove('light', 'dark')
+    document.documentElement.classList.add(theme)
+  }, [theme])
+
   const toggleTheme = () => {
     if (theme === 'dark') {
       setTheme('light')
       localStorage.setItem('theme', 'light')
-      document.documentElement.classList.remove('dark')
     } else {
       setTheme('dark')
       localStorage.setItem('theme', 'dark')
-      document.documentElement.classList.add('dark')
     }
   }
 
