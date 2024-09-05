@@ -664,6 +664,13 @@ footer {
     letter-spacing: 1px;
 }
 
+.search-and-toggle {
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+    width: 100%;
+}
+
 .theme-toggle {
     width: 60px;
     height: 30px;
