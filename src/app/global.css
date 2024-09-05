@@ -270,6 +270,12 @@ main {
     align-items: center;
 }
 
+.dark .forecast-card {
+    background-color: transparent;
+    box-shadow: none;
+    border: 1px solid rgb(var(--light-schell-rgb));
+}
+
 .forecast-day {
     margin: 0 0 10px;
 }
@@ -283,6 +289,10 @@ main {
     font-size: x-large;
     margin: 10px 0 20px 0;
     color: rgb(var(--main-text-color-rgb));
+}
+
+.dark .forecast-max-temp {
+    color: var(--text-color);
 }
 
 .forecast-card-icon {
@@ -416,6 +426,10 @@ footer {
 .astro-text {
     color: rgb(var(--main-text-color-rgb));
     text-align: center;
+}
+
+.dark .astro-text {
+    color: var(--text-color);
 }
 
 .current-day-hourly {
