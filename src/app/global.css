@@ -24,6 +24,11 @@
     --background-color: #121212;
     --text-color: #ffffff;
     --header-background-color: #1c1c1c;
+
+}
+
+.dark .current-weather-card {
+    background-color: rgb(var(--dark-blue-rgb));
 }
 
 * {
@@ -183,6 +188,10 @@ main {
     border-radius: 10px;
     width: 100%;
     box-shadow: 2px 3px 2px rgb(var(--light-blue-rgb), 0.3);
+}
+
+.current-weather-card-dark {
+    background-color: rgb(var(--dark-deep-blue-rgb));
 }
 
 .current-location {
