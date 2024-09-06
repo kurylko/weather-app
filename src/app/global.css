@@ -463,6 +463,10 @@ footer {
     background-color: rgba(255, 255, 255, 0.99);
 }
 
+.dark .hourly-weather-card {
+    background-color: transparent;
+}
+
 .hourly-weather-card-item-container {
     display: flex;
     flex-direction: column;
@@ -670,7 +674,7 @@ footer {
 
 .search-and-toggle {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     gap: 20px;
     width: 100%;
 }
