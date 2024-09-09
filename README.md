@@ -1,18 +1,21 @@
 # Weather Web App
 
+![Project screen](public/weather-dark.png) 
+
 ## Features:
 
 * Current weather;
 * Weather forecast for 3 days;
 * Hourly weather forecast;
 * Air Quality monitor;
+* UV-alerts;
 * Sun & Moon information.
 
 ## Technologies used:
 
-**Fontend:** React, Next.js, CSS, Redux Toolkit, geoCoding
+**Frontend:** React, Next.js, CSS, Redux Toolkit, geoCoding
 
-**API:** WeatherAPI
+**API:** WeatherAPI, Google Maps API
 
 ## Getting Started
 
@@ -30,4 +33,4 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-![Project screen](public/weather-2024.png)
+
