@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import HeaderLocation from '@/components/HeaderLocation'
 import SearchBar from '@/components/SearchBar'
+import ThemeSwitcher from '@/components/ThemeSwitcher'
 import useCurrentWeather from '@/hooks/useCurrentWeather'
 import useUserLocation from '@/hooks/useUserLocation'
 import { getCoordinates } from '@/state/searchPlaceSlice'
@@ -76,15 +77,18 @@ const Header = () => {
         icon={currentWeatherIcon}
         currentWeatherCondition={currentWeatherCondition}
       />
-      {pathname !== '/no-geoData' && (
-        <SearchBar
-          onClick={handleSearch}
-          onKeyDown={handleKeyDown}
-          onChange={handleChangeSearch}
-          searchInput={searchInput}
-          inputRef={inputRef}
-        />
-      )}
+      <div className="search-and-toggle">
+        {pathname !== '/no-geoData' && (
+          <SearchBar
+            onClick={handleSearch}
+            onKeyDown={handleKeyDown}
+            onChange={handleChangeSearch}
+            searchInput={searchInput}
+            inputRef={inputRef}
+          />
+        )}
+        <ThemeSwitcher />
+      </div>
     </header>
   )
 }
