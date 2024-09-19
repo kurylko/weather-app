@@ -17,25 +17,28 @@ const Header = () => {
   const pathname = usePathname()
 
   const [city, setCity] = useState(null)
+  const [triggerSearch, setTriggerSearch] = useState(false)
 
   const dispatch = useDispatch()
 
   const [searchInput, setSearchInput] = useState('')
   const inputRef = useRef(null)
-  const { predictions, getPlacePredictions } = usePlacesAutocomplete(apiKey)
+  const { predictions, getPlacePredictions, setPredictions } =
+    usePlacesAutocomplete(apiKey)
 
   const handleChangeSearch = (e) => {
     setSearchInput(e.target.value)
-    getPlacePredictions(e.target.value)
-  }
-
-  const onPredictionClick = (prediction) => {
-    setSearchInput(prediction.description)
+    if (e.target.value) {
+      getPlacePredictions(e.target.value)
+    } else {
+      setPredictions([])
+    }
   }
 
   const handleSearch = () => {
     dispatch(getCoordinates({ city: searchInput }))
     setSearchInput('')
+    setPredictions([])
     if (inputRef.current) {
       inputRef.current.blur()
     }
@@ -45,10 +48,24 @@ const Header = () => {
     if (event.key === 'Enter') {
       handleSearch()
       setSearchInput('')
+      setPredictions([])
       if (inputRef.current) {
         inputRef.current.blur()
       }
     }
+  }
+
+  useEffect(() => {
+    if (triggerSearch) {
+      handleSearch()
+      setTriggerSearch(false)
+    }
+  }, [triggerSearch, searchInput])
+
+  const onPredictionClick = (prediction) => {
+    setSearchInput(prediction.description)
+    setPredictions([])
+    setTriggerSearch(true)
   }
 
   const browserLocation = useUserLocation()

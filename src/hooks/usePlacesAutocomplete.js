@@ -29,6 +29,7 @@ const Autocomplete = (apiKey) => {
         } else {
           setError('Error fetching place predictions')
           setLoading(false)
+          setPredictions([])
         }
       }
     )
@@ -38,6 +39,6 @@ const Autocomplete = (apiKey) => {
     loadGoogleMapsScript()
   }, [])
 
-  return { predictions, getPlacePredictions, loading, error }
+  return { predictions, setPredictions, getPlacePredictions, loading, error }
 }
 export default Autocomplete
