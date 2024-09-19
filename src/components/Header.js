@@ -13,7 +13,6 @@ import { getBigWeatherIcon } from '@/utils/getBigWeatherIcon'
 import { getCityName } from '@/utils/getCityName'
 
 const Header = () => {
-  const apiKey = 'AIzaSyC9R2qbc03gTUA8mSnqrCDlfCSWbuYLy4Q'
   const pathname = usePathname()
 
   const [city, setCity] = useState(null)
@@ -24,7 +23,7 @@ const Header = () => {
   const [searchInput, setSearchInput] = useState('')
   const inputRef = useRef(null)
   const { predictions, getPlacePredictions, setPredictions } =
-    usePlacesAutocomplete(apiKey)
+    usePlacesAutocomplete()
 
   const handleChangeSearch = (e) => {
     setSearchInput(e.target.value)

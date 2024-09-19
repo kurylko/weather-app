@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const Autocomplete = (apiKey) => {
+const usePlacesAutocomplete = () => {
   const [predictions, setPredictions] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -8,6 +8,7 @@ const Autocomplete = (apiKey) => {
   const loadGoogleMapsScript = () => {
     if (typeof window.google === 'undefined') {
       const script = document.createElement('script')
+      const apiKey = process.env.NEXT_PUBLIC_GOOGLE_PLACES_AUTOCOMPLETE_API_KEY
       script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`
       script.async = true
       script.onload = () => console.log('Google Maps script loaded')
@@ -41,4 +42,4 @@ const Autocomplete = (apiKey) => {
 
   return { predictions, setPredictions, getPlacePredictions, loading, error }
 }
-export default Autocomplete
+export default usePlacesAutocomplete
