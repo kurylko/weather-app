@@ -6,12 +6,14 @@ import HeaderLocation from '@/components/HeaderLocation'
 import SearchBar from '@/components/SearchBar'
 import ThemeSwitcher from '@/components/ThemeSwitcher'
 import useCurrentWeather from '@/hooks/useCurrentWeather'
+import usePlacesAutocomplete from '@/hooks/usePlacesAutocomplete'
 import useUserLocation from '@/hooks/useUserLocation'
 import { getCoordinates } from '@/state/searchPlaceSlice'
 import { getBigWeatherIcon } from '@/utils/getBigWeatherIcon'
 import { getCityName } from '@/utils/getCityName'
 
 const Header = () => {
+  const apiKey = 'AIzaSyC9R2qbc03gTUA8mSnqrCDlfCSWbuYLy4Q'
   const pathname = usePathname()
 
   const [city, setCity] = useState(null)
@@ -20,10 +22,15 @@ const Header = () => {
 
   const [searchInput, setSearchInput] = useState('')
   const inputRef = useRef(null)
+  const { predictions, getPlacePredictions } = usePlacesAutocomplete(apiKey)
 
   const handleChangeSearch = (e) => {
-    e.preventDefault()
     setSearchInput(e.target.value)
+    getPlacePredictions(e.target.value)
+  }
+
+  const onPredictionClick = (prediction) => {
+    setSearchInput(prediction.description)
   }
 
   const handleSearch = () => {
@@ -85,6 +92,8 @@ const Header = () => {
             onChange={handleChangeSearch}
             searchInput={searchInput}
             inputRef={inputRef}
+            predictions={predictions}
+            onPredictionClick={onPredictionClick}
           />
         )}
         <ThemeSwitcher />
