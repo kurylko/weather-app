@@ -24,6 +24,7 @@ const usePlacesAutocomplete = () => {
     autocompleteService.getPlacePredictions(
       { input: inputValue },
       (predictions, status) => {
+        console.log(predictions, status)
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           setPredictions(predictions)
           setLoading(false)
