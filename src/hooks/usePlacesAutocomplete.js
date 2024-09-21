@@ -5,42 +5,45 @@ const usePlacesAutocomplete = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
-  const loadGoogleMapsScript = () => {
-    if (typeof window.google === 'undefined') {
-      const script = document.createElement('script')
-      const apiKey = process.env.NEXT_PUBLIC_GOOGLE_PLACES_AUTOCOMPLETE_API_KEY
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`
-      script.async = true
-      script.onload = () => console.log('Google Maps script loaded')
-      document.head.appendChild(script)
+  const fetchPredictions = async (inputValue) => {
+    if (!inputValue) {
+      setPredictions([])
+      return
+    }
+
+    setLoading(true)
+    setError(null)
+
+    try {
+      const response = await fetch(
+        `/api/autocomplete?input=${encodeURIComponent(inputValue)}`
+      )
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`)
+      }
+
+      const data = await response.json()
+
+      if (data.error) {
+        setError(data.error)
+        setPredictions([])
+      } else {
+        setPredictions(data.predictions)
+      }
+    } catch (error) {
+      console.error('Error fetching predictions:', error)
+      setError('Failed to fetch predictions')
+      setPredictions([])
+    } finally {
+      setLoading(false)
     }
   }
 
-  const getPlacePredictions = (inputValue) => {
-    if (typeof google === 'undefined' || !inputValue) return
-
-    const autocompleteService = new google.maps.places.AutocompleteService()
-    setLoading(true)
-    autocompleteService.getPlacePredictions(
-      { input: inputValue },
-      (predictions, status) => {
-        console.log(predictions, status)
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          setPredictions(predictions)
-          setLoading(false)
-        } else {
-          setError('Error fetching place predictions')
-          setLoading(false)
-          setPredictions([])
-        }
-      }
-    )
-  }
-
   useEffect(() => {
-    loadGoogleMapsScript()
+    fetchPredictions()
   }, [])
 
-  return { predictions, setPredictions, getPlacePredictions, loading, error }
+  return { predictions, setPredictions, fetchPredictions, loading, error }
 }
 export default usePlacesAutocomplete

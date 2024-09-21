@@ -22,13 +22,13 @@ const Header = () => {
 
   const [searchInput, setSearchInput] = useState('')
   const inputRef = useRef(null)
-  const { predictions, getPlacePredictions, setPredictions } =
+  const { predictions, fetchPredictions, setPredictions } =
     usePlacesAutocomplete()
 
   const handleChangeSearch = (e) => {
     setSearchInput(e.target.value)
     if (e.target.value) {
-      getPlacePredictions(e.target.value)
+      fetchPredictions(e.target.value)
     } else {
       setPredictions([])
     }
@@ -54,18 +54,18 @@ const Header = () => {
     }
   }
 
+  const onPredictionClick = (prediction) => {
+    setSearchInput(prediction.description)
+    setTriggerSearch(true)
+    setPredictions([])
+  }
+
   useEffect(() => {
     if (triggerSearch) {
       handleSearch()
       setTriggerSearch(false)
     }
-  }, [triggerSearch, searchInput])
-
-  const onPredictionClick = (prediction) => {
-    setSearchInput(prediction.description)
-    setPredictions([])
-    setTriggerSearch(true)
-  }
+  }, [triggerSearch])
 
   const browserLocation = useUserLocation()
   const locationData =
