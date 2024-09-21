@@ -10,6 +10,9 @@
     "plugin:@next/next/recommended",
     "prettier"
   ],
+  "globals": {
+    "google": "readonly"
+  },
   "plugins": ["prettier", "simple-import-sort"],
   "rules": {
     "react/react-in-jsx-scope": 0,

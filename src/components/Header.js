@@ -6,6 +6,7 @@ import HeaderLocation from '@/components/HeaderLocation'
 import SearchBar from '@/components/SearchBar'
 import ThemeSwitcher from '@/components/ThemeSwitcher'
 import useCurrentWeather from '@/hooks/useCurrentWeather'
+import usePlacesAutocomplete from '@/hooks/usePlacesAutocomplete'
 import useUserLocation from '@/hooks/useUserLocation'
 import { getCoordinates } from '@/state/searchPlaceSlice'
 import { getBigWeatherIcon } from '@/utils/getBigWeatherIcon'
@@ -15,20 +16,28 @@ const Header = () => {
   const pathname = usePathname()
 
   const [city, setCity] = useState(null)
+  const [triggerSearch, setTriggerSearch] = useState(false)
 
   const dispatch = useDispatch()
 
   const [searchInput, setSearchInput] = useState('')
   const inputRef = useRef(null)
+  const { predictions, fetchPredictions, setPredictions } =
+    usePlacesAutocomplete()
 
   const handleChangeSearch = (e) => {
-    e.preventDefault()
     setSearchInput(e.target.value)
+    if (e.target.value) {
+      fetchPredictions(e.target.value)
+    } else {
+      setPredictions([])
+    }
   }
 
   const handleSearch = () => {
     dispatch(getCoordinates({ city: searchInput }))
     setSearchInput('')
+    setPredictions([])
     if (inputRef.current) {
       inputRef.current.blur()
     }
@@ -38,11 +47,25 @@ const Header = () => {
     if (event.key === 'Enter') {
       handleSearch()
       setSearchInput('')
+      setPredictions([])
       if (inputRef.current) {
         inputRef.current.blur()
       }
     }
   }
+
+  const onPredictionClick = (prediction) => {
+    setSearchInput(prediction.description)
+    setTriggerSearch(true)
+    setPredictions([])
+  }
+
+  useEffect(() => {
+    if (triggerSearch) {
+      handleSearch()
+      setTriggerSearch(false)
+    }
+  }, [triggerSearch])
 
   const browserLocation = useUserLocation()
   const locationData =
@@ -85,6 +108,8 @@ const Header = () => {
             onChange={handleChangeSearch}
             searchInput={searchInput}
             inputRef={inputRef}
+            predictions={predictions}
+            onPredictionClick={onPredictionClick}
           />
         )}
         <ThemeSwitcher />
