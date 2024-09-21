@@ -1,9 +1,10 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import SearchBar from '@/components/SearchBar'
+import usePlacesAutocomplete from '@/hooks/usePlacesAutocomplete'
 import { getCoordinates } from '@/state/searchPlaceSlice'
 
 export default function NoGeoDataPage() {
@@ -12,12 +13,28 @@ export default function NoGeoDataPage() {
   const dispatch = useDispatch()
 
   const [searchInput, setSearchInput] = useState('')
+  const [triggerSearch, setTriggerSearch] = useState(false)
+  const inputRef = useRef(null)
 
-  const handleChangeSearch = (e) => setSearchInput(e.target.value)
+  const { predictions, fetchPredictions, setPredictions } =
+    usePlacesAutocomplete()
+
+  const handleChangeSearch = (e) => {
+    setSearchInput(e.target.value)
+    if (e.target.value) {
+      fetchPredictions(e.target.value)
+    } else {
+      setPredictions([])
+    }
+  }
 
   const handleSearch = () => {
     dispatch(getCoordinates({ city: searchInput }))
     setSearchInput('')
+    setPredictions([])
+    if (inputRef.current) {
+      inputRef.current.blur()
+    }
     router.push('/weather')
   }
 
@@ -25,9 +42,26 @@ export default function NoGeoDataPage() {
     if (event.key === 'Enter') {
       handleSearch()
       setSearchInput('')
+      setPredictions([])
+      if (inputRef.current) {
+        inputRef.current.blur()
+      }
       router.push('/weather')
     }
   }
+
+  const onPredictionClick = (prediction) => {
+    setSearchInput(prediction.description)
+    setTriggerSearch(true)
+    setPredictions([])
+  }
+
+  useEffect(() => {
+    if (triggerSearch) {
+      handleSearch()
+      setTriggerSearch(false)
+    }
+  }, [triggerSearch])
 
   useEffect(() => {
     if ('geolocation' in navigator) {
@@ -54,6 +88,9 @@ export default function NoGeoDataPage() {
         onKeyDown={handleKeyDown}
         onChange={handleChangeSearch}
         searchInput={searchInput}
+        inputRef={inputRef}
+        predictions={predictions}
+        onPredictionClick={onPredictionClick}
       />
     </div>
   )
