@@ -6,6 +6,7 @@ import Image from 'next/image'
 import React from 'react'
 
 import Loader from '@/components/Loader'
+import { getUvIcon } from '@/utils/getUvIcon'
 
 const CurrentWeatherCard = ({
   currentWeather,
@@ -23,7 +24,6 @@ const CurrentWeatherCard = ({
   windKph,
   pressureN,
   uvIndex,
-  uvIndexIcon,
 }) => {
   const noWeatherDataMessage =
     'Sorry. The weather data is not available. Please, try again later.'
@@ -94,7 +94,7 @@ const CurrentWeatherCard = ({
         <div className="current-icon-number">
           <Image
             className="current-card-icon"
-            src={uvIndexIcon}
+            src={getUvIcon({ uvIndex: uvIndex })}
             alt="uv-icon"
           ></Image>
           <span className="current-card-icon-text">{uvIndex}</span>

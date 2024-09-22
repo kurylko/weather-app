@@ -1,8 +1,11 @@
-export function getUvAlert({ uVIndex }) {
+export function getUvAlert({ uVIndex, isNightTime }) {
   let alertMessage
   let uVlevel
 
-  if (uVIndex <= 2) {
+  if (uVIndex <= 2 && isNightTime) {
+    uVlevel = 'Low UV-index'
+    alertMessage = 'No UV protection needed.'
+  } else if (uVIndex <= 2) {
     uVlevel = 'Low UV-index'
     alertMessage = 'Wear sunglasses if it`s bright outside.'
   } else if (uVIndex >= 3 && uVIndex <= 5) {
