@@ -105,12 +105,16 @@ export default function WeatherPage() {
     epaIndex,
   })
 
-  const isAfterNine = () => {
-    const currentWeatherTime = currentWeather?.location?.localTime
-    const date = new Date(currentWeatherTime)
-    const hour = date.getHours()
+  const extractHour = (timeString) =>
+    ((h) => (h % 12) + (timeString?.includes('PM') ? 12 : 0))(
+      parseFloat(timeString?.split(':')[0])
+    )
 
-    return hour >= 21
+  const isAfterNine = () => {
+    const sunriseTime = extractHour(astroOfCurrentDay?.sunrise)
+    const localWeatherTime = extractHour(currentWeather?.location?.localtime)
+
+    return localWeatherTime >= 21 || localWeatherTime < sunriseTime
   }
 
   const { uVlevel, alertMessage } = getUvAlert({
