@@ -104,8 +104,18 @@ export default function WeatherPage() {
     so2,
     epaIndex,
   })
+
+  const isAfterNine = () => {
+    const currentWeatherTime = currentWeather?.location?.localTime
+    const date = new Date(currentWeatherTime)
+    const hour = date.getHours()
+
+    return hour >= 21
+  }
+
   const { uVlevel, alertMessage } = getUvAlert({
     uVIndex: currentWeather?.current?.uv,
+    isNightTime: isAfterNine,
   })
 
   return (
