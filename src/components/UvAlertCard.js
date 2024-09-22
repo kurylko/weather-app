@@ -7,7 +7,7 @@ const UvAlertCard = ({ uVlevel, alertMessage }) => {
       <Image className="uv-alert-icon" src={uv} alt="uv-icon" />
       <div className="uv-alert-text">
         <span>{uVlevel}</span>
-        <span>{alertMessage}</span>
+        <span className="uv-alert-desc">{alertMessage}</span>
       </div>
     </div>
   )
