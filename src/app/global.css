@@ -159,7 +159,8 @@ main {
     padding: 20px;
     border: 1px solid rgb(var(--light-schell-rgb));
     border-radius: 10px;
-    width: 70%;
+    width: 100%;
+    height: 50%;
 }
 
 .city-name {
@@ -337,11 +338,11 @@ main {
 }
 
 .search-icon {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     background-color: transparent;
     align-self: center;
-    opacity: 0.5;
+    opacity: 0.3;
     transition: opacity 0.3s ease;
 }
 
@@ -542,8 +543,10 @@ footer {
 
 .location-and-alerts-top {
     display: flex;
+    flex-direction: column;
     gap: 20px;
     width: 100%;
+    height: 60%;
     justify-content: space-between;
 }
 
@@ -551,14 +554,20 @@ footer {
 .date-and-air {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 20px;
+    height: 60%;
 }
 
 .date {
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 20px;
     border-radius: 10px;
     border: 1px solid rgb(var(--light-schell-rgb));
     text-align: center;
+    height: 35%;
 }
 
 .weather-alerts {
@@ -573,7 +582,7 @@ footer {
 
 .air-quality-card {
     background-color: rgb(var(--light-schell-rgb));
-    padding: 20px;
+    padding: 10px 20px;
     border-radius: 10px;
     text-align: center;
 }
@@ -590,6 +599,7 @@ footer {
 .uv-alert-card {
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 100%;
     gap: 20px;
     background-color: rgb(var(--light-schell-rgb));
@@ -609,6 +619,10 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.uv-alert-desc{
+    display: block;
 }
 
 .uv-alert-icon {
@@ -742,6 +756,10 @@ footer {
 }
 
 @media (max-width: 599px) {
+    .search-button {
+        display: none;
+    }
+
     .location-and-alerts-container {
         display: none;
     }
@@ -768,6 +786,10 @@ footer {
 
     .autocomplete-dropdown {
         right: 30px;
+    }
+
+    .current-weather-image{
+        padding-top: 10px;
     }
 }
 
@@ -864,7 +886,7 @@ footer {
     }
 
     .search-bar {
-        width: 55%;
+        width: 42%;
         right: 5px;
     }
     .location-and-alerts-container {
@@ -895,6 +917,9 @@ footer {
     .theme-toggle {
         margin-right: 10px;
     }
+.uv-alert-desc{
+    display: none;
+}
 
 }
 
@@ -910,8 +935,29 @@ footer {
         height: 430px;
     }
 
+    .location-and-alerts-top {
+        flex-direction: row;
+        height: auto;
+    }
+
     .location-card {
-        width: 55%;
+        width: 70%;
+        height: 100%;
+    }
+
+    .date-and-air {
+        height: 100%;
+    }
+
+    .date{
+        flex-direction: column;
+        gap: 0;
+        height: 100%;
+        padding: 20px;
+    }
+
+    .air-quality-card{
+        padding: 20px;
     }
 
     .current-weather-card {
@@ -987,10 +1033,19 @@ footer {
     }
 
     .search-bar {
-        width: 40%;
+        width: 25%;
     }
 
     .current-day-hourly {
         padding-bottom: 30px;
+    }
+
+    .uv-alert-card {
+        display: flex;
+        justify-content: left;
+    }
+
+    .uv-alert-desc{
+        display: block;
     }
 }
